@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/style.css" rel="stylesheet" />
+    <title>@RenderSection("title", false)</title>
+    @*<link href="/Admin/RetrieveLogo" rel="icon">*@
+
+
+</head>
+<body dir="rtl">
+    <div class="row">
+        <div class="col-2">
+            <h2 class="userName">اسم المستخدم</h2>
+
+            <div class="list d-flex flex-column">
+                <div class="one">
+
+                    <p>
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <i class="fa-solid fa-file-invoice"></i>
+
+                            الفواتير
+
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="/saleing-pill.html">فواتير البيع</a></li>
+                                    <li><a class="dropdown-item" href="/saling-returns-pill.html"> فواتير مرتجع مبيعات</a></li>
+                                    <li><a class="dropdown-item" href="/buy-pill.html">فواتير مشتريات </a></li>
+                                    <li><a class="dropdown-item" href="/buys-returns-pill.html">فواتير مرتجع مشتريات </a></li>
+                                    <li><a class="dropdown-item" href="/edit-pills.html">عرض و تعديل الفواتير</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one">
+
+
+                    <p>
+
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample1" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <i class="fa-solid fa-file-invoice"></i>
+
+                            المصروفات
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample1">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="/Expencess/Add"> تسجيل مصروفات</a></li>
+                                    <li><a class="dropdown-item" href="/Expencess/ShowExpencess">عرض و تعديل المصروفات</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="one">
+
+                    <p>
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                            <i class="fa-solid fa-person"></i>
+
+                            الموظفين
+
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample2">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="/Employees/Add"> اضافة الموظف</a></li>
+                                    <li><a class="dropdown-item" href="/Employees/ShowEmployees"> عرض و تعديل الموظفين</a></li>
+                                    <li><a class="dropdown-item" href="/EmployeeWithdraw/Add">   المسحوبات</a></li>
+                                    <li><a class="dropdown-item" href="/EmployeeWithdraw/ShowWithdraws">   عرض و تعديل المسحوبات</a></li>
+                                    <li><a class="dropdown-item" href="/pay-salerys.html">تسديد الرواتب</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one">
+
+                    <p>
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            الحسابات
+
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample3">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one">
+
+
+                    <p>
+
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                            <i class="fa-solid fa-sitemap"></i>
+                            الاصناف
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample4">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="/categories/Add">أنشاء فئة</a></li>
+                                    <li><a class="dropdown-item" href="/Items/Add"> اضافة صنف</a></li>
+                                    <li><a class="dropdown-item" href="/Items/ShowItems"> عرض و تعديل الاصناف</a></li>
+                                    <li><a class="dropdown-item" href="/Stores/Add">انشاء مخزن</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="one">
+
+                    <p>
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample5" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            التحويلات
+
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample5">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="/transaction.html">التحويلات</a></li>
+                                    <li><a class="dropdown-item" href="/edit-transactio.html">عرض و نعديل التحويلات</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="one">
+
+                    <p>
+                        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample6" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                            <i class="fa-solid fa-receipt"></i>
+                            التقارير
+
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample6">
+                            <div class="card card-body" style="width: 300px;">
+                                <ul>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        @RenderBody()
+
+    </div>
+
+
+
+
+
+
+    <script src="~/Assets/js/jquery-3.5.1.js"></script>
+    <script src="~/Assets/js/popper.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/all.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <!-- Footer Scripts
+    ============================================= -->
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

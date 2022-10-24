@@ -1,0 +1,88 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  اضافة فئة  }
+
+
+<div class="col-10">
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    أنشاء فئة
+                </h4>
+            </div>
+
+
+            @using (Html.BeginForm("Add", "Categories", FormMethod.Post))
+            {
+
+
+                <div class="fullWidth">
+                    <h6>اسم الفئة</h6>
+                    <input class=" w-100 form-control text-center" type="text" name="CatName" required placeholder="........................" />
+
+                </div>
+                <button class="btn btn-primary" type="submit">تسجيل</button>
+
+            }
+
+            <div class="showTable d-flex ">
+                <h3>الفئات</h3>
+                <div class="icons">
+                    <i class=" up fa-solid fa-angle-up"></i>
+                    <i class="down fa-solid fa-angle-down"></i>
+                </div>
+            </div>
+
+
+            <table class="table table-bordered mt-4 hiddenTable">
+                <thead>
+                    <tr>
+                        <th>اسم الفئة</th>
+                        <th>العمليات</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (ViewBag.Categories != null)
+                    {
+
+                        foreach (var item in ViewBag.Categories)
+                        {
+                            <tr>
+                                <td class="text-center">@item.CatName</td>
+                                <td>
+                                    <a class="text-success" href="/Categories/Edit/@item.Id">    <i class="fa-solid fa-pen-to-square"></i>  </a>
+                                    <a class="text-danger" href="/Categories/Delete/@item.Id">    <i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}

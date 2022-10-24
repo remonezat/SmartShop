@@ -1,0 +1,54 @@
+﻿
+@model SmartShop.Models.Category
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  تعديل فئة  }
+
+
+<div class="col-10">
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    تعديل فئة
+                </h4>
+            </div>
+
+
+            @using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
+            {
+
+
+                <div class="fullWidth">
+                    <h6>اسم الفئة</h6>
+                    @Html.EditorFor(model => model.CatName, new { htmlAttributes = new { @class = " w-100 form-control text-center" ,type = "text", required = "required" } })
+
+                </div>
+                <button class="btn btn-primary" type="submit">تعديل</button>
+
+            }
+
+         
+        </div>
+    </div>
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}

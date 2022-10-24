@@ -1,0 +1,330 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  الاصناف   }
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+
+
+
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل الاصناف
+                </h4>
+            </div>
+
+            <h6>اسم الصنف </h6>
+
+            <div class="staticWidth">
+
+                <input class="form-control" type="text" name="itemname" id="itemname" placeholder="اسم الصنف ........" />
+
+                <div class="hiddendiv" id="itemsdiv">
+                    <table class="table table-bordered mt-4">
+
+
+                        <tbody id="itemstable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <h6 for="">الباركود</h6>
+            <div class="staticWidth ">
+
+                <input class="form-control" name="barcode" id="barcode" type="text" placeholder="........" />
+
+                <div class="hiddendiv" id="barcodediv">
+                    <table class="table table-bordered mt-4">
+
+
+                        <tbody id="barcodetable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <h6 for="">الفئة</h6>
+            @Html.DropDownList("CatId", new SelectList(ViewBag.Categories, "Id", "CatName"), "--الكل--", new { @class = "form-select text-center" })
+
+
+            <h6 for=""> بلد المنشا</h6>
+            @Html.DropDownList("CompId", new SelectList(ViewBag.Companies, "Id", "Company"), "--الكل--", new { @class = "form-select text-center" })
+
+
+            <div class="btns">
+                <button class="btn btn-primary" onclick="Show()">البحث</button>
+                <button class="btn btn-primary">طباعة</button>
+            </div>
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>باركود</th>
+                        <th>اسم الصنف</th>
+                        <th> سعر الشراء</th>
+                        <th>سعر البيع </th>
+                        <th>الفئة</th>
+                        <th>بلد المنشا</th>
+                        <th>العمليات</th>
+
+                    </tr>
+                </thead>
+
+                <tbody id="datatable">
+                </tbody>
+            </table>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+    <input type="text" hidden name="ItemID" id="ItemID" />
+
+
+
+
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
+
+</div>
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            const box = document.getElementById('itemsdiv');
+            box.style.display = 'none';
+
+            $("#itemname").keyup(function () {
+
+                $.get("/Items/Getitems",
+                    { Name: $("#itemname").val() },
+                    function (data) {
+                        $("#itemstable").empty();
+                        $.each(data,
+                            function (index, row) {
+                                if ($("#itemname").val() == "" || $("#itemname").val() == null) {
+                                    $("#itemstable").empty();
+                                    const box = document.getElementById('itemsdiv');
+                                    box.style.display = 'none';
+                                }
+
+                                else if (data != null) {
+                                    const box = document.getElementById('itemsdiv');
+                                    box.style.display = 'block';
+                                    $('#itemstable').append("<tr onclick='TermName1item(" + row.Id + ")'> <td>" + row.ItemName + "</td> </tr>");
+
+                                }
+                                else {
+                                    $("#itemstable").empty();
+
+                                    const box = document.getElementById('itemsdiv');
+                                    box.style.display = 'none';
+                                }
+
+                            });
+                    });
+            });
+
+        });
+
+
+        function TermName1item(id) {
+
+            $.get("/Items/GetitemDetails",
+                { ID: id },
+                function (data) {
+                    $("#itemName").empty();
+
+                    const box = document.getElementById('itemsdiv');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#itemname').val(row.ItemName);
+                                $('#ItemID').val(row.Id);
+
+                                $('#barcode').val(row.Barcode);
+
+
+
+                            }
+
+                        });
+                });
+
+
+
+        }
+
+        $(document).ready(function () {
+            const box = document.getElementById('barcodediv');
+            box.style.display = 'none';
+
+            $("#barcode").keyup(function () {
+
+                $.get("/Items/Getitemsbybarcode",
+                    { Name: $("#barcode").val() },
+                    function (data) {
+                        $("#barcodetable").empty();
+                        $.each(data,
+                            function (index, row) {
+                                if ($("#barcode").val() == "" || $("#barcode").val() == null) {
+                                    $("#barcodetable").empty();
+                                    const box = document.getElementById('barcodediv');
+                                    box.style.display = 'none';
+                                }
+
+                                else if (data != null) {
+                                    const box = document.getElementById('barcodediv');
+                                    box.style.display = 'block';
+                                    $('#barcodetable').append("<tr onclick='barcodeitem(" + row.Id + ")'> <td>" + row.ItemName + "</td> </tr>");
+
+                                }
+                                else {
+                                    $("#barcodetable").empty();
+
+                                    const box = document.getElementById('barcodediv');
+                                    box.style.display = 'none';
+                                }
+
+                            });
+                    });
+            });
+
+        });
+
+
+        function barcodeitem(id) {
+
+            $.get("/Items/GetitemDetails",
+                { ID: id },
+                function (data) {
+                    $("#barcode").empty();
+
+                    const box = document.getElementById('barcodediv');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#itemname').val(row.ItemName);
+                                $('#ItemID').val(row.Id);
+                                $('#barcode').val(row.Barcode);
+
+
+
+
+                            }
+
+                        });
+                });
+
+
+
+        }
+
+
+        function Show() {
+
+            $.get("/Items/GetItemData",
+                { Name: document.getElementById("itemname").value, Barcode: document.getElementById("barcode").value, CatName: $("#CatId option:selected").text(), Company: $("#CompId option:selected").text() },
+                function (data) {
+                    $("#datatable").empty();
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                $('#datatable').append("<tr ><td>" + row["Barcode"] + "</td><td>" + row["ItemName"] + "</td><td>" + row["PricePur"] + "</td><td>" + row["PriceSell"] + "</td><td>" + row["CatName"] + "</td><td>" + row["Company"] + "</td><td ><a href='/Items/Edit/" + row["Id"] + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row["Id"] + ")'><i class='fa-solid fa-trash text-danger'></i></button></td> </tr>");
+
+
+
+
+
+
+                            }
+
+                        });
+
+                });
+
+
+
+
+        }
+
+        function Delete(id) {
+            var result = confirm("هل تريد حذف هذا الصنف؟");
+            if (result) {
+
+
+
+                $.get("/Items/DeleteItem",
+                    { Name: document.getElementById("itemname").value, Barcode: document.getElementById("barcode").value, CatName: $("#CatId option:selected").text(), Company: $("#CompId option:selected").text(), ID: id },
+                    function (data) {
+                        $('#Mes').empty();
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            " </div ></div > ");
+                        $("#datatable").empty();
+
+                        $.each(data.result1,
+                            function (index, row) {
+                                if (data.result1 != null) {
+
+
+                                    $('#datatable').append("<tr ><td>" + row["Barcode"] + "</td><td>" + row["ItemName"] + "</td><td>" + row["PricePur"] + "</td><td>" + row["PriceSell"] + "</td><td>" + row["CatName"] + "</td><td>" + row["Company"] + "</td><td ><a href='/Items/Edit/" + row["Id"] + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row["Id"] + ")'><i class='fa-solid fa-trash text-danger'></i></button></td> </tr>");
+
+
+
+
+                                }
+
+
+                            });
+
+                    });
+            }
+        }
+
+
+    </script>
+
+}

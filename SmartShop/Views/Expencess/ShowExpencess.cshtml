@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  المصروفات   }
+
+
+<div class="col-10">
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل المصروفات
+                </h4>
+            </div>
+
+
+            <div class="fullWidth">
+                <textarea class="form-control text-center" name="note" placeholder="البحث بالبيان ........" id="note" cols="30" rows="3"></textarea>
+            </div>
+
+
+
+            <div class="fullWidth">
+                <h6>البحث بالتاريخ من :</h6>
+                <input class="form-control w-100 text-center" type="datetime-local"  id="datefrom" placeholder="البحث بالاسم ........" />
+
+                <h6>البحث بالتاريخ الي :</h6>
+                <input class="form-control w-100 text-center" type="datetime-local"  id="dateto" />
+
+            </div>
+
+
+
+
+            <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+
+
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>التارخ</th>
+                        <th>المبلغ</th>
+
+                        <th>البيان</th>
+                        <th>العمليات</th>
+                    </tr>
+                </thead>
+
+                <tbody id="datatable">
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('datefrom').value = now.toISOString().slice(0, 16);
+        document.getElementById('dateto').value = now.toISOString().slice(0, 16);
+
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+
+
+
+
+
+
+
+
+
+
+        function Show() {
+
+        
+            $.get("/Expencess/GetExpencess",
+                { DateF: document.getElementById("datefrom").value, DateT: document.getElementById("dateto").value, Term: document.getElementById("note").value },
+                function (data) {
+                    $('#datatable').empty();
+                   
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                var src = row.Date;
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+                                if ( row.Note == null) {
+                                    row.Note = "";
+                                }
+                              
+                                $('#datatable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td> <td>" + row.Amount + "</td> <td>" + row.Note + "</td><td ><a href='/Expencess/Edit/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+                                
+                                
+
+                            }
+
+
+                        });
+
+                });
+
+        }
+
+
+        function Delete(id) {
+            var result = confirm("هل تريد حذف هذا المصروف؟");
+            if (result) {
+            
+
+                $.get("/Expencess/DeleteExpence",
+                    { DateF: document.getElementById("datefrom").value, DateT: document.getElementById("dateto").value, Term: document.getElementById("note").value, ExpenceId: id },
+                    function (data) {
+                        $('#datatable').empty();
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+                                    var src = row.Date;
+                                    var src1 = src.replace(/[^0-9 +]/g, '');
+                                    var dateupdated = new Date(parseInt(src1));
+                                    if (row.Note == null) {
+                                        row.Note = "";
+                                    }
+
+                                    $('#datatable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td> <td>" + row.Amount + "</td> <td>" + row.Note + "</td><td ><a href='/Expencess/Edit/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+
+
+                                }
+
+
+                            });
+
+                    });
+            }
+        }
+
+
+
+    </script>
+
+}

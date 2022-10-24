@@ -1,0 +1,549 @@
+.list .card {
+  position: relative;
+  top: -52px;
+  right: 40%;
+}
+
+.collapse-horizontal {
+  height: 0px;
+}
+
+.row {
+  margin: 0;
+}
+
+.col-2 .userName {
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 31px;
+  /* identical to box height */
+  margin: 20px 0;
+
+  color: #000000;
+}
+
+.list {
+  height: 100vh;
+  padding-left: 30px;
+  position: fixed;
+  z-index: 9 !important;
+
+}
+
+.list .card {
+  position: relative;
+  top: -52px;
+  right: 60%;
+  background: #FFFFFF;
+box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+border-radius: 9px 0px 0px 9px;
+  
+}
+
+.collapse-horizontal {
+  height: 0px;
+}
+
+.list .one {
+  margin-bottom: 35px;
+}
+
+.list .one ul{
+  padding: 0;
+  text-align: center;
+}
+
+.list .one li {
+  font-family: 'Almarai';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 31px;
+/* identical to box height */
+list-style: none;
+margin: 10px 0;
+color: #6A6A6A;
+padding: 5px 0;
+}
+
+.list .one li:hover {
+background-color: #064BC9;
+color: #FFFFFF;
+/* width: 100%; */
+
+
+}
+
+.list .one button {
+  background-color: #fff;
+  border: none;
+
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 31px;
+  /* identical to box height */
+
+  color: #6a6a6a;
+}
+/* .col-10 {
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); 
+    border-radius: 50px 0px 0px 50px;
+    height: 1000px;   
+    padding: 0%;
+  } */
+
+.col-2 {
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px 0px 0px 9px;
+  min-height: 100vh;
+}
+
+.searchbar {
+  justify-content: space-between;
+  margin: 30px;
+}
+
+.searchbar .date {
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 31px;
+
+  color: #6a6a6a;
+}
+
+.searchbar input {
+  background: rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 31px;
+
+  color: #6a6a6a;
+  border: none;
+}
+
+.searchbar .search img {
+  position: relative;
+  left: 50px;
+
+  width: 30px;
+  margin-block-start: -8px;
+}
+
+.form {
+  padding: 27px 21px;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  /* min-height: 80vh; */
+}
+.form .formTitle h4 {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 41px;
+  /* identical to box height */
+
+  color: #000000;
+  margin-bottom: 70px;
+}
+
+ .form-control {
+  width: 40% !important;
+  display: inline-block;
+  margin-right: 70px;
+  margin-bottom: 30px;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 38px;
+  /* identical to box height */
+
+  color: #6a6a6a;
+}
+
+ .btn {
+  background: #064bc9;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 31px;
+
+  color: #ffffff;
+  display: block;
+  margin: auto;
+  padding: 15px 180px;
+}
+
+.form .form-select {
+  /* background: #FFFFFF; */
+box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+border-radius: 9px;
+width: 88%;
+margin: auto;
+  border: none;
+  margin-bottom: 30px;
+  background-position: left 2rem center;
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 41px;
+  color: #6A6A6A;
+}
+
+.form .fullWidth .form-control {
+  width:88% !important;
+}
+.form .fullWidth img {
+  position: relative;
+  left: 60px;
+  margin-block-end: 12px;
+}
+
+.form .all input{
+  margin-right: 70px;
+  margin-bottom: 40px;
+  width: 20px !important;
+  height: 20px !important;
+  display: inline-block !important;
+}
+
+
+
+.form  label{
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 38px;
+  /* identical to box height */
+  
+  
+  color: #6A6A6A;
+}
+
+
+table {
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 25px;
+  /* identical to box height */
+  border-color:#000000;
+  color: #000000;
+}
+
+tr{
+  border-top-style: none !important;
+
+}
+
+tr th{
+  border-top-style: none !important;
+
+  border: #000000 2px solid !important;
+}
+td{
+  /* border-top-style: none !important; */
+  border-width: 2px !important;
+  color: #000000;
+
+}
+
+tbody{
+  border-width: 2px !important;
+  border-color:#000000
+}
+
+table input{
+  width: 20px;
+  height: 20px;
+}
+
+table button{
+  background-color: #fff;
+
+}
+
+
+.form .row .form-control {
+  width: 90% !important;
+}
+
+.btns .btn{
+  display: inline;
+  margin-right:70px ;
+
+}
+
+
+.rotate{
+  transform: rotate(90deg);
+}
+
+.form h6{
+  font-family: 'Almarai';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 38px;
+/* identical to box height */
+color: #000000;
+margin-right: 70px;
+margin-bottom: 20px;
+}
+
+.form .radioChosse h6{
+  display: inline-block;
+  margin-left: 60px;
+}
+
+.form .radioChosse label{
+  margin-left: 100px;
+}
+
+.radioChosse  .form-select{
+  display: inline-block;
+  width: 30%;
+}
+
+.radioChosse .me{
+  margin-right: 62px;
+}
+
+.form .add{
+  display: inline-block;
+  margin-right: 90px;
+  margin-bottom: 30px;
+}
+
+ .add h6{
+  display: inline-block;
+  margin-right: 0;
+}
+
+ .add svg{
+  font-size: 30px;
+  background: #FFFFFF;
+border: 1px solid #000000;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.total {
+  margin: 65px ;
+padding: auto;
+  
+}
+.total h6{
+  display: inline-block;
+
+  font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 38px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.total input{
+width: 10% !important;
+margin-left: 100px;
+margin-right: 26px;
+}
+
+
+
+
+
+ .img{
+  display: inline-block;
+  background: #FFFFFF;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+/* border: 1px dashed #DC1C22; */
+/* border-radius: 20px; */
+padding-bottom:120px;
+text-align: center;
+width: 90%;
+margin-right:60px;
+position: relative;
+top: 0px;
+
+}
+
+
+.imgoutput{
+  /* background-color: #000000 !important; */
+  position: absolute !important;
+  top: 0%;
+  right: 0%;
+  left: 0%;
+  bottom: -16px;
+  border-radius: 20px;
+ 
+
+}
+.imgoutput img{
+  border-radius: 20px;
+
+  width: fit-content;
+  height:100%;
+}
+
+ 
+
+
+ input[type='file'] {
+text-align: center;
+  display: none;
+
+} 
+
+
+
+.showTable{
+  width: 88%;
+  margin: auto;
+  justify-content: space-between;
+  border-bottom: 2px solid #000000;
+}
+
+.showTable svg{
+ font-size: 30px;
+ margin-block-start: 20px;
+}
+
+
+.showTable .up{
+display: none;
+}
+
+
+.hiddenTable{
+  display: none;
+}
+
+
+.popup {
+  width: 40%;
+  margin: auto;
+  background: #FFFFFF;
+border: 3px solid #064BC9;
+box-shadow: 0px 4px 4px rgba(245, 245, 245, 0.65);
+border-radius: 16px;
+text-align: center;
+position: fixed;
+top:30%;
+right:30%;
+z-index: 999;
+display: none;
+
+}
+
+.popup .form-control {
+width: 20% !important;
+  text-align: center;
+  margin-right: 8px;
+}
+
+.popup label{
+  font-family: 'Almarai';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 38px;
+/* identical to box height */
+
+text-align: right;
+
+color: #000000;
+}
+
+.popup  h6{
+font-family: 'Tajawal';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 41px;
+/* identical to box height */
+
+text-align: right;
+
+color: #000000;
+}
+
+.popup .btn {
+  padding: 5px 150px;
+  margin-bottom: 10px;
+}
+
+.popup .sale{
+  display: none;
+}
+
+
+.cover{
+  width: 100%;
+  height: 100vh; 
+  background: #0000008b;
+  position: fixed;
+  z-index: 99;
+  display: none;
+}
+
+.inventory {
+  display: inline-block;
+  width: 50%;
+
+}
+
+.inventory select{
+  width: 40% !important;
+  display: inline-block;
+  margin: 0;
+}
+
+.inventory label{
+  margin-left: 10px !important;
+}
+
+.staticWidth{
+  position: relative;
+}
+
+.hiddendiv{
+  position: absolute;
+  top: 55px;
+/*  display:none ;
+*/  background: rgb(185, 33, 33);
+  box-shadow: rgb(6 75 201 / 25%) 4px 4px 4px 4px;
+  width: 90%;
+  margin-right:70px ;
+  height: 150px;
+  overflow-y: scroll;
+
+}
+
+
+
+

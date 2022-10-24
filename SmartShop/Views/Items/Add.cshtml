@@ -1,0 +1,127 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  اضافة صنف }
+
+<div class="col-10">
+    <div class="container">
+        @using (Html.BeginForm("Add", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form">
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        اضافة صنف
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>اسم الصنف </h6>
+                        <input class="form-control text-center" required type="text" name="ItemName" placeholder="اسم الصنف ........">
+
+                        <h6>فئة الصنف </h6>
+                        @Html.DropDownList("CatId", new SelectList(ViewBag.Categories, "Id", "CatName"), "--اختر--", new { @class = "form-select text-center", required = "required" })
+
+
+
+
+
+                        <h6>سعر الشراء </h6>
+                        <input class="form-control text-center" required type="number" name="PricePur" value="0" min="1">
+
+                        <h6>رصيد اول المدة  </h6>
+                        <input class="form-control text-center" type="number" name="FirstBalance" value="0">
+
+                        <h6>الوصف </h6>
+                        <textarea class="form-control text-center" name="Description" placeholder="الوصف  ........" id="" cols="30" rows="4"></textarea>
+
+                    </div>
+
+
+                    <div class="col-6">
+                        <h6>الباركود </h6>
+                        <input class="form-control text-center" type="text" name="Barcode" placeholder="الباركود  ........">
+
+
+
+                        <h6>بلد المنشا </h6>
+                        <input class="form-control text-center" type="text" name="Company" placeholder="بلد المنشا  ........">
+
+
+                        <h6>سعر البيع </h6>
+                        <input class="form-control text-center" required type="number" name="PriceSell" value="0" min="1">
+                        <h6>سعر شراء رصيد اول المدة    </h6>
+                        <input class="form-control text-center" type="number" name="FirstBalancePrice" value="0">
+
+                        <h6>صورة الصنف </h6>
+
+                        <div class="img drop-zone" id="basic_drop_zone">
+
+
+                            <label for="basic">
+
+                                <img src="/images/Group 10449.png" alt="">
+                                <p class="imgoutput"><img id="output" /></p>
+
+
+                                <input class="drop-zone__input" id="basic" name="Img1" type="file" accept=".png,.jpg,.jpeg,.gif" title=" upload image " onchange="loadFile(event)">
+
+                            </label>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <button class="btn btn-primary" type="submit">تسجيل</button>
+
+
+
+
+
+
+
+            </div>
+
+        }
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}
+
+
+

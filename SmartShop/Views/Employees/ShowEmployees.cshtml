@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  الموظفين    }
+
+<div class="col-10">
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل الموظفين
+                </h4>
+            </div>
+            <div>
+
+
+                <h6 for="">اسم الموظف</h6>
+                @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--الكل--", new { @class = "form-select text-center" })
+
+
+
+                <button class="btn btn-primary" onclick="Show()">البحث</button>
+
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>رقم الهاتف</th>
+                            <th>العنوان</th>
+                            <th>الوظيفة</th>
+                            <th>الراتب</th>
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="datatable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
+
+</div>
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        function Show() {
+
+
+            $.get("/Employees/GetEmployees",
+                { EmpName: $("#EmpId option:selected").text() },
+                function (data) {
+                    $('#datatable').empty();
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+                                if (row.Job == null) {
+                                    row.Job = "";
+                                }
+                                if (row.Address == null) {
+                                    row.Address = "";
+
+                                }
+                                if (row.Phone == null) {
+                                    row.Phone = "";
+
+                                }
+                                $('#datatable').append("<tr><td>" + row.EName + "</td> <td>" + row.Phone + "</td><td>" + row.Address + "</td><td>" + row.Job + "</td><td>" + row.Salary + "</td><td ><a href='/Expencess/Edit/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+
+
+
+                            }
+
+
+                        });
+
+                });
+
+        }
+
+
+        function Delete(id) {
+            var result = confirm("هل تريد حذف هذا الموظف؟");
+            if (result) {
+
+
+                if (result) {
+
+
+
+                    $.get("/Employees/DeleteEmployee",
+                        { EmpName: $("#EmpId option:selected").text(),EmpId:id },
+                        function (data) {
+                            $('#Mes').empty();
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                " </div ></div > ");
+                            $("#datatable").empty();
+
+                            $.each(data.result1,
+                                function (index, row) {
+                                    if (data.result1 != null) {
+
+
+                                        $('#datatable').append("<tr><td>" + row.EName + "</td> <td>" + row.Phone + "</td><td>" + row.Address + "</td><td>" + row.Job + "</td><td>" + row.Salary + "</td><td ><a href='/Expencess/Edit/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+
+
+
+                                    }
+
+
+                                });
+
+                        });
+                }
+            }
+        }
+
+
+
+    </script>
+
+}

@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  اضافة موظف   }
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            @using (Html.BeginForm("Add", "Employees", FormMethod.Post))
+            {
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        اضافة الموظف
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>الاسم </h6>
+                        <input class="form-control text-center" required name="EName" type="text" placeholder="الاسم ........">
+
+                        <h6>العنوان  </h6>
+                        <input class="form-control text-center" type="text" name="Address" placeholder="العنوان ........">
+
+                        <h6>الراتب </h6>
+
+                        <input class="form-control text-center" required type="number" value="0" name="Salary">
+                    </div>
+
+                    <div class="col-6">
+                        <h6>رقم الهاتف  </h6>
+                        <input class="form-control text-center" type="text" name="Phone" placeholder="رقم الهاتف ........">
+
+                        <h6>الوظيفة </h6>
+                        <input class="form-control text-center" type="text" name="Job" placeholder="الوظيفة  ........">
+                    </div>
+                </div>
+
+
+
+
+                <button class="btn btn-primary" type="submit">تسجيل</button>
+
+
+
+            }
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+       
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}

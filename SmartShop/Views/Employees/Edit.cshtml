@@ -1,0 +1,92 @@
+﻿@model SmartShop.Models.Employee
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  اضافة موظف   }
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            @using (Html.BeginForm("Edit", "Employees", FormMethod.Post))
+            {
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        اضافة الموظف
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>الاسم </h6>
+                        @Html.EditorFor(model => model.EName, new { htmlAttributes = new { @class = "form-control text-center", type = "text", required = "required" } })
+
+                        <h6>العنوان  </h6>
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
+
+                        <h6>الراتب </h6>
+                        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control text-center", type = "number", value = "0", required = "required" } })
+
+
+                    </div>
+
+                    <div class="col-6">
+                        <h6>رقم الهاتف  </h6>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
+
+                        <h6>الوظيفة </h6>
+                        @Html.EditorFor(model => model.Job, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
+
+                    </div>
+                </div>
+
+
+
+
+                <button class="btn btn-primary" type="submit">تعديل</button>
+
+
+
+            }
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}
