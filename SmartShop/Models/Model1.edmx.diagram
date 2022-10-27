@@ -55,6 +55,10 @@
         <AssociationConnector Association="SmartShopModel.FK__StoreTran__Shift__5FB337D6" ManuallyRouted="false" />
         <AssociationConnector Association="SmartShopModel.FK__StoreTran__Trans__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="SmartShopModel.FK__StoreTran__UserI__60A75C0F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartShopModel.CustomerPayment" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="SmartShopModel.SupplierPayment" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A" />
+        <AssociationConnector Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

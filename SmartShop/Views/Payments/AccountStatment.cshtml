@@ -1,0 +1,402 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{ كشف حساب  }
+
+<div class="col-10">
+
+    <div class="container">
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    كشف حساب
+                </h4>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <h6>اسم الحساب</h6>
+                    @Html.DropDownList("AccId", new SelectList(ViewBag.Accounts, "Id", "AccName"), "--الكل--", new { @class = "form-select text-center", required = "required" })
+
+
+                </div>
+
+
+
+                <div class="col-6  dept">
+                    <h6>الرصيد   </h6>
+                    <input class="d-inline-block form-control text-center" readonly type="text"  id="AccBalance" value="0">
+                    <label for="" id="Pertypaccount"></label>
+
+
+
+
+                </div>
+            </div>
+
+
+            <div class="fullWidth">
+                <h6>البحث بالتاريخ من :</h6>
+                <input class="form-control" type="datetime-local" name="" id="datefrom" placeholder="">
+
+                <h6>البحث بالتاريخ الي :</h6>
+                <input class="form-control" type="datetime-local" name="" id="dateto" placeholder="">
+
+            </div>
+
+            <button class="btn btn-primary" onclick="Show()">البحث</button>
+
+
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+
+                        <th>حركة دائنة واردة</th>
+
+                        <th>حركة مدينة صادرة</th>
+                        <th>الرصيد بعد الحركة</th>
+                        <th>نوع الرصيد</th>
+                        <th>البيان</th>
+
+
+
+
+                    </tr>
+                </thead>
+
+                <tbody id="datatable">
+                </tbody>
+            </table>
+
+
+            <div class="row account">
+                <div class="col-6 ">
+                    <h6>مشتريات</h6>
+                    <input type="text" class="text-center" readonly name="" id="purchase">
+
+                    <h6>
+                        مرتجع
+                        مشتريات
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="purchaseRe">
+
+
+                    <h6>
+                        سدادت
+                        صادرة
+                    </h6>
+                    <input type="text" class="text-center" readonly name="Export" id="Export">
+
+                    <h6>
+                        رصيد بداية
+                        المدة
+                    </h6>
+                    <label for="" id="PerTyp"></label>
+
+                    <input type="text" class="text-center" readonly name="" id="Creditbefor">
+
+
+                </div>
+
+                <div class="col-6">
+                    <h6>مبيعات</h6>
+                    <input type="text" class="text-center" readonly name="" id="sales">
+
+                    <h6>
+                        مرتجع
+                        مبيعات
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="salesre">
+
+
+                    <h6>
+                        تحصيلات
+                        واردة
+                    </h6>
+                    <input type="text" class="text-center" readonly name="Exportin" id="Exportin">
+
+                    <h6>
+                        رصيد نهاية
+                        المدة
+                    </h6>
+                    <label id="PerTypAfter"> </label>
+
+                    <input type="text" class="text-center" readonly name="" id="AccBalanceAfter">
+
+
+                </div>
+            </div>
+            <button class="btn btn-primary">طباعة</button>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+@section scripts{
+    <script>
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('datefrom').value = now.toISOString().slice(0, 16);
+        document.getElementById('dateto').value = now.toISOString().slice(0, 16);
+
+
+ 
+
+
+
+        $(document).ready(function () {
+
+
+            $("#AccId").change(function () {
+                $.get("/Payments/GetPersonCredit",
+                    { AccID: $("#AccId").val() },
+                    function (data) {
+                        document.getElementById("AccBalance").value = 0;
+
+                        $.each(data,
+                            function (index, row) {
+
+                                if (data != null) {
+                                    if (row.final >= 0) {
+                                        $("#Pertypaccount").empty();
+                                        var element = document.getElementById("Pertypaccount");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+
+                                        $("#Pertypaccount").append("دائن");
+                                        $("#Pertypaccount").addClass('text-danger');
+
+                                        document.getElementById("AccBalance").value = row.final;
+
+
+
+
+                                    }
+                                    else {
+                                        $("#Pertypaccount").empty();
+                                        var element = document.getElementById("Pertypaccount");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+                                        $("#Pertypaccount").append("مدين");
+                                        $("#Pertypaccount").addClass('text-success');
+
+                                        document.getElementById("AccBalance").value = Math.abs(row.final);
+
+                                    }
+
+                                }
+
+                            });
+
+                    });
+            });
+            $("#AccId").click(function () {
+                $.get("/Accounts/GetPersonCredit",
+                    { AccID: $("#AccId").val() },
+                    function (data) {
+                        document.getElementById("AccBalance").value = 0;
+
+                        $.each(data,
+                            function (index, row) {
+
+                                if (data != null) {
+                                    if (row.final >= 0) {
+                                        $("#Pertypaccount").empty();
+                                        var element = document.getElementById("Pertypaccount");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+
+                                        $("#Pertypaccount").append("دائن");
+                                        $("#Pertypaccount").addClass('text-danger');
+
+                                        document.getElementById("AccBalance").value = row.final;
+
+
+
+
+                                    }
+                                    else {
+                                        $("#Pertypaccount").empty();
+                                        var element = document.getElementById("Pertypaccount");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+                                        $("#Pertypaccount").append("مدين");
+                                        $("#Pertypaccount").addClass('text-success');
+
+                                        document.getElementById("AccBalance").value = Math.abs(row.final);
+
+                                    }
+
+                                }
+
+                            });
+
+                    });
+            });
+        });
+
+
+
+        function Show() {
+
+           
+            var pu = 0;
+            var Rpu = 0;
+            var Ex = 0;
+
+            var sa = 0;
+            var Rsa = 0;
+            var ExIn = 0;
+
+            $.get("/Payments/GetAccountCredit",
+                { DateF: document.getElementById("datefrom").value, DateT: document.getElementById("dateto").value, ID: $("#AccId").val() },
+                function (data) {
+                    $("#datatable").empty();
+                    document.getElementById("purchase").value = 0;
+                    document.getElementById("purchaseRe").value = 0;
+                    document.getElementById("Export").value = 0;
+
+                    document.getElementById("sales").value = 0;
+                    document.getElementById("salesre").value = 0;
+                    document.getElementById("Exportin").value = 0;
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                var src = row.date;
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+                              
+                                $('#datatable').append("<tr ><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td> <td>" + row.creditActions + "</td><td>" + row.debitActions + "</td><td>" + row.balanceAfter + "</td><td>" + row.balanceType + "</td><td>" + row.notes + "</td> </tr>");
+                                
+                              
+                                if (row.typ == "pu") {
+                                    pu += row.creditActions;
+                                }
+                                else if (row.typ == "pu_re") {
+                                    Rpu += row.debitActions;
+                                }
+                                else if (row.typ == "ot_py") {
+                                    Ex += row.debitActions;
+                                }
+                              
+
+                                else if (row.typ == "sa") {
+                                    sa += row.debitActions;
+                                }
+                                else if (row.typ == "sa_re") {
+                                    Rsa += row.creditActions;
+                                }
+                                else if (row.typ == "in_py") {
+                                    ExIn += row.creditActions;
+                                }
+                               
+
+
+                                document.getElementById("AccBalanceAfter").value = row.balanceAfter;
+                                $("#PerTypAfter").empty();
+                                var element = document.getElementById("PerTypAfter");
+                                element.classList.remove("text-danger");
+                                element.classList.remove("text-success");
+                                if (row.balanceType == "دائن") {
+                                    $("#PerTypAfter").addClass('text-danger');
+
+                                }
+                                else {
+                                    $("#PerTypAfter").addClass('text-success');
+
+                                }
+
+                                $("#PerTypAfter").append(row.balanceType);
+
+
+                            }
+
+                        });
+                    document.getElementById("purchase").value = pu
+                        ;
+                    document.getElementById("purchaseRe").value = Rpu;
+                    document.getElementById("Export").value = Ex;
+
+                    document.getElementById("sales").value = sa;
+                    document.getElementById("salesre").value = Rsa;
+                    document.getElementById("Exportin").value = ExIn;
+                });
+
+
+
+
+            $.get("/Payments/GetAccountCreditBefore",
+                { DateF: document.getElementById("datefrom").value, ID: $("#AccId").val() },
+                function (data) {
+
+                    document.getElementById("Creditbefor").value = 0;
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                if (row.final >= 0) {
+                                    document.getElementById("Creditbefor").value = row.final;
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+                                    $("#PerTyp").append("دائن");
+                                    $("#PerTyp").addClass('text-danger');
+
+                                }
+                                else {
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+                                    $("#PerTyp").append("مدين");
+                                    $("#PerTyp").addClass('text-success');
+
+                                    document.getElementById("Creditbefor").value = Math.abs(row.final);
+
+                                }
+                            }
+
+                        });
+
+                });
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+}

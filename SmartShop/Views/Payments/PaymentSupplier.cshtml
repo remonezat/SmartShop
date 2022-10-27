@@ -1,0 +1,267 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{    سداد مورد    }
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    سداد مورد
+                </h4>
+            </div>
+            @using (Html.BeginForm("PaymentSupplier", "Payments", FormMethod.Post))
+            {
+                <div class="fullWidth">
+                    <h6>التاريخ :</h6>
+                    <input class="form-control text-center" type="datetime-local" name="Date" id="Date" placeholder="">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>اسم الحساب</h6>
+                        @Html.DropDownList("AccId", new SelectList(ViewBag.Accounts, "Id", "AccName"), "--الكل--", new { @class = "form-select text-center", required = "required" })
+
+
+                    </div>
+
+                    <div class="col-6  dept">
+                        <h6>الرصيد   </h6>
+                        <input class="d-inline-block form-control text-center" name="AccBalance" id="AccBalance" value="0" type="text" readonly>
+                        <label for="" id="PerTyp"></label>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>المبلغ</h6>
+                        <input class="form-control text-center" required name="Amount" id="Amount" type="number" value="0" min="1">
+
+                    </div>
+
+
+
+                    <div class="col-6 dept">
+                        <h6>الرصيد بعد   </h6>
+                        <input class="form-control text-center" name="total" id="total" type="text" value="0" readonly>
+                        <label for="" id="PerTypAfter"></label>
+
+
+
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">تسجيل</button>
+
+
+
+            }
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('Date').value = now.toISOString().slice(0, 16);
+
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+
+
+
+
+        $(document).ready(function () {
+
+            $("#AccId").change(function () {
+                $.get("/Payments/GetPersonCredit",
+                    { AccID: $("#AccId").val() },
+                    function (data) {
+                        $("#AccBalance").empty();
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    if (row.final >= 0) {
+
+                                        $("#PerTyp").empty();
+                                        var element = document.getElementById("PerTyp");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+
+                                        $("#PerTyp").append("دائن");
+                                        $("#PerTyp").addClass('text-danger');
+                                        document.getElementById("AccBalance").value = row.final;
+
+
+
+                                    }
+                                    else {
+
+                                        $("#PerTyp").empty();
+                                        var element = document.getElementById("PerTyp");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+                                        $("#PerTyp").append("مدين");
+                                        $("#PerTyp").addClass('text-success');
+
+                                        document.getElementById("AccBalance").value = Math.abs(row.final);
+
+                                    }
+                                    RR = row.final;
+                                }
+
+                            });
+                    });
+            });
+
+            $("#AccId").click(function () {
+                $.get("/Payments/GetPersonCredit",
+                    { AccID: $("#acc_id").val() },
+                    function (data) {
+                        $("#AccBalance").empty();
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    if (row.final >= 0) {
+
+                                        $("#PerTyp").empty();
+                                        var element = document.getElementById("PerTyp");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+
+                                        $("#PerTyp").append("دائن");
+                                        $("#PerTyp").addClass('text-danger');
+                                        document.getElementById("AccBalance").value = row.final;
+
+
+
+                                    }
+                                    else {
+
+                                        $("#PerTyp").empty();
+                                        var element = document.getElementById("PerTyp");
+                                        element.classList.remove("text-danger");
+                                        element.classList.remove("text-success");
+                                        $("#PerTyp").append("مدين");
+                                        $("#PerTyp").addClass('text-success');
+
+                                        document.getElementById("AccBalance").value = Math.abs(row.final);
+
+                                    }
+                                    RR = row.final;
+                                }
+
+                            });
+                    });
+            });
+
+
+        });
+
+
+
+        $('#Amount').keyup(function () {
+            var txtFirstNumberValue = document.getElementById('Amount').value;
+            var txtSecondNumberValue = document.getElementById('AccBalance').value;
+
+            if (txtFirstNumberValue == "")
+                txtFirstNumberValue = 0;
+            if (txtSecondNumberValue == "")
+                txtSecondNumberValue = 0;
+
+            var result = parseFloat(RR) + parseFloat(txtFirstNumberValue);
+            if (!isNaN(parseFloat(txtFirstNumberValue))) {
+                if (parseFloat(txtFirstNumberValue) >= 0) {
+                    $("#PerTypAfter").empty();
+                    var element = document.getElementById("PerTypAfter");
+                    element.classList.remove("text-danger");
+                    element.classList.remove("text-success");
+
+                    $("#PerTypAfter").addClass('text-danger');
+                    var result = parseFloat(RR) - parseFloat(txtFirstNumberValue);
+
+                    if (result >= 0) {
+                        $("#PerTypAfter").append("دائن");
+
+                    }
+                    else {
+                        $("#PerTypAfter").append("مدين");
+
+                    }
+
+                    document.getElementById('total').value = Math.abs(result);
+
+
+                }
+                else {
+                    $("#PerTypAfter").empty();
+                    var element = document.getElementById("PerTypAfter");
+                    element.classList.remove("text-danger");
+                    element.classList.remove("text-success");
+                    $("#PerTypAfter").addClass('text-success');
+                    var result = parseFloat(RR) + parseFloat(txtFirstNumberValue);
+
+                    if (result >= 0) {
+                        $("#PerTypAfter").append("دائن");
+
+                    }
+                    else {
+                        $("#PerTypAfter").append("مدين");
+
+                    }
+                    document.getElementById("total").value = Math.abs(result);
+
+                }
+            }
+        });
+
+
+
+
+
+    </script>
+
+}

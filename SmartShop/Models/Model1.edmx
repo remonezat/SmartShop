@@ -22,6 +22,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CatName" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="CustomerPayments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccId" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,7 +49,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpId" Type="int" />
-          <Property Name="Date" Type="date" />
+          <Property Name="Date" Type="datetime" />
           <Property Name="Amount" Type="float" />
           <Property Name="Note" Type="nvarchar(max)" />
         </EntityType>
@@ -216,6 +226,16 @@
           <Property Name="ItemId" Type="int" />
           <Property Name="Count" Type="float" />
         </EntityType>
+        <EntityType Name="SupplierPayments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccId" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -225,6 +245,18 @@
           <Property Name="UserPassword" Type="nvarchar(max)" />
           <Property Name="UserScreens" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK__CustomerP__AccId__72C60C4A">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="CustomerPayments" Type="Self.CustomerPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerPayments">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Employees__EmpId__2F10007B">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="EmployeesWithdraws" Type="Self.EmployeesWithdraws" Multiplicity="*" />
@@ -585,9 +617,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__SupplierP__AccId__6FE99F9F">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="SupplierPayments" Type="Self.SupplierPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPayments">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Get_PersonAccountCredit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_PersonAccountCredit_before" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc_id" Type="int" Mode="In" />
+          <Parameter Name="BeforeDte" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetAccountStatement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc_id" Type="int" Mode="In" />
+          <Parameter Name="dte_f" Type="datetime" Mode="In" />
+          <Parameter Name="dte_t" Type="datetime" Mode="In" />
+        </Function>
         <EntityContainer Name="SmartShopModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerPayments" EntityType="Self.CustomerPayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeesWithdraws" EntityType="Self.EmployeesWithdraws" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expencess" EntityType="Self.Expencess" Schema="dbo" store:Type="Tables" />
@@ -605,7 +662,12 @@
           <EntitySet Name="Stores" EntityType="Self.Stores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreTransfer" EntityType="Self.StoreTransfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreTransferDetails" EntityType="Self.StoreTransferDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierPayments" EntityType="Self.SupplierPayments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CustomerP__AccId__72C60C4A" Association="Self.FK__CustomerP__AccId__72C60C4A">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="CustomerPayments" EntitySet="CustomerPayments" />
+          </AssociationSet>
           <AssociationSet Name="FK__Employees__EmpId__2F10007B" Association="Self.FK__Employees__EmpId__2F10007B">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="EmployeesWithdraws" EntitySet="EmployeesWithdraws" />
@@ -726,6 +788,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="StoreTransfer" EntitySet="StoreTransfer" />
           </AssociationSet>
+          <AssociationSet Name="FK__SupplierP__AccId__6FE99F9F" Association="Self.FK__SupplierP__AccId__6FE99F9F">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="SupplierPayments" EntitySet="SupplierPayments" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -744,6 +810,8 @@
           <NavigationProperty Name="PurchaseRes" Relationship="Self.FK__PurchaseR__AccId__5629CD9C" FromRole="Accounts" ToRole="PurchaseRe" />
           <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__AccId__398D8EEE" FromRole="Accounts" ToRole="Sales" />
           <NavigationProperty Name="SalesRes" Relationship="Self.FK__SalesRe__AccId__4316F928" FromRole="Accounts" ToRole="SalesRe" />
+          <NavigationProperty Name="CustomerPayments" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="Account" ToRole="CustomerPayment" />
+          <NavigationProperty Name="SupplierPayments" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="Account" ToRole="SupplierPayment" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -771,7 +839,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpId" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Amount" Type="Double" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Employees__EmpId__2F10007B" FromRole="EmployeesWithdraws" ToRole="Employees" />
@@ -1512,7 +1580,102 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="StoreTransfer" EntitySet="StoreTransfers" />
           </AssociationSet>
+          <EntitySet Name="CustomerPayments" EntityType="SmartShopModel.CustomerPayment" />
+          <EntitySet Name="SupplierPayments" EntityType="SmartShopModel.SupplierPayment" />
+          <AssociationSet Name="FK__CustomerP__AccId__72C60C4A" Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CustomerPayment" EntitySet="CustomerPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierP__AccId__6FE99F9F" Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="SupplierPayment" EntitySet="SupplierPayments" />
+          </AssociationSet>
+          <FunctionImport Name="Get_PersonAccountCredit" ReturnType="Collection(SmartShopModel.Get_PersonAccountCredit_Result)">
+          <Parameter Name="acc_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAccountStatement" ReturnType="Collection(SmartShopModel.GetAccountStatement_Result)">
+            <Parameter Name="acc_id" Mode="In" Type="Int32" />
+            <Parameter Name="dte_f" Mode="In" Type="DateTime" />
+            <Parameter Name="dte_t" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Get_PersonAccountCredit_before" ReturnType="Collection(SmartShopModel.Get_PersonAccountCredit_before_Result)">
+            <Parameter Name="acc_id" Mode="In" Type="Int32" />
+            <Parameter Name="BeforeDte" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="CustomerPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="CustomerPayment" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="SupplierPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="SupplierPayment" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK__CustomerP__AccId__72C60C4A">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.CustomerPayment" Role="CustomerPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerPayment">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierP__AccId__6FE99F9F">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SupplierPayment" Role="SupplierPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPayment">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Get_PersonAccountCredit_Result">
+          <Property Type="Double" Name="In_P_tot" Nullable="true" />
+          <Property Type="Double" Name="Out_P_tot" Nullable="true" />
+          <Property Type="Double" Name="Pur_tot" Nullable="true" />
+          <Property Type="Double" Name="PurRe_tot" Nullable="true" />
+          <Property Type="Double" Name="Sal_tot" Nullable="true" />
+          <Property Type="Double" Name="SalRe_tot" Nullable="true" />
+          <Property Type="Double" Name="final" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAccountStatement_Result">
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="creditActions" Nullable="true" />
+          <Property Type="Double" Name="debitActions" Nullable="true" />
+          <Property Type="String" Name="balanceAfter" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="balanceType" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="notes" Nullable="true" />
+          <Property Type="String" Name="typ" Nullable="false" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="Get_PersonAccountCredit_before_Result">
+          <Property Type="Double" Name="In_P_tot" Nullable="true" />
+          <Property Type="Double" Name="Out_P_tot" Nullable="true" />
+          <Property Type="Double" Name="Pur_tot" Nullable="true" />
+          <Property Type="Double" Name="PurRe_tot" Nullable="true" />
+          <Property Type="Double" Name="Sal_tot" Nullable="true" />
+          <Property Type="Double" Name="SalRe_tot" Nullable="true" />
+          <Property Type="Double" Name="final" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1759,6 +1922,67 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomerPayments">
+            <EntityTypeMapping TypeName="SmartShopModel.CustomerPayment">
+              <MappingFragment StoreEntitySet="CustomerPayments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierPayments">
+            <EntityTypeMapping TypeName="SmartShopModel.SupplierPayment">
+              <MappingFragment StoreEntitySet="SupplierPayments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_PersonAccountCredit" FunctionName="SmartShopModel.Store.Get_PersonAccountCredit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.Get_PersonAccountCredit_Result">
+                <ScalarProperty Name="In_P_tot" ColumnName="In_P_tot" />
+                <ScalarProperty Name="Out_P_tot" ColumnName="Out_P_tot" />
+                <ScalarProperty Name="Pur_tot" ColumnName="Pur_tot" />
+                <ScalarProperty Name="PurRe_tot" ColumnName="PurRe_tot" />
+                <ScalarProperty Name="Sal_tot" ColumnName="Sal_tot" />
+                <ScalarProperty Name="SalRe_tot" ColumnName="SalRe_tot" />
+                <ScalarProperty Name="final" ColumnName="final" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAccountStatement" FunctionName="SmartShopModel.Store.GetAccountStatement">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.GetAccountStatement_Result">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="creditActions" ColumnName="creditActions" />
+                <ScalarProperty Name="debitActions" ColumnName="debitActions" />
+                <ScalarProperty Name="balanceAfter" ColumnName="balanceAfter" />
+                <ScalarProperty Name="balanceType" ColumnName="balanceType" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="typ" ColumnName="typ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_PersonAccountCredit_before" FunctionName="SmartShopModel.Store.Get_PersonAccountCredit_before">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.Get_PersonAccountCredit_before_Result">
+                <ScalarProperty Name="In_P_tot" ColumnName="In_P_tot" />
+                <ScalarProperty Name="Out_P_tot" ColumnName="Out_P_tot" />
+                <ScalarProperty Name="Pur_tot" ColumnName="Pur_tot" />
+                <ScalarProperty Name="PurRe_tot" ColumnName="PurRe_tot" />
+                <ScalarProperty Name="Sal_tot" ColumnName="Sal_tot" />
+                <ScalarProperty Name="SalRe_tot" ColumnName="SalRe_tot" />
+                <ScalarProperty Name="final" ColumnName="final" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

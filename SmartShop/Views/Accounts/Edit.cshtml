@@ -1,0 +1,91 @@
+﻿@model SmartShop.Models.Account
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  تعديل حساب        }
+
+<div class="col-10">
+
+    <div class="container">
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    تعديل حساب
+                </h4>
+            </div>
+            @using (Html.BeginForm("Edit", "Accounts", FormMethod.Post))
+            {
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>الاسم  </h6>
+                        @Html.EditorFor(model => model.AccName, new { htmlAttributes = new { @class = "form-control text-center", type = "text", required = "required" } })
+
+                    </div>
+
+
+
+                    <div class="col-6">
+                        <h6>الهاتف </h6>
+                        @Html.EditorFor(model => model.AccPhone, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
+
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="fullWidth">
+                    <h6>العنوان </h6>
+                    @Html.EditorFor(model => model.AccAddress, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
+
+                </div>
+
+                <h6>نوع الحساب</h6>
+
+          
+                <div class="row ">
+                    <div class="col-4">
+                        <input type="radio" name="AccType" value="c" @ViewBag.customer>
+                        <label for="">عميل</label>
+                    </div>
+
+                    <div class="col-4">
+                        <input type="radio" name="AccType" value="s" @ViewBag.supplier>
+                        <label for="">مورد</label>
+                    </div>
+
+                    <div class="col-4">
+                        <input type="radio" name="AccType" value="b" @ViewBag.both>
+                        <label for="">عميل و مورد</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">تعديل</button>
+
+            }
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>

@@ -158,7 +158,7 @@ color: #FFFFFF;
 }
 
  .form-control {
-  width: 40% !important;
+  width: 40% ;
   display: inline-block;
   margin-right: 70px;
   margin-bottom: 30px;
@@ -285,7 +285,7 @@ table button{
 
 
 .form .row .form-control {
-  width: 90% !important;
+  width: 90% ;
 }
 
 .btns .btn{
@@ -534,8 +534,8 @@ color: #000000;
 .hiddendiv{
   position: absolute;
   top: 55px;
-/*  display:none ;
-*/  background: rgb(185, 33, 33);
+  display:none ;
+  background: rgb(185, 33, 33);
   box-shadow: rgb(6 75 201 / 25%) 4px 4px 4px 4px;
   width: 90%;
   margin-right:70px ;
@@ -544,6 +544,57 @@ color: #000000;
 
 }
 
+.dept .form-control{
+  width: 70% !important;
+}
 
 
+
+.account h6{
+  display: inline-block;
+
+}
+
+.account input{
+  
+  background: #FFFFFF;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  border: none;
+float: left;
+padding: 5px;
+}
+
+.abilities h6{
+  display: inline-block;
+}
+
+
+
+.bills,.expensess,.employee,.accounts,.items,.transaction,.reports{
+  display: none;
+ 
+}
+
+
+#bills,#expensess,#employee,#accounts,#items,#transaction,#reports{
+  
+  width: 88%;
+  margin: auto;
+  justify-content: space-between;
+  border-bottom: 2px solid #000000;
+}
+
+
+#bills,#expensess,#employee,#accounts,#items,#transaction,#reports svg{
+  
+  font-size: 30px;
+  margin-block-start: 20px;
+}
+
+#bills .up,#expensess .up,#employee .up,#accounts .up,#items .up,#transaction .up,#reports .up{
+  
+  display: none;
+
+}
 
