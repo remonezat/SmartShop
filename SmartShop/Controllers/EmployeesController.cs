@@ -125,7 +125,11 @@ namespace SmartShop.Controllers
 
         }
 
+        public ActionResult EmployeeDiscount()
+        {
 
+            return View();
+        }
 
 
        

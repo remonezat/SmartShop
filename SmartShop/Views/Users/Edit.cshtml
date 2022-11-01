@@ -1,0 +1,370 @@
+﻿@model SmartShop.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{عرض و تعديل الصلاحيات }
+
+<div class="col-10">
+
+    <div class="container">
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل الصلاحيات
+                </h4>
+            </div>
+
+
+            @using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+            {
+
+                <div class="row">
+                    <div class="col-6">
+                        <h6>اسم المستخدم   </h6>
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "d-inline-block form-control", type = "text", required = "required" } })
+
+                    </div>
+
+
+
+
+
+                    <div class="col-6  ">
+                        <h6>كلمة السر   </h6>
+                        @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "d-inline-block form-control", type = "text", required = "required" } })
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class=" abilities    d-flex " id="bills">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>الفواتير</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities bills">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="S" @ViewBag.S>
+                            <h6>فواتير المبيعات</h6>
+                            <br>
+                            <input type="checkbox" name="pur" @ViewBag.pur>
+                            <h6>فواتير المشتريات</h6>
+                            <br>
+                            <input type="checkbox" name="editbills" @ViewBag.editbills>
+                            <h6>عرض و تعديل الفواتير</h6>
+
+
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="sre" @ViewBag.sre>
+                            <h6>مرتجع المبيعات</h6>
+                            <br>
+                            <input type="checkbox" name="purre" @ViewBag.purre>
+                            <h6>مرتجع المشتريات</h6>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities  d-flex " id="expensess">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>المصروفات</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities expensess">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="ex" @ViewBag.ex>
+                            <h6>تسجيل المصروفات</h6>
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="editex" @ViewBag.editex>
+                            <h6>عرض و تعديل المصروفات</h6>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="abilities  d-flex " id="employee">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>الموظفين</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities employee">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="addemp" @ViewBag.addemp>
+                            <h6>اضافة موظف</h6>
+
+                            <br>
+                            <input type="checkbox" name="withdraw" @ViewBag.withdraw>
+                            <h6>مسحوبات الموظفين</h6>
+
+                            <br>
+                            <input type="checkbox" name="salary" @ViewBag.salary>
+                            <h6>تسديد الرواتب</h6>
+
+                            <br>
+                            <input type="checkbox" name="perm" @ViewBag.perm>
+                            <h6>الصالحيات</h6>
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="editemp" @ViewBag.editemp>
+                            <h6>عرض و تعديل الموظفين</h6>
+
+                            <br>
+                            <input type="checkbox" name="editwithdraw" @ViewBag.editwithdraw>
+                            <h6>عرض مسحوبات الموظفين</h6>
+
+                            <br>
+                            <input type="checkbox" name="salarydis" @ViewBag.salarydis>
+                            <h6>خصم من الراتب</h6>
+
+                            <br>
+                            <input type="checkbox" name="editperm" @ViewBag.editperm>
+                            <h6>عرض و تعديل الصالحيات</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities  d-flex " id="accounts">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>الحسابات</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+                <div class="abilities accounts">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="addacc" @ViewBag.addacc>
+                            <h6>تسجيل حساب جديد</h6>
+
+
+                            <br>
+                            <input type="checkbox" name="editacc" @ViewBag.editacc>
+                            <h6>عرض و تعديل الحسابات</h6>
+
+
+
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="paycus" @ViewBag.paycus>
+                            <h6>تحصيل عميل</h6>
+
+
+                            <br>
+                            <input type="checkbox" name="paysup" @ViewBag.paysup>
+                            <h6>سداد مورد</h6>
+
+                            <br>
+                            <input type="checkbox" name="accstatment" @ViewBag.accstatment>
+                            <h6>كشف حساب </h6>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="abilities  d-flex " id="items">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>الاصناف</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities items">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="cat" @ViewBag.cat>
+                            <h6>انشاء فئة</h6>
+
+                            <br>
+                            <input type="checkbox" name="additem" @ViewBag.additem>
+                            <h6>اضافة صنف</h6>
+
+
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="edititem" @ViewBag.edititem>
+                            <h6>عرض و تعديل الاصناف</h6>
+
+                            <br>
+                            <input type="checkbox" name="addstore" @ViewBag.addstore>
+                            <h6>انشاء مخزن</h6>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="abilities  d-flex " id="transaction">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>التحويلات</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities transaction">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox" name="trans" @ViewBag.trans>
+                            <h6>التحويلات</h6>
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox" name="edittrans" @ViewBag.edittrans>
+                            <h6>عرض و تعديل التحويلات</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="abilities  d-flex " id="reports">
+                    <div class="d-flex">
+                        <input type="checkbox">
+                        <h3>التقارير</h3>
+
+                    </div>
+                    <div class="icons">
+                        <i class=" up fa-solid fa-angle-up"></i>
+                        <i class="down fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+
+
+
+                <div class="abilities reports">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="checkbox">
+                            <h6>التحويلات</h6>
+
+
+                        </div>
+
+                        <div class="col-6">
+                            <input type="checkbox">
+                            <h6>عرض و تعديل التحويلات</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary" type="submit">تعديل</button>
+
+
+
+            }
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+    </script>
+
+}
+

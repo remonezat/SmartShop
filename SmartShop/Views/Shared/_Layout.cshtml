@@ -16,7 +16,7 @@
 <body dir="rtl">
     <div class="row">
         <div class="col-2">
-            <h2 class="userName">اسم المستخدم</h2>
+            @*<h2 class="userName">اسم المستخدم</h2>*@
 
             <div class="list d-flex flex-column">
                 <div class="one">
@@ -86,6 +86,10 @@
                                 <ul>
                                     <li><a class="dropdown-item" href="/Employees/Add"> اضافة الموظف</a></li>
                                     <li><a class="dropdown-item" href="/Employees/ShowEmployees"> عرض و تعديل الموظفين</a></li>
+                                    <li><a class="dropdown-item" href="/Users/Add"> الصلاحيات </a></li>
+                                    <li><a class="dropdown-item" href="/Users/ShowUsers"> عرض و تعديل الصلاحيات </a></li>
+
+
                                     <li><a class="dropdown-item" href="/EmployeeWithdraw/Add">   المسحوبات</a></li>
                                     <li><a class="dropdown-item" href="/EmployeeWithdraw/ShowWithdraws">   عرض و تعديل المسحوبات</a></li>
                                     <li><a class="dropdown-item" href="/pay-salerys.html">تسديد الرواتب</a></li>
@@ -202,6 +206,8 @@
             </div>
 
         </div>
+
+
         @RenderBody()
 
     </div>

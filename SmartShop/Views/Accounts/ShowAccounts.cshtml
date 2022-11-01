@@ -124,8 +124,8 @@
                     { ID: $("#AccId").val(),AcId:id },
                     function (data) {
                         $('#Mes').empty();
-                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-5 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                             " </div ></div > ");
                         $("#datatable").empty();
 

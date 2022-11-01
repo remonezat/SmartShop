@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  الورديات  }
+
+
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    الوردية
+                </h4>
+            </div>
+            <label> @ViewBag.Message</label>
+            @using (Html.BeginForm("Create", "Shifts", FormMethod.Post))
+            {
+                <div class="fullWidth">
+                    <h6>التاريخ</h6>
+                    <input class="form-control w-100 text-center" type="datetime-local" name="DateOpen" id="Date" />
+
+
+                </div>
+
+                <div class="row" @ViewBag.hidden>
+                    <div class="col-12">
+                        <h6>مبلغ بالخرينة </h6>
+                        <input class="form-control text-center" name="AmountClose" id="AmountClose" type="number" value="0">
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="">
+                    <button style="padding:15px 150px" class="btn btn-primary" type="submit">@ViewBag.Name </button>
+
+                </div>
+
+
+
+
+
+            }
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+@section scripts{
+    <script>
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('Date').value = now.toISOString().slice(0, 16);
+
+       
+    </script>
+
+}
