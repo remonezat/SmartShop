@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Controllers
 {
-    public class AccountsController : Controller
+    public class AccountsController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 

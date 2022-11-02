@@ -210,7 +210,21 @@ margin: auto;
 
 .form .fullWidth .form-control {
   width:88% !important;
+  
 }
+
+
+
+.form .col-6 .form-control {
+  width:80% !important;
+  margin-right:45px !important ;
+}
+
+.form .col-6 .form-select {
+  width:80% !important;
+  margin-right:50px !important ;
+}
+
 .form .fullWidth img {
   position: relative;
   left: 60px;
@@ -384,8 +398,8 @@ margin-right: 26px;
 /* border-radius: 20px; */
 padding-bottom:120px;
 text-align: center;
-width: 90%;
-margin-right:60px;
+width: 80%;
+margin-right:50px;
 position: relative;
 top: 0px;
 
@@ -552,6 +566,7 @@ color: #000000;
 
 .account h6{
   display: inline-block;
+  margin-right: 40px;
 
 }
 
@@ -563,6 +578,7 @@ color: #000000;
   border: none;
 float: left;
 padding: 5px;
+margin-left: 50px;
 }
 
 .abilities h6{
@@ -580,7 +596,7 @@ padding: 5px;
 #bills,#expensess,#employee,#accounts,#items,#transaction,#reports{
   
   width: 88%;
-  margin: auto;
+  margin: 15px auto;
   justify-content: space-between;
   border-bottom: 2px solid #000000;
 }
@@ -597,4 +613,83 @@ padding: 5px;
   display: none;
 
 }
+
+#bills .d-flex input,#expensess .d-flex input,#employee .d-flex input,#accounts .d-flex input,#items .d-flex input,#transaction .d-flex input,#reports .d-flex input{
+  
+ margin-left: 10px;
+}
+
+
+.bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+  margin-right: 0;
+
+}
+
+.bills input,.expensess input,.employee input,.accounts input,.items input,.transaction input,.reports input{
+  
+  margin-right: 50px;
+  margin-left: 10px;
+
+}
+
+
+.col-4 input{
+ margin: 0 80px 0px 10px;
+
+}
+
+.login{
+  background: #FFFFFF;
+border: 1px solid #064BC9;
+box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 9px;
+text-align: center;
+width: 80%;
+margin:40px auto;
+
+}
+
+.login h2{
+  font-family: 'Cairo';
+font-style: normal;
+font-weight: 700;
+font-size: 64px;
+line-height: 120px;
+/* identical to box height */
+
+
+
+color: #000000;
+}
+
+
+.loginForm{
+  background: #FFFFFF;
+box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+border-radius: 9px;
+width: 90%;
+margin: auto;
+padding-bottom:21px ;
+margin-bottom: 73px;
+}
+.loginForm h4{
+font-family: 'Almarai';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 31px;
+padding-top: 21px;
+color: #000000;
+}
+.loginForm .btn{
+  padding: 15px 100px;
+  
+}
+
+.loginForm .form-control{
+width: 80%;
+margin:30px  auto;
+}
+
 

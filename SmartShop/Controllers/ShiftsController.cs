@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Controllers
 {
-    public class ShiftsController : Controller
+    public class ShiftsController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 

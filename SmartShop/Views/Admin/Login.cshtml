@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@section title{  تسجيل الدخول  }
+
+
+<div class="row">
+    <div class="col-md-6  d-flex align-items-center">
+
+        <div class="login">
+            <h2>
+                مرحباََ بك
+            </h2>
+            @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+            {
+                <div class="loginForm">
+                    <h4>تسجيل الدخول</h4>
+                    <input type="text" class="form-control" name="UserName" placeholder="الاسم .......">
+                    <input type="password" class="form-control" name="UserPassword" placeholder="كلمة السر .........">
+                    <button class="btn btn-primary" tybe="submit"> تسجيل الدخول</button>
+                </div>
+
+            }
+        </div>
+
+
+
+    </div>
+    <div class="col-md-6 mt-5 p-5">
+        <img class="rounded-4" src="~/Assets/images/ss.jpg" width="400" />
+    </div>
+
+</div>
+    <input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.LoginError" />
+
+    @section scripts{
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+        <script>
+
+            if ((document.getElementById('Error').value) != "Empty") {
+                swal("", document.getElementById('Error').value, "error");
+
+            }
+        </script>
+
+
+    }

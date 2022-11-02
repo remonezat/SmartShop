@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 
@@ -49,9 +49,10 @@ namespace SmartShop.Controllers
             bool editwithdraw = false;
             bool salarydis = false;
             bool editperm = false;
+            bool Editsalarydis = false;
+            bool paysalary = false;
 
-
-
+            
             bool addacc = false;
             bool editacc = false;
             bool paycus = false;
@@ -84,6 +85,10 @@ namespace SmartShop.Controllers
             if (!string.IsNullOrEmpty(formCollection["editwithdraw"])) { editwithdraw = true; }
             if (!string.IsNullOrEmpty(formCollection["salarydis"])) { salarydis = true; }
             if (!string.IsNullOrEmpty(formCollection["editperm"])) { editperm = true; }
+            if (!string.IsNullOrEmpty(formCollection["Editsalarydis"])) { Editsalarydis = true; }
+            if (!string.IsNullOrEmpty(formCollection["paysalary"])) { paysalary = true; }
+
+
 
 
 
@@ -171,8 +176,14 @@ namespace SmartShop.Controllers
             {
                 d += "salarydis,";
             }
-
-
+            if (Editsalarydis == true)
+            {
+                d += "Editsalarydis,";
+            }
+            if (paysalary == true)
+            {
+                d += "paysalary,";
+            }
 
             //accounts
             if (addacc == true)
@@ -366,7 +377,14 @@ namespace SmartShop.Controllers
                 {
                     ViewBag.salarydis = "checked";
                 }
-
+                if (item == "Editsalarydis")
+                {
+                    ViewBag.Editsalarydis = "checked";
+                }
+                if (item == "paysalary")
+                {
+                    ViewBag.paysalary = "checked";
+                }
 
 
                 //accounts
@@ -446,6 +464,8 @@ namespace SmartShop.Controllers
             bool editwithdraw = false;
             bool salarydis = false;
             bool editperm = false;
+            bool Editsalarydis = false;
+            bool paysalary = false;
 
 
 
@@ -481,6 +501,9 @@ namespace SmartShop.Controllers
             if (!string.IsNullOrEmpty(formCollection["editwithdraw"])) { editwithdraw = true; }
             if (!string.IsNullOrEmpty(formCollection["salarydis"])) { salarydis = true; }
             if (!string.IsNullOrEmpty(formCollection["editperm"])) { editperm = true; }
+            if (!string.IsNullOrEmpty(formCollection["Editsalarydis"])) { Editsalarydis = true; }
+            if (!string.IsNullOrEmpty(formCollection["paysalary"])) { paysalary = true; }
+
 
 
 
@@ -569,8 +592,14 @@ namespace SmartShop.Controllers
                 d += "salarydis,";
             }
 
-
-
+            if (Editsalarydis == true)
+            {
+                d += "Editsalarydis,";
+            }
+            if (paysalary == true)
+            {
+                d += "paysalary,";
+            }
             //accounts
             if (addacc == true)
             {

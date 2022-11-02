@@ -129,6 +129,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeWithdrawController.cs" />
@@ -151,6 +153,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeDiscount.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeesWithdraw.cs">
@@ -232,6 +237,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilites\Authentication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\all.min.css" />
@@ -240,6 +246,7 @@
     <Content Include="Assets\images\icons8-arrow-75 4.png" />
     <Content Include="Assets\images\icons8-current-expenses-50.png" />
     <Content Include="Assets\images\icons8-search-50 1.png" />
+    <Content Include="Assets\images\ss.jpg" />
     <Content Include="Assets\js\all.min.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery-3.5.1.js" />
@@ -328,9 +335,16 @@
     <Content Include="Views\Users\ShowUsers.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Shifts\Create.cshtml" />
+    <Content Include="Views\Employees\EmployeeDiscount.cshtml" />
+    <Content Include="Views\Employees\ShowDiscounts.cshtml" />
+    <Content Include="Views\Employees\EditDiscount.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

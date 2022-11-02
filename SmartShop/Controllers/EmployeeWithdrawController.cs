@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Controllers
 {
-    public class EmployeeWithdrawController : Controller
+    public class EmployeeWithdrawController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 

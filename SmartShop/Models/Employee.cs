@@ -18,6 +18,7 @@ namespace SmartShop.Models
         public Employee()
         {
             this.EmployeesWithdraws = new HashSet<EmployeesWithdraw>();
+            this.EmployeeDiscounts = new HashSet<EmployeeDiscount>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace SmartShop.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeesWithdraw> EmployeesWithdraws { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeDiscount> EmployeeDiscounts { get; set; }
     }
 }

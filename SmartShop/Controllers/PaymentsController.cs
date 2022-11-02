@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Controllers
 {
-    public class PaymentsController : Controller
+    public class PaymentsController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 

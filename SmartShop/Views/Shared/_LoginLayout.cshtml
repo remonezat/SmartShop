@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/style.css" rel="stylesheet" />
+    <title>@RenderSection("title", false)</title>
+
+</head>
+<body dir="rtl">
+    @RenderBody()
+
+    <script src="~/Assets/js/jquery-3.5.1.js"></script>
+    <script src="~/Assets/js/popper.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/all.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>
+

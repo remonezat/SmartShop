@@ -1,0 +1,195 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  خصومات الموظفين  }
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل خصومات الموظفين
+                </h4>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h6>اسم الموظف</h6>
+                    @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--الكل--", new { @class = "form-select text-center" })
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="fullWidth">
+                <h6>البحث بالتاريخ من :</h6>
+                <input class="form-control text-center" type="datetime-local" name="" id="datefrom" placeholder="">
+
+                <h6>البحث بالتاريخ الي :</h6>
+                <input class="form-control text-center" type="datetime-local" name="" id="dateto" placeholder="">
+
+            </div>
+
+            <button class="btn btn-primary" onclick="Show()">البحث</button>
+
+
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+
+                        <th>اسم الموظف</th>
+
+                        <th>المبلغ</th>
+                        <th>الملاحظات</th>
+
+                        <th>العمليات</th>
+
+
+
+
+
+                    </tr>
+                </thead>
+
+                <tbody id="datatable">
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
+
+</div>
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('datefrom').value = now.toISOString().slice(0, 16);
+        document.getElementById('dateto').value = now.toISOString().slice(0, 16);
+
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        function Show() {
+
+
+            $.get("/Employees/GetEmployeesDiscounts",
+                { DateF: document.getElementById("datefrom").value, DateT: document.getElementById("dateto").value, ID: $("#EmpId").val() },
+                function (data) {
+                    $('#datatable').empty();
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                var src = row["Date"];
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+                                if (row.Note == null) {
+                                    row.Note = "";
+                                }
+
+                                $('#datatable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td> <td>" + row["EName"] + "</td> <td>" + row["Amount"] + "</td><td>" + row["Note"] + "</td><td ><a href='/Employees/EditDiscount/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+
+
+
+                            }
+
+
+                        });
+
+                });
+
+        }
+
+
+        function Delete(id) {
+            var result = confirm("هل تريد حذف الخصم ؟");
+            if (result) {
+
+                $.get("/Employees/DeleteDiscount",
+                    { DateF: document.getElementById("datefrom").value, DateT: document.getElementById("dateto").value, EmpID: $("#EmpId").val(), ID: id },
+                    function (data) {
+                        $('#Mes').empty();
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            " </div ></div > ");
+                        $("#datatable").empty();
+
+                        $.each(data.result1,
+                            function (index, row) {
+                                if (data.result1 != null) {
+
+
+
+                                    var src = row["Date"];
+                                    var src1 = src.replace(/[^0-9 +]/g, '');
+                                    var dateupdated = new Date(parseInt(src1));
+                                    if (row.Note == null) {
+                                        row.Note = "";
+                                    }
+
+                                    $('#datatable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td> <td>" + row["EName"] + "</td> <td>" + row["Amount"] + "</td><td>" + row["Note"] + "</td><td ><a href='/Employees/EditDiscount/" + row.Id + "'><i class='fa-solid fa-pen-to-square text-success'></i></a><button type='button'   onclick='Delete(" + row.Id + ")'><i class='fa-solid fa-trash text-danger'></i></button></td></tr > ");
+
+
+                                }
+
+
+                            });
+
+                    });
+            }
+        }
+
+
+
+    </script>
+
+}

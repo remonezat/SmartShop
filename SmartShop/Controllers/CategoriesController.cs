@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using SmartShop.Models;
 namespace SmartShop.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
         // GET: Categories

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Deployment.Internal;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 namespace SmartShop.Controllers
 {
 
-    public class EmployeesController : Controller
+    public class EmployeesController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 
@@ -127,12 +128,106 @@ namespace SmartShop.Controllers
 
         public ActionResult EmployeeDiscount()
         {
+            ViewBag.SuccessMessage = "Empty";
+            ViewBag.DeleteMessage = "Empty";
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            }
+            if (TempData["DeleteMessage"] != null)
+            {
+                ViewBag.DeleteMessage = TempData["DeleteMessage"];
+            }
+            ViewBag.Employees = db.Employees.ToList();
 
             return View();
         }
+        [HttpPost]
+        public ActionResult EmployeeDiscount(EmployeeDiscount employeeDiscount)
+        {
+            db.EmployeeDiscounts.Add(employeeDiscount);
+            db.SaveChanges();
+            TempData["SuccessMessage"] = " تم الحفظ !! ";
+
+            return RedirectToAction("EmployeeDiscount");
+        }
+
+        public ActionResult ShowDiscounts()
+        {
+            ViewBag.SuccessMessage = "Empty";
+            ViewBag.DeleteMessage = "Empty";
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            }
+            if (TempData["DeleteMessage"] != null)
+            {
+                ViewBag.DeleteMessage = TempData["DeleteMessage"];
+            }
+            ViewBag.Employees = db.Employees.ToList();
+            return View();
+        }
+
+        public JsonResult GetEmployeesDiscounts(DateTime DateF, DateTime DateT, int ID = 0)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var SelectEmpDiscounts = db.EmployeeDiscounts.Where(x => x.Date >= DateF && x.Date <= DateT).Select(x => new { x.Id, x.Date, x.Employee.EName, x.Amount, x.Note, x.EmpId }).ToList();
+
+            if (ID > 0)
+            {
+                SelectEmpDiscounts = SelectEmpDiscounts.Where(x => x.EmpId == ID).ToList();
+
+            }
+            return Json(SelectEmpDiscounts, JsonRequestBehavior.AllowGet);
 
 
-       
+        }
+        public JsonResult DeleteDiscount(DateTime DateF, DateTime DateT, int EmpID = 0, int ID = 0)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
 
+
+            if (ID > 0)
+            {
+                var selectemloyeeDiscount = db.EmployeeDiscounts.Where(x => x.Id == ID).FirstOrDefault();
+                db.EmployeeDiscounts.Remove(selectemloyeeDiscount);
+                db.SaveChanges();
+
+            }
+            var SelectEmpDiscounts = db.EmployeeDiscounts.Where(x => x.Date >= DateF && x.Date <= DateT).Select(x => new { x.Id, x.Date, x.Employee.EName, x.Amount, x.Note, x.EmpId }).ToList();
+
+            if (EmpID > 0)
+            {
+                SelectEmpDiscounts = SelectEmpDiscounts.Where(x => x.EmpId == ID).ToList();
+
+            }
+
+            var data = new { result1 = SelectEmpDiscounts, message1 = "تم حذف الخصم" };
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+
+
+
+        }
+
+
+        public ActionResult EditDiscount(int Id =0)
+        {
+            var SelectDiscount = db.EmployeeDiscounts.Where(x => x.Id == Id).FirstOrDefault();
+            var date = SelectDiscount.Date.Value.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            ViewData["Dt"] = date;
+            ViewBag.Employees = db.Employees.ToList();
+
+            return View(SelectDiscount);
+        }
+      [HttpPost]
+        public ActionResult EditDiscount(EmployeeDiscount  employeeDiscount)
+        {
+
+            db.Entry(employeeDiscount).State = EntityState.Modified;
+            db.SaveChanges();
+            TempData["SuccessMessage"] = "تم تعديل  بنجاح ";
+            return RedirectToAction("ShowDiscounts");
+        }
     }
 }

@@ -33,11 +33,41 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/saleing-pill.html">فواتير البيع</a></li>
-                                    <li><a class="dropdown-item" href="/saling-returns-pill.html"> فواتير مرتجع مبيعات</a></li>
-                                    <li><a class="dropdown-item" href="/buy-pill.html">فواتير مشتريات </a></li>
-                                    <li><a class="dropdown-item" href="/buys-returns-pill.html">فواتير مرتجع مشتريات </a></li>
-                                    <li><a class="dropdown-item" href="/edit-pills.html">عرض و تعديل الفواتير</a></li>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "s")
+                                        {
+                                            <li><a class="dropdown-item" href="/saleing-pill.html">فواتير البيع</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "sre")
+                                        {
+                                            <li><a class="dropdown-item" href="/saling-returns-pill.html"> فواتير مرتجع مبيعات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "pur")
+                                        {
+                                            <li><a class="dropdown-item" href="/buy-pill.html">فواتير مشتريات </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "purre")
+                                        {
+                                            <li><a class="dropdown-item" href="/buys-returns-pill.html">فواتير مرتجع مشتريات </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editbills")
+                                        {
+                                            <li><a class="dropdown-item" href="/edit-pills.html">عرض و تعديل الفواتير</a></li>
+                                        }
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -59,10 +89,21 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample1">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/Expencess/Add"> تسجيل مصروفات</a></li>
-                                    <li><a class="dropdown-item" href="/Expencess/ShowExpencess">عرض و تعديل المصروفات</a></li>
-
-                                </ul>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "ex")
+                                        {
+                                            <li><a class="dropdown-item" href="/Expencess/Add"> تسجيل مصروفات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editex")
+                                        {
+                                            <li><a class="dropdown-item" href="/Expencess/ShowExpencess">عرض و تعديل المصروفات</a></li>
+                                        }
+                                    }
+                                        </ul>
                             </div>
                         </div>
                     </div>
@@ -84,17 +125,70 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample2">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/Employees/Add"> اضافة الموظف</a></li>
-                                    <li><a class="dropdown-item" href="/Employees/ShowEmployees"> عرض و تعديل الموظفين</a></li>
-                                    <li><a class="dropdown-item" href="/Users/Add"> الصلاحيات </a></li>
-                                    <li><a class="dropdown-item" href="/Users/ShowUsers"> عرض و تعديل الصلاحيات </a></li>
-
-
-                                    <li><a class="dropdown-item" href="/EmployeeWithdraw/Add">   المسحوبات</a></li>
-                                    <li><a class="dropdown-item" href="/EmployeeWithdraw/ShowWithdraws">   عرض و تعديل المسحوبات</a></li>
-                                    <li><a class="dropdown-item" href="/pay-salerys.html">تسديد الرواتب</a></li>
-
-                                </ul>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "addemp")
+                                        {
+                                            <li><a class="dropdown-item" href="/Employees/Add"> اضافة الموظف</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editemp")
+                                        {
+                                            <li><a class="dropdown-item" href="/Employees/ShowEmployees"> عرض و تعديل الموظفين</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "perm")
+                                        {
+                                            <li><a class="dropdown-item" href="/Users/Add"> الصلاحيات </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editperm")
+                                        {
+                                            <li><a class="dropdown-item" href="/Users/ShowUsers"> عرض و تعديل الصلاحيات </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "withdraw")
+                                        {
+                                            <li><a class="dropdown-item" href="/EmployeeWithdraw/Add">   المسحوبات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editwithdraw")
+                                        {
+                                            <li><a class="dropdown-item" href="/EmployeeWithdraw/ShowWithdraws">   عرض و تعديل المسحوبات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "salarydis")
+                                        {
+                                            <li><a class="dropdown-item" href="/Employees/EmployeeDiscount">   خصومات الموظفين</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "Editsalarydis")
+                                        {
+                                            <li><a class="dropdown-item" href="/Employees/ShowDiscounts">   عرض و تعديل خصومات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "paysalary")
+                                        {
+                                            <li><a class="dropdown-item" href="/pay-salerys.html">تسديد الرواتب</a></li>
+                                        }
+                                    }
+                                        </ul>
                             </div>
                         </div>
                     </div>
@@ -114,16 +208,45 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample3">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/Accounts/Add">تسجيل حساب جديد</a></li>
-                                    <li><a class="dropdown-item" href="/Accounts/ShowAccounts"> عرض و تعديل الحسابات</a></li>
-                                    <li><a class="dropdown-item" href="/Payments/PaymentSupplier"> سداد مورد  </a></li>
-                                    <li><a class="dropdown-item" href="/Payments/PaymentCustomer"> تحصيل عميل   </a></li>
-                                    <li><a class="dropdown-item" href="/Payments/AccountStatment"> كشف حساب </a></li>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "addacc")
+                                        {
+                                            <li><a class="dropdown-item" href="/Accounts/Add">تسجيل حساب جديد</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "editacc")
+                                        {
+                                            <li><a class="dropdown-item" href="/Accounts/ShowAccounts"> عرض و تعديل الحسابات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "paysup")
+                                        {
+                                            <li><a class="dropdown-item" href="/Payments/PaymentSupplier"> سداد مورد  </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "paycus")
+                                        {
+                                            <li><a class="dropdown-item" href="/Payments/PaymentCustomer"> تحصيل عميل   </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "accstatment")
+                                        {
+                                            <li><a class="dropdown-item" href="/Payments/AccountStatment"> كشف حساب </a></li>
+                                        }
+                                    }
 
 
 
-
-                                </ul>
+                                        </ul>
                             </div>
                         </div>
                     </div>
@@ -144,12 +267,35 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample4">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/categories/Add">أنشاء فئة</a></li>
-                                    <li><a class="dropdown-item" href="/Items/Add"> اضافة صنف</a></li>
-                                    <li><a class="dropdown-item" href="/Items/ShowItems"> عرض و تعديل الاصناف</a></li>
-                                    <li><a class="dropdown-item" href="/Stores/Add">انشاء مخزن</a></li>
-
-                                </ul>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "cat")
+                                        {
+                                            <li><a class="dropdown-item" href="/categories/Add">أنشاء فئة</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "additem")
+                                        {
+                                            <li><a class="dropdown-item" href="/Items/Add"> اضافة صنف</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "edititem")
+                                        {
+                                            <li><a class="dropdown-item" href="/Items/ShowItems"> عرض و تعديل الاصناف</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "addstore")
+                                        {
+                                            <li><a class="dropdown-item" href="/Stores/Add">انشاء مخزن</a></li>
+                                        }
+                                    }
+                                        </ul>
                             </div>
                         </div>
                     </div>
@@ -170,10 +316,21 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample5">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="/transaction.html">التحويلات</a></li>
-                                    <li><a class="dropdown-item" href="/edit-transactio.html">عرض و نعديل التحويلات</a></li>
-
-                                </ul>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "trans")
+                                        {
+                                            <li><a class="dropdown-item" href="/transaction.html">التحويلات</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "edittrans")
+                                        {
+                                            <li><a class="dropdown-item" href="/edit-transactio.html">عرض و نعديل التحويلات</a></li>
+                                        }
+                                    }
+                                        </ul>
                             </div>
                         </div>
                     </div>

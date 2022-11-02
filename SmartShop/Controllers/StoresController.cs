@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using SmartShop.Models;
 namespace SmartShop.Controllers
 {
-    public class StoresController : Controller
+    public class StoresController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
         // GET: Stores

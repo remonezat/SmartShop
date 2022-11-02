@@ -32,6 +32,16 @@
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
+        <EntityType Name="EmployeeDiscounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
@@ -254,6 +264,18 @@
             </Principal>
             <Dependent Role="CustomerPayments">
               <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeD__EmpId__29221CFB">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="EmployeeDiscounts" Type="Self.EmployeeDiscounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeDiscounts">
+              <PropertyRef Name="EmpId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -645,6 +667,7 @@
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerPayments" EntityType="Self.CustomerPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDiscounts" EntityType="Self.EmployeeDiscounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeesWithdraws" EntityType="Self.EmployeesWithdraws" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expencess" EntityType="Self.Expencess" Schema="dbo" store:Type="Tables" />
@@ -667,6 +690,10 @@
           <AssociationSet Name="FK__CustomerP__AccId__72C60C4A" Association="Self.FK__CustomerP__AccId__72C60C4A">
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="CustomerPayments" EntitySet="CustomerPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeD__EmpId__29221CFB" Association="Self.FK__EmployeeD__EmpId__29221CFB">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeeDiscounts" EntitySet="EmployeeDiscounts" />
           </AssociationSet>
           <AssociationSet Name="FK__Employees__EmpId__2F10007B" Association="Self.FK__Employees__EmpId__2F10007B">
             <End Role="Employees" EntitySet="Employees" />
@@ -832,6 +859,7 @@
           <Property Name="Salary" Type="Double" />
           <NavigationProperty Name="EmployeesWithdraws" Relationship="Self.FK__Employees__EmpId__2F10007B" FromRole="Employees" ToRole="EmployeesWithdraws" />
           <Property Name="Job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeDiscounts" Relationship="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" FromRole="Employee" ToRole="EmployeeDiscount" />
         </EntityType>
         <EntityType Name="EmployeesWithdraw">
           <Key>
@@ -1602,6 +1630,11 @@
             <Parameter Name="acc_id" Mode="In" Type="Int32" />
             <Parameter Name="BeforeDte" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="EmployeeDiscounts" EntityType="SmartShopModel.EmployeeDiscount" />
+          <AssociationSet Name="FK__EmployeeD__EmpId__29221CFB" Association="SmartShopModel.FK__EmployeeD__EmpId__29221CFB">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeDiscount" EntitySet="EmployeeDiscounts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CustomerPayment">
           <Key>
@@ -1676,6 +1709,29 @@
           <Property Type="Double" Name="SalRe_tot" Nullable="true" />
           <Property Type="Double" Name="final" Nullable="true" />
         </ComplexType>
+        <EntityType Name="EmployeeDiscount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" FromRole="EmployeeDiscount" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK__EmployeeD__EmpId__29221CFB">
+          <End Type="SmartShopModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="SmartShopModel.EmployeeDiscount" Role="EmployeeDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeDiscount">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1983,6 +2039,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="EmployeeDiscounts">
+            <EntityTypeMapping TypeName="SmartShopModel.EmployeeDiscount">
+              <MappingFragment StoreEntitySet="EmployeeDiscounts">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

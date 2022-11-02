@@ -59,6 +59,8 @@
         <EntityTypeShape EntityType="SmartShopModel.SupplierPayment" Width="1.5" PointX="3" PointY="6.875" />
         <AssociationConnector Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A" />
         <AssociationConnector Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" />
+        <EntityTypeShape EntityType="SmartShopModel.EmployeeDiscount" Width="1.5" PointX="11" PointY="4.125" />
+        <AssociationConnector Association="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

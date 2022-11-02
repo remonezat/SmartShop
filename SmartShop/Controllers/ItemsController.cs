@@ -8,7 +8,7 @@ using Newtonsoft.Json.Bson;
 using SmartShop.Models;
 namespace SmartShop.Controllers
 {
-    public class ItemsController : Controller
+    public class ItemsController : BaseController
     {
         SmartShopEntities db = new SmartShopEntities();
 

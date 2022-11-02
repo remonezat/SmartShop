@@ -49,6 +49,7 @@ namespace SmartShop.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<CustomerPayment> CustomerPayments { get; set; }
         public virtual DbSet<SupplierPayment> SupplierPayments { get; set; }
+        public virtual DbSet<EmployeeDiscount> EmployeeDiscounts { get; set; }
     
         public virtual ObjectResult<Get_PersonAccountCredit_Result> Get_PersonAccountCredit(Nullable<int> acc_id)
         {
