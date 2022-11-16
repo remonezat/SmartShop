@@ -1,0 +1,260 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  الفواتير        }
+
+
+<div class="col-10">
+    <div class="container">
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و تعديل الفواتير
+                </h4>
+            </div>
+            <div>
+
+                <div class="radioChosse">
+                    <h6>نوع الفاتورة   :</h6>
+                    <select class="form-select " aria-label="Default select example" name="Bills" id="Bills">
+                        <option value="0"> --الكل--</option>
+                        <option value="مبيعات">مبيعات</option>
+                        <option value="مرتجع بيع">مرتجع بيع</option>
+                        <option value="مشتريات">مشتريات</option>
+                        <option value="مرتجع شراء">مرتجع شراء</option>
+
+                    </select>
+
+                </div>
+
+                <div class="radioChosse">
+                    <h6>الدفع  :</h6>
+                    <select class="form-select me" aria-label="Default select example" name="CaShT" id="CaShT">
+                        <option value="0">--الكل--</option>
+
+                        <option value="آجـــــــل">آجـــــــل</option>
+                        <option value="كـاش">كـاش</option>
+
+                    </select>
+                  
+
+                </div>
+            </div>
+
+            <div class="fullWidth">
+                <h6>البحث بالتاريخ من :</h6>
+                <input class="form-control w-100" type="datetime-local" id="1234" />
+
+                <h6>البحث بالتاريخ الي :</h6>
+                <input class="form-control w-100" type="datetime-local" id="123" />
+
+            </div>
+
+            <button class="btn btn-primary" onclick="Show()">البحث</button>
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>رقم الفاتورة</th>
+                        <th>التاريخ</th>
+                        <th>الحساب</th>
+                        <th>طريقة دفع</th>
+                        <th>المبلغ</th>
+                       <th>الخصم</th>
+                        <th>الاجمالي</th>
+                        <th>نوع الفاتورة</th>
+                        <th>عمليات</th>
+                    </tr>
+                </thead>
+
+                <tbody id="billtable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 999999">
+        <div id='toast-8270' class='toast p-2 bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'>
+            <div class='d-flex'>
+                <div class='toast-body'> <i class='icon-info-sign me-1'></i>@ViewBag.SuccessMessage </div> <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+    TempData["SuccessMessage"] = null;
+}
+
+<div id="divPDF">
+    <div id="printerDiv"><iframe id="frmPDF"></iframe></div>
+</div>
+
+@section scripts{
+   
+    <script>
+
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('1234').value = now.toISOString().slice(0, 16);
+        document.getElementById('123').value = now.toISOString().slice(0, 16);
+  
+        function Show() {
+
+           
+            $.get("/ShowBills/GetBills",
+                { DateF: document.getElementById("1234").value, DateT: document.getElementById("123").value, BillTyp: $("#Bills").val(), PayTyp: $("#CaShT").val() },
+                function (data) {
+                    $('#billtable').empty();
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+                                var src = row.Date;
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+
+
+
+                               
+                                $('#billtable').append("<tr><td>" + row.Id + "</td><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td><td>" + row.acc_id + "</td> <td>" + row.n + "</td><td>" + row.total + "</td><td>" + row.Descount + "</td><td>" + row.Final + "</td><td>" + row.typ + "</td><td><button tybe='button'  class='  d-inline    text-success ' onclick='Edit(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-edit'></i></button><button tybe='button' class='  d-inline    text-danger ' onclick='Delete(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-trash'></i></button><button class=' d-inline    text-warning' onclick='print(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-print'></i></button></td ></tr > ");
+
+                                
+
+                            }
+
+
+                        });
+
+
+                });
+
+        }
+
+
+        function Delete(id, typ) {
+            var result = confirm("هل تريد حذف هذة الفاتورة ؟");
+            if (result) {
+               
+
+                $.get("/ShowBills/DeleteBill",
+                    { DateF: document.getElementById("1234").value, DateT: document.getElementById("123").value, BillTyp: $("#Bills").val(), PayTyp: $("#CaShT").val(), BillID: id, BillType: typ },
+                    function (data) {
+                        $('#billtable').empty();
+
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    var src = row.Date;
+                                    var src1 = src.replace(/[^0-9 +]/g, '');
+                                    var dateupdated = new Date(parseInt(src1));
+
+
+
+
+                                    $('#billtable').append("<tr><td>" + row.Id + "</td><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td><td>" + row.acc_id + "</td> <td>" + row.n + "</td><td>" + row.total + "</td><td>" + row.Descount + "</td><td>" + row.Final + "</td><td>" + row.typ + "</td><td><button tybe='button'  class='  d-inline    text-success ' onclick='Edit(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-edit'></i></button><button tybe='button' class='  d-inline    text-danger ' onclick='Delete(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-trash'></i></button><button class=' d-inline    text-warning' onclick='print(" + row.Id + " ,\"" + row.typ + "\")'><i class='fa-solid fa-print'></i></button></td ></tr > ");
+
+
+                                }
+
+
+                            });
+
+                    });
+            }
+        }
+
+
+
+        function Edit(id, typ) {
+
+            if (typ == "مبيعات") {
+
+                window.location.href = '/Sales/EditSales/' + id;
+            }
+            else if (typ == "مشتريات") {
+
+                window.location.href = '/Purchase/EditPurchase/' + id;
+
+            }
+            else if (typ == "مرتجع بيع") {
+
+                window.location.href = '/SalesRe/EditSalesRe/' + id;
+
+            }
+            else if (typ == "مرتجع شراء") {
+
+                window.location.href = '/PurchaseRe/EditPurchaseRe/' + id;
+
+            }
+        }
+
+
+        //function print(id, typ) {
+
+        //    if (typ == "مبيعات") {
+        //        window.open("/SalesBill/ExportToPDF?ID=" + id, "_blank");
+
+        //    }
+        //    else if (typ == "مشتريات") {
+        //        window.open("/ShowBills/ExportPurchaseToPDF?ID=" + id, "_blank");
+
+
+
+        //    }
+        //    else if (typ == "مرتجع بيع") {
+        //        window.open("/SalesReBill/ExportToPDF?ID=" + id, "_blank");
+
+
+
+        //    }
+        //    else if (typ == "مرتجع شراء") {
+        //        window.open("/ShowBills/ExportPurchaseReToPDF?ID=" + id, "_blank");
+
+
+        //    }
+        //}
+
+        //function printRoll(id, typ) {
+
+        //    if (typ == "مبيعات") {
+        //        window.open("/ShowBills/ExportsalesBillToPDFRoll?ID=" + id , "_blank");
+
+        //    }
+
+        //    else if (typ == "مرتجع بيع") {
+        //        window.open("/ShowBills/ExportsalesReBillToPDFRoll?ID=" + id, "_blank");
+
+
+
+        //    }
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+}

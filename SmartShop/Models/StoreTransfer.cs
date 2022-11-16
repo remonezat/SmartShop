@@ -24,10 +24,8 @@ namespace SmartShop.Models
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> StkFromId { get; set; }
         public Nullable<int> StkToId { get; set; }
-        public Nullable<int> ShiftId { get; set; }
         public Nullable<int> UserId { get; set; }
     
-        public virtual Shift Shift { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StoreTransferDetail> StoreTransferDetails { get; set; }
         public virtual User User { get; set; }

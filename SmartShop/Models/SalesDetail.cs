@@ -19,6 +19,7 @@ namespace SmartShop.Models
         public Nullable<int> ItemId { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> Count { get; set; }
+        public Nullable<double> PurPrice { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual Sale Sale { get; set; }

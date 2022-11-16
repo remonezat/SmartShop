@@ -119,6 +119,7 @@
           <Property Name="ItemId" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Count" Type="float" />
+          <Property Name="PurPrice" Type="float" />
         </EntityType>
         <EntityType Name="PurchaseRe">
           <Key>
@@ -140,10 +141,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvId" Type="int" />
           <Property Name="ItemId" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Count" Type="float" />
+          <Property Name="PurPrice" Type="float" />
+          <Property Name="InvId" Type="int" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -169,6 +171,7 @@
           <Property Name="ItemId" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Count" Type="float" />
+          <Property Name="PurPrice" Type="float" />
         </EntityType>
         <EntityType Name="SalesRe">
           <Key>
@@ -190,10 +193,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvId" Type="int" />
           <Property Name="ItemId" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Count" Type="float" />
+          <Property Name="PurPrice" Type="float" />
+          <Property Name="InvId" Type="int" />
         </EntityType>
         <EntityType Name="Shifts">
           <Key>
@@ -224,7 +228,6 @@
           <Property Name="Date" Type="date" />
           <Property Name="StkFromId" Type="int" />
           <Property Name="StkToId" Type="int" />
-          <Property Name="ShiftId" Type="int" />
           <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="StoreTransferDetails">
@@ -327,18 +330,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Purchase__StkId__4D94879B">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchase">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Purchase__UserId__4F7CD00D">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
@@ -387,11 +378,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PurchaseR__InvId__5BE2A6F2">
-          <End Role="Sales" Type="Self.Sales" Multiplicity="0..1" />
+        <Association Name="FK__PurchaseR__InvId__6166761E">
+          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="0..1" />
           <End Role="PurchaseReDetails" Type="Self.PurchaseReDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sales">
+            <Principal Role="PurchaseRe">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PurchaseReDetails">
@@ -420,18 +411,6 @@
             </Principal>
             <Dependent Role="PurchaseRe">
               <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__StkId__571DF1D5">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
-          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRe">
-              <PropertyRef Name="StkId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -468,18 +447,6 @@
             </Principal>
             <Dependent Role="Sales">
               <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sales__StkId__3A81B327">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="StkId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -543,18 +510,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SalesRe__StkId__440B1D61">
-          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
-          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesRe">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SalesRe__UserId__45F365D3">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
@@ -567,11 +522,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SalesReDe__InvId__48CFD27E">
-          <End Role="Sales" Type="Self.Sales" Multiplicity="0..1" />
+        <Association Name="FK__SalesReDe__InvId__607251E5">
+          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="0..1" />
           <End Role="SalesReDetails" Type="Self.SalesReDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sales">
+            <Principal Role="SalesRe">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="SalesReDetails">
@@ -600,18 +555,6 @@
             </Principal>
             <Dependent Role="StoreTransferDetails">
               <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StoreTran__Shift__5FB337D6">
-          <End Role="Shifts" Type="Self.Shifts" Multiplicity="0..1" />
-          <End Role="StoreTransfer" Type="Self.StoreTransfer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StoreTransfer">
-              <PropertyRef Name="ShiftId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -651,6 +594,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DailyReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
         <Function Name="Get_PersonAccountCredit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="acc_id" Type="int" Mode="In" />
         </Function>
@@ -662,6 +608,25 @@
           <Parameter Name="acc_id" Type="int" Mode="In" />
           <Parameter Name="dte_f" Type="datetime" Mode="In" />
           <Parameter Name="dte_t" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetAllBills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetItemCredit_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="it_id" Type="int" Mode="In" />
+          <Parameter Name="stk_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetItemsCredit_proc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stk" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetShift_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MonthReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ProcGetItemCredit_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="it_id" Type="int" Mode="In" />
+          <Parameter Name="stk_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="YearReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="float" Mode="In" />
         </Function>
         <EntityContainer Name="SmartShopModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
@@ -711,10 +676,6 @@
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="Purchase" EntitySet="Purchase" />
           </AssociationSet>
-          <AssociationSet Name="FK__Purchase__StkId__4D94879B" Association="Self.FK__Purchase__StkId__4D94879B">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="Purchase" EntitySet="Purchase" />
-          </AssociationSet>
           <AssociationSet Name="FK__Purchase__UserId__4F7CD00D" Association="Self.FK__Purchase__UserId__4F7CD00D">
             <End Role="Users" EntitySet="Users" />
             <End Role="Purchase" EntitySet="Purchase" />
@@ -731,8 +692,8 @@
             <End Role="Accounts" EntitySet="Accounts" />
             <End Role="PurchaseRe" EntitySet="PurchaseRe" />
           </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__InvId__5BE2A6F2" Association="Self.FK__PurchaseR__InvId__5BE2A6F2">
-            <End Role="Sales" EntitySet="Sales" />
+          <AssociationSet Name="FK__PurchaseR__InvId__6166761E" Association="Self.FK__PurchaseR__InvId__6166761E">
+            <End Role="PurchaseRe" EntitySet="PurchaseRe" />
             <End Role="PurchaseReDetails" EntitySet="PurchaseReDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__PurchaseR__ItemI__5CD6CB2B" Association="Self.FK__PurchaseR__ItemI__5CD6CB2B">
@@ -741,10 +702,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__PurchaseR__Shift__5812160E" Association="Self.FK__PurchaseR__Shift__5812160E">
             <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="PurchaseRe" EntitySet="PurchaseRe" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__StkId__571DF1D5" Association="Self.FK__PurchaseR__StkId__571DF1D5">
-            <End Role="Stores" EntitySet="Stores" />
             <End Role="PurchaseRe" EntitySet="PurchaseRe" />
           </AssociationSet>
           <AssociationSet Name="FK__PurchaseR__UserI__59063A47" Association="Self.FK__PurchaseR__UserI__59063A47">
@@ -757,10 +714,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Sales__ShiftId__3B75D760" Association="Self.FK__Sales__ShiftId__3B75D760">
             <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sales__StkId__3A81B327" Association="Self.FK__Sales__StkId__3A81B327">
-            <End Role="Stores" EntitySet="Stores" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="FK__Sales__UserId__3C69FB99" Association="Self.FK__Sales__UserId__3C69FB99">
@@ -783,16 +736,12 @@
             <End Role="Shifts" EntitySet="Shifts" />
             <End Role="SalesRe" EntitySet="SalesRe" />
           </AssociationSet>
-          <AssociationSet Name="FK__SalesRe__StkId__440B1D61" Association="Self.FK__SalesRe__StkId__440B1D61">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="SalesRe" EntitySet="SalesRe" />
-          </AssociationSet>
           <AssociationSet Name="FK__SalesRe__UserId__45F365D3" Association="Self.FK__SalesRe__UserId__45F365D3">
             <End Role="Users" EntitySet="Users" />
             <End Role="SalesRe" EntitySet="SalesRe" />
           </AssociationSet>
-          <AssociationSet Name="FK__SalesReDe__InvId__48CFD27E" Association="Self.FK__SalesReDe__InvId__48CFD27E">
-            <End Role="Sales" EntitySet="Sales" />
+          <AssociationSet Name="FK__SalesReDe__InvId__607251E5" Association="Self.FK__SalesReDe__InvId__607251E5">
+            <End Role="SalesRe" EntitySet="SalesRe" />
             <End Role="SalesReDetails" EntitySet="SalesReDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__SalesReDe__ItemI__49C3F6B7" Association="Self.FK__SalesReDe__ItemI__49C3F6B7">
@@ -802,10 +751,6 @@
           <AssociationSet Name="FK__StoreTran__ItemI__6477ECF3" Association="Self.FK__StoreTran__ItemI__6477ECF3">
             <End Role="Items" EntitySet="Items" />
             <End Role="StoreTransferDetails" EntitySet="StoreTransferDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StoreTran__Shift__5FB337D6" Association="Self.FK__StoreTran__Shift__5FB337D6">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="StoreTransfer" EntitySet="StoreTransfer" />
           </AssociationSet>
           <AssociationSet Name="FK__StoreTran__Trans__6383C8BA" Association="Self.FK__StoreTran__Trans__6383C8BA">
             <End Role="StoreTransfer" EntitySet="StoreTransfer" />
@@ -824,800 +769,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmartShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AccPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="AccAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AccType" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__AccId__4CA06362" FromRole="Accounts" ToRole="Purchase" />
-          <NavigationProperty Name="PurchaseRes" Relationship="Self.FK__PurchaseR__AccId__5629CD9C" FromRole="Accounts" ToRole="PurchaseRe" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__AccId__398D8EEE" FromRole="Accounts" ToRole="Sales" />
-          <NavigationProperty Name="SalesRes" Relationship="Self.FK__SalesRe__AccId__4316F928" FromRole="Accounts" ToRole="SalesRe" />
-          <NavigationProperty Name="CustomerPayments" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="Account" ToRole="CustomerPayment" />
-          <NavigationProperty Name="SupplierPayments" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="Account" ToRole="SupplierPayment" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Items" Relationship="Self.FK__Items__CatId__267ABA7A" FromRole="Categories" ToRole="Items" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Salary" Type="Double" />
-          <NavigationProperty Name="EmployeesWithdraws" Relationship="Self.FK__Employees__EmpId__2F10007B" FromRole="Employees" ToRole="EmployeesWithdraws" />
-          <Property Name="Job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EmployeeDiscounts" Relationship="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" FromRole="Employee" ToRole="EmployeeDiscount" />
-        </EntityType>
-        <EntityType Name="EmployeesWithdraw">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmpId" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Amount" Type="Double" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Employees__EmpId__2F10007B" FromRole="EmployeesWithdraws" ToRole="Employees" />
-        </EntityType>
-        <EntityType Name="Expencess">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Amount" Type="Double" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatId" Type="Int32" />
-          <Property Name="ItemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PricePur" Type="Double" />
-          <Property Name="PriceSell" Type="Double" />
-          <Property Name="FirstBalance" Type="Double" />
-          <Property Name="FirstBalancePrice" Type="Double" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Items__CatId__267ABA7A" FromRole="Items" ToRole="Categories" />
-          <NavigationProperty Name="PurchaseDetails" Relationship="Self.FK__PurchaseD__ItemI__534D60F1" FromRole="Items" ToRole="PurchaseDetails" />
-          <NavigationProperty Name="PurchaseReDetails" Relationship="Self.FK__PurchaseR__ItemI__5CD6CB2B" FromRole="Items" ToRole="PurchaseReDetails" />
-          <NavigationProperty Name="SalesDetails" Relationship="Self.FK__SalesDeta__ItemI__403A8C7D" FromRole="Items" ToRole="SalesDetails" />
-          <NavigationProperty Name="SalesReDetails" Relationship="Self.FK__SalesReDe__ItemI__49C3F6B7" FromRole="Items" ToRole="SalesReDetails" />
-          <NavigationProperty Name="StoreTransferDetails" Relationship="Self.FK__StoreTran__ItemI__6477ECF3" FromRole="Items" ToRole="StoreTransferDetails" />
-        </EntityType>
-        <EntityType Name="Jop">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JopName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Purchase">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="StkId" Type="Int32" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="IsCash" Type="Boolean" />
-          <Property Name="Total" Type="Double" />
-          <Property Name="Descount" Type="Double" />
-          <Property Name="Final" Type="Double" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Purchase__AccId__4CA06362" FromRole="Purchase" ToRole="Accounts" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__Purchase__ShiftI__4E88ABD4" FromRole="Purchase" ToRole="Shifts" />
-          <NavigationProperty Name="Store" Relationship="Self.FK__Purchase__StkId__4D94879B" FromRole="Purchase" ToRole="Stores" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Purchase__UserId__4F7CD00D" FromRole="Purchase" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="PurchaseDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvId" Type="Int32" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Count" Type="Double" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__PurchaseD__ItemI__534D60F1" FromRole="PurchaseDetails" ToRole="Items" />
-          <NavigationProperty Name="Sale" Relationship="Self.FK__PurchaseD__InvId__52593CB8" FromRole="PurchaseDetails" ToRole="Sales" />
-        </EntityType>
-        <EntityType Name="PurchaseRe">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="StkId" Type="Int32" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="IsCash" Type="Boolean" />
-          <Property Name="Total" Type="Double" />
-          <Property Name="Descount" Type="Double" />
-          <Property Name="Final" Type="Double" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__PurchaseR__AccId__5629CD9C" FromRole="PurchaseRe" ToRole="Accounts" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__PurchaseR__Shift__5812160E" FromRole="PurchaseRe" ToRole="Shifts" />
-          <NavigationProperty Name="Store" Relationship="Self.FK__PurchaseR__StkId__571DF1D5" FromRole="PurchaseRe" ToRole="Stores" />
-          <NavigationProperty Name="User" Relationship="Self.FK__PurchaseR__UserI__59063A47" FromRole="PurchaseRe" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="PurchaseReDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvId" Type="Int32" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Count" Type="Double" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__PurchaseR__ItemI__5CD6CB2B" FromRole="PurchaseReDetails" ToRole="Items" />
-          <NavigationProperty Name="Sale" Relationship="Self.FK__PurchaseR__InvId__5BE2A6F2" FromRole="PurchaseReDetails" ToRole="Sales" />
-        </EntityType>
-        <EntityType Name="Sale">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="StkId" Type="Int32" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="IsCash" Type="Boolean" />
-          <Property Name="Total" Type="Double" />
-          <Property Name="Descount" Type="Double" />
-          <Property Name="Final" Type="Double" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__Sales__AccId__398D8EEE" FromRole="Sales" ToRole="Accounts" />
-          <NavigationProperty Name="PurchaseDetails" Relationship="Self.FK__PurchaseD__InvId__52593CB8" FromRole="Sales" ToRole="PurchaseDetails" />
-          <NavigationProperty Name="PurchaseReDetails" Relationship="Self.FK__PurchaseR__InvId__5BE2A6F2" FromRole="Sales" ToRole="PurchaseReDetails" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__Sales__ShiftId__3B75D760" FromRole="Sales" ToRole="Shifts" />
-          <NavigationProperty Name="Store" Relationship="Self.FK__Sales__StkId__3A81B327" FromRole="Sales" ToRole="Stores" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Sales__UserId__3C69FB99" FromRole="Sales" ToRole="Users" />
-          <NavigationProperty Name="SalesDetails" Relationship="Self.FK__SalesDeta__InvId__3F466844" FromRole="Sales" ToRole="SalesDetails" />
-          <NavigationProperty Name="SalesReDetails" Relationship="Self.FK__SalesReDe__InvId__48CFD27E" FromRole="Sales" ToRole="SalesReDetails" />
-        </EntityType>
-        <EntityType Name="SalesDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvId" Type="Int32" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Count" Type="Double" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__SalesDeta__ItemI__403A8C7D" FromRole="SalesDetails" ToRole="Items" />
-          <NavigationProperty Name="Sale" Relationship="Self.FK__SalesDeta__InvId__3F466844" FromRole="SalesDetails" ToRole="Sales" />
-        </EntityType>
-        <EntityType Name="SalesRe">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="StkId" Type="Int32" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="IsCash" Type="Boolean" />
-          <Property Name="Total" Type="Double" />
-          <Property Name="Descount" Type="Double" />
-          <Property Name="Final" Type="Double" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__SalesRe__AccId__4316F928" FromRole="SalesRe" ToRole="Accounts" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__SalesRe__ShiftId__44FF419A" FromRole="SalesRe" ToRole="Shifts" />
-          <NavigationProperty Name="Store" Relationship="Self.FK__SalesRe__StkId__440B1D61" FromRole="SalesRe" ToRole="Stores" />
-          <NavigationProperty Name="User" Relationship="Self.FK__SalesRe__UserId__45F365D3" FromRole="SalesRe" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="SalesReDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvId" Type="Int32" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Count" Type="Double" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__SalesReDe__ItemI__49C3F6B7" FromRole="SalesReDetails" ToRole="Items" />
-          <NavigationProperty Name="Sale" Relationship="Self.FK__SalesReDe__InvId__48CFD27E" FromRole="SalesReDetails" ToRole="Sales" />
-        </EntityType>
-        <EntityType Name="Shift">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Useropen" Type="Int32" />
-          <Property Name="UserClose" Type="Int32" />
-          <Property Name="DateOpen" Type="DateTime" Precision="3" />
-          <Property Name="DateClose" Type="DateTime" Precision="3" />
-          <Property Name="AmountOpen" Type="Double" />
-          <Property Name="AmountClose" Type="Double" />
-          <Property Name="IsCloses" Type="Boolean" />
-          <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__ShiftI__4E88ABD4" FromRole="Shifts" ToRole="Purchase" />
-          <NavigationProperty Name="PurchaseRes" Relationship="Self.FK__PurchaseR__Shift__5812160E" FromRole="Shifts" ToRole="PurchaseRe" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__ShiftId__3B75D760" FromRole="Shifts" ToRole="Sales" />
-          <NavigationProperty Name="SalesRes" Relationship="Self.FK__SalesRe__ShiftId__44FF419A" FromRole="Shifts" ToRole="SalesRe" />
-          <NavigationProperty Name="StoreTransfers" Relationship="Self.FK__StoreTran__Shift__5FB337D6" FromRole="Shifts" ToRole="StoreTransfer" />
-        </EntityType>
-        <EntityType Name="Store">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__StkId__4D94879B" FromRole="Stores" ToRole="Purchase" />
-          <NavigationProperty Name="PurchaseRes" Relationship="Self.FK__PurchaseR__StkId__571DF1D5" FromRole="Stores" ToRole="PurchaseRe" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__StkId__3A81B327" FromRole="Stores" ToRole="Sales" />
-          <NavigationProperty Name="SalesRes" Relationship="Self.FK__SalesRe__StkId__440B1D61" FromRole="Stores" ToRole="SalesRe" />
-        </EntityType>
-        <EntityType Name="StoreTransfer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="StkFromId" Type="Int32" />
-          <Property Name="StkToId" Type="Int32" />
-          <Property Name="ShiftId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="Shift" Relationship="Self.FK__StoreTran__Shift__5FB337D6" FromRole="StoreTransfer" ToRole="Shifts" />
-          <NavigationProperty Name="StoreTransferDetails" Relationship="Self.FK__StoreTran__Trans__6383C8BA" FromRole="StoreTransfer" ToRole="StoreTransferDetails" />
-          <NavigationProperty Name="User" Relationship="Self.FK__StoreTran__UserI__60A75C0F" FromRole="StoreTransfer" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="StoreTransferDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TransId" Type="Int32" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="Count" Type="Double" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__StoreTran__ItemI__6477ECF3" FromRole="StoreTransferDetails" ToRole="Items" />
-          <NavigationProperty Name="StoreTransfer" Relationship="Self.FK__StoreTran__Trans__6383C8BA" FromRole="StoreTransferDetails" ToRole="StoreTransfer" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserScreens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Purchases" Relationship="Self.FK__Purchase__UserId__4F7CD00D" FromRole="Users" ToRole="Purchase" />
-          <NavigationProperty Name="PurchaseRes" Relationship="Self.FK__PurchaseR__UserI__59063A47" FromRole="Users" ToRole="PurchaseRe" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__UserId__3C69FB99" FromRole="Users" ToRole="Sales" />
-          <NavigationProperty Name="SalesRes" Relationship="Self.FK__SalesRe__UserId__45F365D3" FromRole="Users" ToRole="SalesRe" />
-          <NavigationProperty Name="StoreTransfers" Relationship="Self.FK__StoreTran__UserI__60A75C0F" FromRole="Users" ToRole="StoreTransfer" />
-        </EntityType>
-        <Association Name="FK__Purchase__AccId__4CA06362">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Accounts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchase">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__AccId__5629CD9C">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Accounts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRe">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sales__AccId__398D8EEE">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Accounts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesRe__AccId__4316F928">
-          <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Accounts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesRe">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Items__CatId__267ABA7A">
-          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Items" Type="Self.Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Items">
-              <PropertyRef Name="CatId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Employees__EmpId__2F10007B">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="EmployeesWithdraws" Type="Self.EmployeesWithdraw" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EmployeesWithdraws">
-              <PropertyRef Name="EmpId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseD__ItemI__534D60F1">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="PurchaseDetails" Type="Self.PurchaseDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseDetails">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__ItemI__5CD6CB2B">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="PurchaseReDetails" Type="Self.PurchaseReDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseReDetails">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesDeta__ItemI__403A8C7D">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesDetails">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesReDe__ItemI__49C3F6B7">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="SalesReDetails" Type="Self.SalesReDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesReDetails">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StoreTran__ItemI__6477ECF3">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="StoreTransferDetails" Type="Self.StoreTransferDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StoreTransferDetails">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Purchase__ShiftI__4E88ABD4">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchase">
-              <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Purchase__StkId__4D94879B">
-          <End Role="Stores" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchase">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Purchase__UserId__4F7CD00D">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Purchase">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseD__InvId__52593CB8">
-          <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
-          <End Role="PurchaseDetails" Type="Self.PurchaseDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sales">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseDetails">
-              <PropertyRef Name="InvId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__Shift__5812160E">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
-          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRe">
-              <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__StkId__571DF1D5">
-          <End Role="Stores" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRe">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__UserI__59063A47">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="PurchaseRe" Type="Self.PurchaseRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRe">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PurchaseR__InvId__5BE2A6F2">
-          <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
-          <End Role="PurchaseReDetails" Type="Self.PurchaseReDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sales">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseReDetails">
-              <PropertyRef Name="InvId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sales__ShiftId__3B75D760">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sales__StkId__3A81B327">
-          <End Role="Stores" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Sales__UserId__3C69FB99">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesDeta__InvId__3F466844">
-          <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
-          <End Role="SalesDetails" Type="Self.SalesDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sales">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesDetails">
-              <PropertyRef Name="InvId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesReDe__InvId__48CFD27E">
-          <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
-          <End Role="SalesReDetails" Type="Self.SalesReDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sales">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesReDetails">
-              <PropertyRef Name="InvId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesRe__ShiftId__44FF419A">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
-          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesRe">
-              <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesRe__StkId__440B1D61">
-          <End Role="Stores" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Stores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesRe">
-              <PropertyRef Name="StkId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SalesRe__UserId__45F365D3">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="SalesRe" Type="Self.SalesRe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesRe">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StoreTran__Shift__5FB337D6">
-          <End Role="Shifts" Type="Self.Shift" Multiplicity="0..1" />
-          <End Role="StoreTransfer" Type="Self.StoreTransfer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shifts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StoreTransfer">
-              <PropertyRef Name="ShiftId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StoreTran__Trans__6383C8BA">
-          <End Role="StoreTransfer" Type="Self.StoreTransfer" Multiplicity="0..1" />
-          <End Role="StoreTransferDetails" Type="Self.StoreTransferDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StoreTransfer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StoreTransferDetails">
-              <PropertyRef Name="TransId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__StoreTran__UserI__60A75C0F">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="StoreTransfer" Type="Self.StoreTransfer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StoreTransfer">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SmartShopEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="EmployeesWithdraws" EntityType="Self.EmployeesWithdraw" />
-          <EntitySet Name="Expencesses" EntityType="Self.Expencess" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
-          <EntitySet Name="Jops" EntityType="Self.Jop" />
-          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
-          <EntitySet Name="PurchaseDetails" EntityType="Self.PurchaseDetail" />
-          <EntitySet Name="PurchaseRes" EntityType="Self.PurchaseRe" />
-          <EntitySet Name="PurchaseReDetails" EntityType="Self.PurchaseReDetail" />
-          <EntitySet Name="Sales" EntityType="Self.Sale" />
-          <EntitySet Name="SalesDetails" EntityType="Self.SalesDetail" />
-          <EntitySet Name="SalesRes" EntityType="Self.SalesRe" />
-          <EntitySet Name="SalesReDetails" EntityType="Self.SalesReDetail" />
-          <EntitySet Name="Shifts" EntityType="Self.Shift" />
-          <EntitySet Name="Stores" EntityType="Self.Store" />
-          <EntitySet Name="StoreTransfers" EntityType="Self.StoreTransfer" />
-          <EntitySet Name="StoreTransferDetails" EntityType="Self.StoreTransferDetail" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Purchase__AccId__4CA06362" Association="Self.FK__Purchase__AccId__4CA06362">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="Purchase" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__AccId__5629CD9C" Association="Self.FK__PurchaseR__AccId__5629CD9C">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sales__AccId__398D8EEE" Association="Self.FK__Sales__AccId__398D8EEE">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesRe__AccId__4316F928" Association="Self.FK__SalesRe__AccId__4316F928">
-            <End Role="Accounts" EntitySet="Accounts" />
-            <End Role="SalesRe" EntitySet="SalesRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Items__CatId__267ABA7A" Association="Self.FK__Items__CatId__267ABA7A">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Items" EntitySet="Items" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Employees__EmpId__2F10007B" Association="Self.FK__Employees__EmpId__2F10007B">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="EmployeesWithdraws" EntitySet="EmployeesWithdraws" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseD__ItemI__534D60F1" Association="Self.FK__PurchaseD__ItemI__534D60F1">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="PurchaseDetails" EntitySet="PurchaseDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__ItemI__5CD6CB2B" Association="Self.FK__PurchaseR__ItemI__5CD6CB2B">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="PurchaseReDetails" EntitySet="PurchaseReDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesDeta__ItemI__403A8C7D" Association="Self.FK__SalesDeta__ItemI__403A8C7D">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="SalesDetails" EntitySet="SalesDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesReDe__ItemI__49C3F6B7" Association="Self.FK__SalesReDe__ItemI__49C3F6B7">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="SalesReDetails" EntitySet="SalesReDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StoreTran__ItemI__6477ECF3" Association="Self.FK__StoreTran__ItemI__6477ECF3">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="StoreTransferDetails" EntitySet="StoreTransferDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Purchase__ShiftI__4E88ABD4" Association="Self.FK__Purchase__ShiftI__4E88ABD4">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="Purchase" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Purchase__StkId__4D94879B" Association="Self.FK__Purchase__StkId__4D94879B">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="Purchase" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Purchase__UserId__4F7CD00D" Association="Self.FK__Purchase__UserId__4F7CD00D">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Purchase" EntitySet="Purchases" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseD__InvId__52593CB8" Association="Self.FK__PurchaseD__InvId__52593CB8">
-            <End Role="Sales" EntitySet="Sales" />
-            <End Role="PurchaseDetails" EntitySet="PurchaseDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__Shift__5812160E" Association="Self.FK__PurchaseR__Shift__5812160E">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__StkId__571DF1D5" Association="Self.FK__PurchaseR__StkId__571DF1D5">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__UserI__59063A47" Association="Self.FK__PurchaseR__UserI__59063A47">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PurchaseR__InvId__5BE2A6F2" Association="Self.FK__PurchaseR__InvId__5BE2A6F2">
-            <End Role="Sales" EntitySet="Sales" />
-            <End Role="PurchaseReDetails" EntitySet="PurchaseReDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sales__ShiftId__3B75D760" Association="Self.FK__Sales__ShiftId__3B75D760">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sales__StkId__3A81B327" Association="Self.FK__Sales__StkId__3A81B327">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Sales__UserId__3C69FB99" Association="Self.FK__Sales__UserId__3C69FB99">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesDeta__InvId__3F466844" Association="Self.FK__SalesDeta__InvId__3F466844">
-            <End Role="Sales" EntitySet="Sales" />
-            <End Role="SalesDetails" EntitySet="SalesDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesReDe__InvId__48CFD27E" Association="Self.FK__SalesReDe__InvId__48CFD27E">
-            <End Role="Sales" EntitySet="Sales" />
-            <End Role="SalesReDetails" EntitySet="SalesReDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesRe__ShiftId__44FF419A" Association="Self.FK__SalesRe__ShiftId__44FF419A">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="SalesRe" EntitySet="SalesRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesRe__StkId__440B1D61" Association="Self.FK__SalesRe__StkId__440B1D61">
-            <End Role="Stores" EntitySet="Stores" />
-            <End Role="SalesRe" EntitySet="SalesRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SalesRe__UserId__45F365D3" Association="Self.FK__SalesRe__UserId__45F365D3">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="SalesRe" EntitySet="SalesRes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StoreTran__Shift__5FB337D6" Association="Self.FK__StoreTran__Shift__5FB337D6">
-            <End Role="Shifts" EntitySet="Shifts" />
-            <End Role="StoreTransfer" EntitySet="StoreTransfers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StoreTran__Trans__6383C8BA" Association="Self.FK__StoreTran__Trans__6383C8BA">
-            <End Role="StoreTransfer" EntitySet="StoreTransfers" />
-            <End Role="StoreTransferDetails" EntitySet="StoreTransferDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StoreTran__UserI__60A75C0F" Association="Self.FK__StoreTran__UserI__60A75C0F">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="StoreTransfer" EntitySet="StoreTransfers" />
-          </AssociationSet>
-          <EntitySet Name="CustomerPayments" EntityType="SmartShopModel.CustomerPayment" />
-          <EntitySet Name="SupplierPayments" EntityType="SmartShopModel.SupplierPayment" />
-          <AssociationSet Name="FK__CustomerP__AccId__72C60C4A" Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="CustomerPayment" EntitySet="CustomerPayments" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SupplierP__AccId__6FE99F9F" Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="SupplierPayment" EntitySet="SupplierPayments" />
-          </AssociationSet>
           <FunctionImport Name="Get_PersonAccountCredit" ReturnType="Collection(SmartShopModel.Get_PersonAccountCredit_Result)">
           <Parameter Name="acc_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1630,58 +782,163 @@
             <Parameter Name="acc_id" Mode="In" Type="Int32" />
             <Parameter Name="BeforeDte" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="ProcGetItemCredit_Stock" ReturnType="Collection(Double)">
+            <Parameter Name="it_id" Mode="In" Type="Int32" />
+            <Parameter Name="stk_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetShift_id" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="GetAllBills" ReturnType="Collection(SmartShopModel.GetAllBills_Result)" />
+          <EntitySet Name="Accounts" EntityType="SmartShopModel.Account" />
+          <EntitySet Name="Categories" EntityType="SmartShopModel.Category" />
+          <EntitySet Name="CustomerPayments" EntityType="SmartShopModel.CustomerPayment" />
           <EntitySet Name="EmployeeDiscounts" EntityType="SmartShopModel.EmployeeDiscount" />
+          <EntitySet Name="Employees" EntityType="SmartShopModel.Employee" />
+          <EntitySet Name="EmployeesWithdraws" EntityType="SmartShopModel.EmployeesWithdraw" />
+          <EntitySet Name="Expencesses" EntityType="SmartShopModel.Expencess" />
+          <EntitySet Name="Items" EntityType="SmartShopModel.Item" />
+          <EntitySet Name="Jops" EntityType="SmartShopModel.Jop" />
+          <EntitySet Name="Purchases" EntityType="SmartShopModel.Purchase" />
+          <EntitySet Name="PurchaseDetails" EntityType="SmartShopModel.PurchaseDetail" />
+          <EntitySet Name="PurchaseRes" EntityType="SmartShopModel.PurchaseRe" />
+          <EntitySet Name="PurchaseReDetails" EntityType="SmartShopModel.PurchaseReDetail" />
+          <EntitySet Name="Sales" EntityType="SmartShopModel.Sale" />
+          <EntitySet Name="SalesDetails" EntityType="SmartShopModel.SalesDetail" />
+          <EntitySet Name="SalesRes" EntityType="SmartShopModel.SalesRe" />
+          <EntitySet Name="SalesReDetails" EntityType="SmartShopModel.SalesReDetail" />
+          <EntitySet Name="Shifts" EntityType="SmartShopModel.Shift" />
+          <EntitySet Name="Stores" EntityType="SmartShopModel.Store" />
+          <EntitySet Name="StoreTransfers" EntityType="SmartShopModel.StoreTransfer" />
+          <EntitySet Name="StoreTransferDetails" EntityType="SmartShopModel.StoreTransferDetail" />
+          <EntitySet Name="SupplierPayments" EntityType="SmartShopModel.SupplierPayment" />
+          <EntitySet Name="Users" EntityType="SmartShopModel.User" />
+          <AssociationSet Name="FK__CustomerP__AccId__72C60C4A" Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CustomerPayment" EntitySet="CustomerPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purchase__AccId__4CA06362" Association="SmartShopModel.FK__Purchase__AccId__4CA06362">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseR__AccId__5629CD9C" Association="SmartShopModel.FK__PurchaseR__AccId__5629CD9C">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__AccId__398D8EEE" Association="SmartShopModel.FK__Sales__AccId__398D8EEE">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesRe__AccId__4316F928" Association="SmartShopModel.FK__SalesRe__AccId__4316F928">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="SalesRe" EntitySet="SalesRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SupplierP__AccId__6FE99F9F" Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="SupplierPayment" EntitySet="SupplierPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__CatId__267ABA7A" Association="SmartShopModel.FK__Items__CatId__267ABA7A">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
           <AssociationSet Name="FK__EmployeeD__EmpId__29221CFB" Association="SmartShopModel.FK__EmployeeD__EmpId__29221CFB">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="EmployeeDiscount" EntitySet="EmployeeDiscounts" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="CustomerPayment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="Amount" Type="Double" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="CustomerPayment" ToRole="Account" />
-        </EntityType>
-        <EntityType Name="SupplierPayment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccId" Type="Int32" />
-          <Property Name="Amount" Type="Double" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="SupplierPayment" ToRole="Account" />
-        </EntityType>
-        <Association Name="FK__CustomerP__AccId__72C60C4A">
-          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
-          <End Type="SmartShopModel.CustomerPayment" Role="CustomerPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerPayment">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SupplierP__AccId__6FE99F9F">
-          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
-          <End Type="SmartShopModel.SupplierPayment" Role="SupplierPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SupplierPayment">
-              <PropertyRef Name="AccId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          <AssociationSet Name="FK__Employees__EmpId__2F10007B" Association="SmartShopModel.FK__Employees__EmpId__2F10007B">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeesWithdraw" EntitySet="EmployeesWithdraws" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseD__ItemI__534D60F1" Association="SmartShopModel.FK__PurchaseD__ItemI__534D60F1">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseR__ItemI__5CD6CB2B" Association="SmartShopModel.FK__PurchaseR__ItemI__5CD6CB2B">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseReDetail" EntitySet="PurchaseReDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesDeta__ItemI__403A8C7D" Association="SmartShopModel.FK__SalesDeta__ItemI__403A8C7D">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SalesDetail" EntitySet="SalesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesReDe__ItemI__49C3F6B7" Association="SmartShopModel.FK__SalesReDe__ItemI__49C3F6B7">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SalesReDetail" EntitySet="SalesReDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreTran__ItemI__6477ECF3" Association="SmartShopModel.FK__StoreTran__ItemI__6477ECF3">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="StoreTransferDetail" EntitySet="StoreTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purchase__ShiftI__4E88ABD4" Association="SmartShopModel.FK__Purchase__ShiftI__4E88ABD4">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Purchase__UserId__4F7CD00D" Association="SmartShopModel.FK__Purchase__UserId__4F7CD00D">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseD__InvId__52593CB8" Association="SmartShopModel.FK__PurchaseD__InvId__52593CB8">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseR__InvId__6166761E" Association="SmartShopModel.FK__PurchaseR__InvId__6166761E">
+            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
+            <End Role="PurchaseReDetail" EntitySet="PurchaseReDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseR__Shift__5812160E" Association="SmartShopModel.FK__PurchaseR__Shift__5812160E">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PurchaseR__UserI__59063A47" Association="SmartShopModel.FK__PurchaseR__UserI__59063A47">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PurchaseRe" EntitySet="PurchaseRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__ShiftId__3B75D760" Association="SmartShopModel.FK__Sales__ShiftId__3B75D760">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__UserId__3C69FB99" Association="SmartShopModel.FK__Sales__UserId__3C69FB99">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesDeta__InvId__3F466844" Association="SmartShopModel.FK__SalesDeta__InvId__3F466844">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SalesDetail" EntitySet="SalesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesRe__ShiftId__44FF419A" Association="SmartShopModel.FK__SalesRe__ShiftId__44FF419A">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="SalesRe" EntitySet="SalesRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesRe__UserId__45F365D3" Association="SmartShopModel.FK__SalesRe__UserId__45F365D3">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SalesRe" EntitySet="SalesRes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesReDe__InvId__607251E5" Association="SmartShopModel.FK__SalesReDe__InvId__607251E5">
+            <End Role="SalesRe" EntitySet="SalesRes" />
+            <End Role="SalesReDetail" EntitySet="SalesReDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreTran__Trans__6383C8BA" Association="SmartShopModel.FK__StoreTran__Trans__6383C8BA">
+            <End Role="StoreTransfer" EntitySet="StoreTransfers" />
+            <End Role="StoreTransferDetail" EntitySet="StoreTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreTran__UserI__60A75C0F" Association="SmartShopModel.FK__StoreTran__UserI__60A75C0F">
+            <End Role="User" EntitySet="Users" />
+            <End Role="StoreTransfer" EntitySet="StoreTransfers" />
+          </AssociationSet>
+          <FunctionImport Name="DailyReport" ReturnType="Collection(SmartShopModel.DailyReport_Result)">
+          <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="MonthlyReport" ReturnType="Collection(SmartShopModel.MonthlyReport_Result)">
+          <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="MonthReport" ReturnType="Collection(SmartShopModel.MonthReport_Result)">
+          <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="YearReport" ReturnType="Collection(SmartShopModel.YearReport_Result)">
+          <Parameter Name="date" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="GetItemsCredit_proc" ReturnType="Collection(SmartShopModel.GetItemsCredit_proc_Result)">
+          <Parameter Name="stk" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
         <ComplexType Name="Get_PersonAccountCredit_Result">
           <Property Type="Double" Name="In_P_tot" Nullable="true" />
           <Property Type="Double" Name="Out_P_tot" Nullable="true" />
@@ -1709,6 +966,54 @@
           <Property Type="Double" Name="SalRe_tot" Nullable="true" />
           <Property Type="Double" Name="final" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetAllBills_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="acc_id" Nullable="true" />
+          <Property Type="String" Name="n" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="total" Nullable="true" />
+          <Property Type="Double" Name="Descount" Nullable="true" />
+          <Property Type="Double" Name="Final" Nullable="true" />
+          <Property Type="Int32" Name="ShiftId" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" />
+          <Property Type="String" Name="typ" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="profit" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="AccAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccType" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerPayments" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="Account" ToRole="CustomerPayment" />
+          <NavigationProperty Name="Purchases" Relationship="SmartShopModel.FK__Purchase__AccId__4CA06362" FromRole="Account" ToRole="Purchase" />
+          <NavigationProperty Name="PurchaseRes" Relationship="SmartShopModel.FK__PurchaseR__AccId__5629CD9C" FromRole="Account" ToRole="PurchaseRe" />
+          <NavigationProperty Name="Sales" Relationship="SmartShopModel.FK__Sales__AccId__398D8EEE" FromRole="Account" ToRole="Sale" />
+          <NavigationProperty Name="SalesRes" Relationship="SmartShopModel.FK__SalesRe__AccId__4316F928" FromRole="Account" ToRole="SalesRe" />
+          <NavigationProperty Name="SupplierPayments" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="Account" ToRole="SupplierPayment" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="SmartShopModel.FK__Items__CatId__267ABA7A" FromRole="Category" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="CustomerPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__CustomerP__AccId__72C60C4A" FromRole="CustomerPayment" ToRole="Account" />
+        </EntityType>
         <EntityType Name="EmployeeDiscount">
           <Key>
             <PropertyRef Name="Id" />
@@ -1720,6 +1025,353 @@
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" FromRole="EmployeeDiscount" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="Job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeDiscounts" Relationship="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" FromRole="Employee" ToRole="EmployeeDiscount" />
+          <NavigationProperty Name="EmployeesWithdraws" Relationship="SmartShopModel.FK__Employees__EmpId__2F10007B" FromRole="Employee" ToRole="EmployeesWithdraw" />
+        </EntityType>
+        <EntityType Name="EmployeesWithdraw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="SmartShopModel.FK__Employees__EmpId__2F10007B" FromRole="EmployeesWithdraw" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Expencess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatId" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PricePur" Type="Double" />
+          <Property Name="PriceSell" Type="Double" />
+          <Property Name="FirstBalance" Type="Double" />
+          <Property Name="FirstBalancePrice" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="SmartShopModel.FK__Items__CatId__267ABA7A" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="SmartShopModel.FK__PurchaseD__ItemI__534D60F1" FromRole="Item" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="PurchaseReDetails" Relationship="SmartShopModel.FK__PurchaseR__ItemI__5CD6CB2B" FromRole="Item" ToRole="PurchaseReDetail" />
+          <NavigationProperty Name="SalesDetails" Relationship="SmartShopModel.FK__SalesDeta__ItemI__403A8C7D" FromRole="Item" ToRole="SalesDetail" />
+          <NavigationProperty Name="SalesReDetails" Relationship="SmartShopModel.FK__SalesReDe__ItemI__49C3F6B7" FromRole="Item" ToRole="SalesReDetail" />
+          <NavigationProperty Name="StoreTransferDetails" Relationship="SmartShopModel.FK__StoreTran__ItemI__6477ECF3" FromRole="Item" ToRole="StoreTransferDetail" />
+        </EntityType>
+        <EntityType Name="Jop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JopName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="StkId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IsCash" Type="Boolean" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Descount" Type="Double" />
+          <Property Name="Final" Type="Double" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__Purchase__AccId__4CA06362" FromRole="Purchase" ToRole="Account" />
+          <NavigationProperty Name="Shift" Relationship="SmartShopModel.FK__Purchase__ShiftI__4E88ABD4" FromRole="Purchase" ToRole="Shift" />
+          <NavigationProperty Name="User" Relationship="SmartShopModel.FK__Purchase__UserId__4F7CD00D" FromRole="Purchase" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="PurPrice" Type="Double" />
+          <NavigationProperty Name="Item" Relationship="SmartShopModel.FK__PurchaseD__ItemI__534D60F1" FromRole="PurchaseDetail" ToRole="Item" />
+          <NavigationProperty Name="Sale" Relationship="SmartShopModel.FK__PurchaseD__InvId__52593CB8" FromRole="PurchaseDetail" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="PurchaseRe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="StkId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IsCash" Type="Boolean" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Descount" Type="Double" />
+          <Property Name="Final" Type="Double" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__PurchaseR__AccId__5629CD9C" FromRole="PurchaseRe" ToRole="Account" />
+          <NavigationProperty Name="PurchaseReDetails" Relationship="SmartShopModel.FK__PurchaseR__InvId__6166761E" FromRole="PurchaseRe" ToRole="PurchaseReDetail" />
+          <NavigationProperty Name="Shift" Relationship="SmartShopModel.FK__PurchaseR__Shift__5812160E" FromRole="PurchaseRe" ToRole="Shift" />
+          <NavigationProperty Name="User" Relationship="SmartShopModel.FK__PurchaseR__UserI__59063A47" FromRole="PurchaseRe" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PurchaseReDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="PurPrice" Type="Double" />
+          <Property Name="InvId" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="SmartShopModel.FK__PurchaseR__ItemI__5CD6CB2B" FromRole="PurchaseReDetail" ToRole="Item" />
+          <NavigationProperty Name="PurchaseRe" Relationship="SmartShopModel.FK__PurchaseR__InvId__6166761E" FromRole="PurchaseReDetail" ToRole="PurchaseRe" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="StkId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IsCash" Type="Boolean" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Descount" Type="Double" />
+          <Property Name="Final" Type="Double" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__Sales__AccId__398D8EEE" FromRole="Sale" ToRole="Account" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="SmartShopModel.FK__PurchaseD__InvId__52593CB8" FromRole="Sale" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="Shift" Relationship="SmartShopModel.FK__Sales__ShiftId__3B75D760" FromRole="Sale" ToRole="Shift" />
+          <NavigationProperty Name="User" Relationship="SmartShopModel.FK__Sales__UserId__3C69FB99" FromRole="Sale" ToRole="User" />
+          <NavigationProperty Name="SalesDetails" Relationship="SmartShopModel.FK__SalesDeta__InvId__3F466844" FromRole="Sale" ToRole="SalesDetail" />
+        </EntityType>
+        <EntityType Name="SalesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="PurPrice" Type="Double" />
+          <NavigationProperty Name="Item" Relationship="SmartShopModel.FK__SalesDeta__ItemI__403A8C7D" FromRole="SalesDetail" ToRole="Item" />
+          <NavigationProperty Name="Sale" Relationship="SmartShopModel.FK__SalesDeta__InvId__3F466844" FromRole="SalesDetail" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="SalesRe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="StkId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IsCash" Type="Boolean" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Descount" Type="Double" />
+          <Property Name="Final" Type="Double" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__SalesRe__AccId__4316F928" FromRole="SalesRe" ToRole="Account" />
+          <NavigationProperty Name="Shift" Relationship="SmartShopModel.FK__SalesRe__ShiftId__44FF419A" FromRole="SalesRe" ToRole="Shift" />
+          <NavigationProperty Name="User" Relationship="SmartShopModel.FK__SalesRe__UserId__45F365D3" FromRole="SalesRe" ToRole="User" />
+          <NavigationProperty Name="SalesReDetails" Relationship="SmartShopModel.FK__SalesReDe__InvId__607251E5" FromRole="SalesRe" ToRole="SalesReDetail" />
+        </EntityType>
+        <EntityType Name="SalesReDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="PurPrice" Type="Double" />
+          <Property Name="InvId" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="SmartShopModel.FK__SalesReDe__ItemI__49C3F6B7" FromRole="SalesReDetail" ToRole="Item" />
+          <NavigationProperty Name="SalesRe" Relationship="SmartShopModel.FK__SalesReDe__InvId__607251E5" FromRole="SalesReDetail" ToRole="SalesRe" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Useropen" Type="Int32" />
+          <Property Name="UserClose" Type="Int32" />
+          <Property Name="DateOpen" Type="DateTime" Precision="3" />
+          <Property Name="DateClose" Type="DateTime" Precision="3" />
+          <Property Name="AmountOpen" Type="Double" />
+          <Property Name="AmountClose" Type="Double" />
+          <Property Name="IsCloses" Type="Boolean" />
+          <NavigationProperty Name="Purchases" Relationship="SmartShopModel.FK__Purchase__ShiftI__4E88ABD4" FromRole="Shift" ToRole="Purchase" />
+          <NavigationProperty Name="PurchaseRes" Relationship="SmartShopModel.FK__PurchaseR__Shift__5812160E" FromRole="Shift" ToRole="PurchaseRe" />
+          <NavigationProperty Name="Sales" Relationship="SmartShopModel.FK__Sales__ShiftId__3B75D760" FromRole="Shift" ToRole="Sale" />
+          <NavigationProperty Name="SalesRes" Relationship="SmartShopModel.FK__SalesRe__ShiftId__44FF419A" FromRole="Shift" ToRole="SalesRe" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StoreTransfer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="StkFromId" Type="Int32" />
+          <Property Name="StkToId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="StoreTransferDetails" Relationship="SmartShopModel.FK__StoreTran__Trans__6383C8BA" FromRole="StoreTransfer" ToRole="StoreTransferDetail" />
+          <NavigationProperty Name="User" Relationship="SmartShopModel.FK__StoreTran__UserI__60A75C0F" FromRole="StoreTransfer" ToRole="User" />
+        </EntityType>
+        <EntityType Name="StoreTransferDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Count" Type="Double" />
+          <NavigationProperty Name="Item" Relationship="SmartShopModel.FK__StoreTran__ItemI__6477ECF3" FromRole="StoreTransferDetail" ToRole="Item" />
+          <NavigationProperty Name="StoreTransfer" Relationship="SmartShopModel.FK__StoreTran__Trans__6383C8BA" FromRole="StoreTransferDetail" ToRole="StoreTransfer" />
+        </EntityType>
+        <EntityType Name="SupplierPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" FromRole="SupplierPayment" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserScreens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Purchases" Relationship="SmartShopModel.FK__Purchase__UserId__4F7CD00D" FromRole="User" ToRole="Purchase" />
+          <NavigationProperty Name="PurchaseRes" Relationship="SmartShopModel.FK__PurchaseR__UserI__59063A47" FromRole="User" ToRole="PurchaseRe" />
+          <NavigationProperty Name="Sales" Relationship="SmartShopModel.FK__Sales__UserId__3C69FB99" FromRole="User" ToRole="Sale" />
+          <NavigationProperty Name="SalesRes" Relationship="SmartShopModel.FK__SalesRe__UserId__45F365D3" FromRole="User" ToRole="SalesRe" />
+          <NavigationProperty Name="StoreTransfers" Relationship="SmartShopModel.FK__StoreTran__UserI__60A75C0F" FromRole="User" ToRole="StoreTransfer" />
+        </EntityType>
+        <Association Name="FK__CustomerP__AccId__72C60C4A">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.CustomerPayment" Role="CustomerPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerPayment">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purchase__AccId__4CA06362">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseR__AccId__5629CD9C">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseRe" Role="PurchaseRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRe">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__AccId__398D8EEE">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesRe__AccId__4316F928">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesRe" Role="SalesRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesRe">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SupplierP__AccId__6FE99F9F">
+          <End Type="SmartShopModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SupplierPayment" Role="SupplierPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPayment">
+              <PropertyRef Name="AccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__CatId__267ABA7A">
+          <End Type="SmartShopModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__EmployeeD__EmpId__29221CFB">
           <End Type="SmartShopModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="SmartShopModel.EmployeeDiscount" Role="EmployeeDiscount" Multiplicity="*" />
@@ -1732,274 +1384,309 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK__Employees__EmpId__2F10007B">
+          <End Type="SmartShopModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="SmartShopModel.EmployeesWithdraw" Role="EmployeesWithdraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesWithdraw">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseD__ItemI__534D60F1">
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseR__ItemI__5CD6CB2B">
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseReDetail" Role="PurchaseReDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReDetail">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesDeta__ItemI__403A8C7D">
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesDetail">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesReDe__ItemI__49C3F6B7">
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesReDetail" Role="SalesReDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesReDetail">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreTran__ItemI__6477ECF3">
+          <End Type="SmartShopModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SmartShopModel.StoreTransferDetail" Role="StoreTransferDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoreTransferDetail">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purchase__ShiftI__4E88ABD4">
+          <End Type="SmartShopModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Purchase__UserId__4F7CD00D">
+          <End Type="SmartShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseD__InvId__52593CB8">
+          <End Type="SmartShopModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="InvId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseR__InvId__6166761E">
+          <End Type="SmartShopModel.PurchaseRe" Role="PurchaseRe" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseReDetail" Role="PurchaseReDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReDetail">
+              <PropertyRef Name="InvId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseR__Shift__5812160E">
+          <End Type="SmartShopModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseRe" Role="PurchaseRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRe">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PurchaseR__UserI__59063A47">
+          <End Type="SmartShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartShopModel.PurchaseRe" Role="PurchaseRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRe">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__ShiftId__3B75D760">
+          <End Type="SmartShopModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__UserId__3C69FB99">
+          <End Type="SmartShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartShopModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesDeta__InvId__3F466844">
+          <End Type="SmartShopModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesDetail" Role="SalesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesDetail">
+              <PropertyRef Name="InvId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesRe__ShiftId__44FF419A">
+          <End Type="SmartShopModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesRe" Role="SalesRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesRe">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesRe__UserId__45F365D3">
+          <End Type="SmartShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesRe" Role="SalesRe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesRe">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesReDe__InvId__607251E5">
+          <End Type="SmartShopModel.SalesRe" Role="SalesRe" Multiplicity="0..1" />
+          <End Type="SmartShopModel.SalesReDetail" Role="SalesReDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesRe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesReDetail">
+              <PropertyRef Name="InvId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreTran__Trans__6383C8BA">
+          <End Type="SmartShopModel.StoreTransfer" Role="StoreTransfer" Multiplicity="0..1" />
+          <End Type="SmartShopModel.StoreTransferDetail" Role="StoreTransferDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreTransfer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoreTransferDetail">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreTran__UserI__60A75C0F">
+          <End Type="SmartShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartShopModel.StoreTransfer" Role="StoreTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoreTransfer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="DailyReport_Result">
+          <Property Type="String" Name="typ" Nullable="true" MaxLength="68" />
+          <Property Type="Double" Name="credit" Nullable="true" />
+          <Property Type="Double" Name="debit" Nullable="true" />
+          <Property Type="Int32" Name="sm" Nullable="false" />
+          <Property Type="DateTime" Name="action_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="acc_name" Nullable="true" />
+          <Property Type="String" Name="nts" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MonthlyReport_Result">
+          <Property Type="String" Name="typ" Nullable="true" MaxLength="68" />
+          <Property Type="Double" Name="credit" Nullable="true" />
+          <Property Type="Double" Name="debit" Nullable="true" />
+          <Property Type="Int32" Name="sm" Nullable="false" />
+          <Property Type="DateTime" Name="action_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="acc_name" Nullable="true" />
+          <Property Type="String" Name="nts" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="MonthReport_Result">
+          <Property Type="String" Name="typ" Nullable="true" MaxLength="68" />
+          <Property Type="Double" Name="credit" Nullable="true" />
+          <Property Type="Double" Name="debit" Nullable="true" />
+          <Property Type="Int32" Name="sm" Nullable="false" />
+          <Property Type="DateTime" Name="action_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="acc_name" Nullable="true" />
+          <Property Type="String" Name="nts" Nullable="true" />
+          <Property Type="String" Name="mov" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="YearReport_Result">
+          <Property Type="String" Name="typ" Nullable="true" MaxLength="68" />
+          <Property Type="Double" Name="credit" Nullable="true" />
+          <Property Type="Double" Name="debit" Nullable="true" />
+          <Property Type="Int32" Name="sm" Nullable="false" />
+          <Property Type="DateTime" Name="action_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="acc_name" Nullable="true" />
+          <Property Type="String" Name="nts" Nullable="true" />
+          <Property Type="String" Name="mov" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="GetItemsCredit_proc_Result">
+          <Property Type="String" Name="barcode" Nullable="true" />
+          <Property Type="String" Name="iname" Nullable="true" />
+          <Property Type="String" Name="category" Nullable="true" />
+          <Property Type="Double" Name="fbalance" Nullable="true" />
+          <Property Type="Double" Name="pur" Nullable="true" />
+          <Property Type="Double" Name="repur" Nullable="true" />
+          <Property Type="Double" Name="sel" Nullable="true" />
+          <Property Type="Double" Name="resel" Nullable="true" />
+          <Property Type="Double" Name="convert_to" Nullable="true" />
+          <Property Type="Double" Name="convert_from" Nullable="true" />
+          <Property Type="Double" Name="crdt" Nullable="true" />
+          <Property Type="Int32" Name="it_avg" Nullable="false" />
+          <Property Type="Double" Name="tot_byavr" Nullable="true" />
+          <Property Type="Double" Name="pricepur" Nullable="true" />
+          <Property Type="Double" Name="valprice" Nullable="true" />
+          <Property Type="Double" Name="sel_price" Nullable="true" />
+          <Property Type="Double" Name="va2" Nullable="true" />
+        </ComplexType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SmartShopModelStoreContainer" CdmEntityContainer="SmartShopEntities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="SmartShopModel.Account">
-              <MappingFragment StoreEntitySet="Accounts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AccName" ColumnName="AccName" />
-                <ScalarProperty Name="AccPhone" ColumnName="AccPhone" />
-                <ScalarProperty Name="AccAddress" ColumnName="AccAddress" />
-                <ScalarProperty Name="AccType" ColumnName="AccType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="SmartShopModel.Category">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CatName" ColumnName="CatName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="SmartShopModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="Job" ColumnName="Job" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EName" ColumnName="EName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeesWithdraws">
-            <EntityTypeMapping TypeName="SmartShopModel.EmployeesWithdraw">
-              <MappingFragment StoreEntitySet="EmployeesWithdraws">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Expencesses">
-            <EntityTypeMapping TypeName="SmartShopModel.Expencess">
-              <MappingFragment StoreEntitySet="Expencess">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="SmartShopModel.Item">
-              <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CatId" ColumnName="CatId" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="PricePur" ColumnName="PricePur" />
-                <ScalarProperty Name="PriceSell" ColumnName="PriceSell" />
-                <ScalarProperty Name="FirstBalance" ColumnName="FirstBalance" />
-                <ScalarProperty Name="FirstBalancePrice" ColumnName="FirstBalancePrice" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Jops">
-            <EntityTypeMapping TypeName="SmartShopModel.Jop">
-              <MappingFragment StoreEntitySet="Jops">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="JopName" ColumnName="JopName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Purchases">
-            <EntityTypeMapping TypeName="SmartShopModel.Purchase">
-              <MappingFragment StoreEntitySet="Purchase">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="StkId" ColumnName="StkId" />
-                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Descount" ColumnName="Descount" />
-                <ScalarProperty Name="Final" ColumnName="Final" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseDetails">
-            <EntityTypeMapping TypeName="SmartShopModel.PurchaseDetail">
-              <MappingFragment StoreEntitySet="PurchaseDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InvId" ColumnName="InvId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseRes">
-            <EntityTypeMapping TypeName="SmartShopModel.PurchaseRe">
-              <MappingFragment StoreEntitySet="PurchaseRe">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="StkId" ColumnName="StkId" />
-                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Descount" ColumnName="Descount" />
-                <ScalarProperty Name="Final" ColumnName="Final" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseReDetails">
-            <EntityTypeMapping TypeName="SmartShopModel.PurchaseReDetail">
-              <MappingFragment StoreEntitySet="PurchaseReDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InvId" ColumnName="InvId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="SmartShopModel.Sale">
-              <MappingFragment StoreEntitySet="Sales">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="StkId" ColumnName="StkId" />
-                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Descount" ColumnName="Descount" />
-                <ScalarProperty Name="Final" ColumnName="Final" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesDetails">
-            <EntityTypeMapping TypeName="SmartShopModel.SalesDetail">
-              <MappingFragment StoreEntitySet="SalesDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InvId" ColumnName="InvId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesRes">
-            <EntityTypeMapping TypeName="SmartShopModel.SalesRe">
-              <MappingFragment StoreEntitySet="SalesRe">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="StkId" ColumnName="StkId" />
-                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Descount" ColumnName="Descount" />
-                <ScalarProperty Name="Final" ColumnName="Final" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesReDetails">
-            <EntityTypeMapping TypeName="SmartShopModel.SalesReDetail">
-              <MappingFragment StoreEntitySet="SalesReDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InvId" ColumnName="InvId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Shifts">
-            <EntityTypeMapping TypeName="SmartShopModel.Shift">
-              <MappingFragment StoreEntitySet="Shifts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Useropen" ColumnName="Useropen" />
-                <ScalarProperty Name="UserClose" ColumnName="UserClose" />
-                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
-                <ScalarProperty Name="DateClose" ColumnName="DateClose" />
-                <ScalarProperty Name="AmountOpen" ColumnName="AmountOpen" />
-                <ScalarProperty Name="AmountClose" ColumnName="AmountClose" />
-                <ScalarProperty Name="IsCloses" ColumnName="IsCloses" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stores">
-            <EntityTypeMapping TypeName="SmartShopModel.Store">
-              <MappingFragment StoreEntitySet="Stores">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StoreTransfers">
-            <EntityTypeMapping TypeName="SmartShopModel.StoreTransfer">
-              <MappingFragment StoreEntitySet="StoreTransfer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="StkFromId" ColumnName="StkFromId" />
-                <ScalarProperty Name="StkToId" ColumnName="StkToId" />
-                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StoreTransferDetails">
-            <EntityTypeMapping TypeName="SmartShopModel.StoreTransferDetail">
-              <MappingFragment StoreEntitySet="StoreTransferDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TransId" ColumnName="TransId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SmartShopModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserScreens" ColumnName="UserScreens" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerPayments">
-            <EntityTypeMapping TypeName="SmartShopModel.CustomerPayment">
-              <MappingFragment StoreEntitySet="CustomerPayments">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SupplierPayments">
-            <EntityTypeMapping TypeName="SmartShopModel.SupplierPayment">
-              <MappingFragment StoreEntitySet="SupplierPayments">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="AccId" ColumnName="AccId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Get_PersonAccountCredit" FunctionName="SmartShopModel.Store.Get_PersonAccountCredit">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SmartShopModel.Get_PersonAccountCredit_Result">
@@ -2039,6 +1726,55 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProcGetItemCredit_Stock" FunctionName="SmartShopModel.Store.ProcGetItemCredit_Stock" />
+          <FunctionImportMapping FunctionImportName="GetShift_id" FunctionName="SmartShopModel.Store.GetShift_id" />
+          <FunctionImportMapping FunctionImportName="GetAllBills" FunctionName="SmartShopModel.Store.GetAllBills">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.GetAllBills_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="acc_id" ColumnName="acc_id" />
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="Descount" ColumnName="Descount" />
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="profit" ColumnName="profit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SmartShopModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccType" ColumnName="AccType" />
+                <ScalarProperty Name="AccAddress" ColumnName="AccAddress" />
+                <ScalarProperty Name="AccPhone" ColumnName="AccPhone" />
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="SmartShopModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerPayments">
+            <EntityTypeMapping TypeName="SmartShopModel.CustomerPayment">
+              <MappingFragment StoreEntitySet="CustomerPayments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="EmployeeDiscounts">
             <EntityTypeMapping TypeName="SmartShopModel.EmployeeDiscount">
               <MappingFragment StoreEntitySet="EmployeeDiscounts">
@@ -2050,7 +1786,306 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SmartShopModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeesWithdraws">
+            <EntityTypeMapping TypeName="SmartShopModel.EmployeesWithdraw">
+              <MappingFragment StoreEntitySet="EmployeesWithdraws">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expencesses">
+            <EntityTypeMapping TypeName="SmartShopModel.Expencess">
+              <MappingFragment StoreEntitySet="Expencess">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SmartShopModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FirstBalancePrice" ColumnName="FirstBalancePrice" />
+                <ScalarProperty Name="FirstBalance" ColumnName="FirstBalance" />
+                <ScalarProperty Name="PriceSell" ColumnName="PriceSell" />
+                <ScalarProperty Name="PricePur" ColumnName="PricePur" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jops">
+            <EntityTypeMapping TypeName="SmartShopModel.Jop">
+              <MappingFragment StoreEntitySet="Jops">
+                <ScalarProperty Name="JopName" ColumnName="JopName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="SmartShopModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Descount" ColumnName="Descount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="StkId" ColumnName="StkId" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetails">
+            <EntityTypeMapping TypeName="SmartShopModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetails">
+                <ScalarProperty Name="PurPrice" ColumnName="PurPrice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="InvId" ColumnName="InvId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseRes">
+            <EntityTypeMapping TypeName="SmartShopModel.PurchaseRe">
+              <MappingFragment StoreEntitySet="PurchaseRe">
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Descount" ColumnName="Descount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="StkId" ColumnName="StkId" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseReDetails">
+            <EntityTypeMapping TypeName="SmartShopModel.PurchaseReDetail">
+              <MappingFragment StoreEntitySet="PurchaseReDetails">
+                <ScalarProperty Name="InvId" ColumnName="InvId" />
+                <ScalarProperty Name="PurPrice" ColumnName="PurPrice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="SmartShopModel.Sale">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Descount" ColumnName="Descount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="StkId" ColumnName="StkId" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDetails">
+            <EntityTypeMapping TypeName="SmartShopModel.SalesDetail">
+              <MappingFragment StoreEntitySet="SalesDetails">
+                <ScalarProperty Name="PurPrice" ColumnName="PurPrice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="InvId" ColumnName="InvId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesRes">
+            <EntityTypeMapping TypeName="SmartShopModel.SalesRe">
+              <MappingFragment StoreEntitySet="SalesRe">
+                <ScalarProperty Name="Final" ColumnName="Final" />
+                <ScalarProperty Name="Descount" ColumnName="Descount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsCash" ColumnName="IsCash" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="StkId" ColumnName="StkId" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesReDetails">
+            <EntityTypeMapping TypeName="SmartShopModel.SalesReDetail">
+              <MappingFragment StoreEntitySet="SalesReDetails">
+                <ScalarProperty Name="InvId" ColumnName="InvId" />
+                <ScalarProperty Name="PurPrice" ColumnName="PurPrice" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="SmartShopModel.Shift">
+              <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="IsCloses" ColumnName="IsCloses" />
+                <ScalarProperty Name="AmountClose" ColumnName="AmountClose" />
+                <ScalarProperty Name="AmountOpen" ColumnName="AmountOpen" />
+                <ScalarProperty Name="DateClose" ColumnName="DateClose" />
+                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
+                <ScalarProperty Name="UserClose" ColumnName="UserClose" />
+                <ScalarProperty Name="Useropen" ColumnName="Useropen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="SmartShopModel.Store">
+              <MappingFragment StoreEntitySet="Stores">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreTransfers">
+            <EntityTypeMapping TypeName="SmartShopModel.StoreTransfer">
+              <MappingFragment StoreEntitySet="StoreTransfer">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="StkToId" ColumnName="StkToId" />
+                <ScalarProperty Name="StkFromId" ColumnName="StkFromId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreTransferDetails">
+            <EntityTypeMapping TypeName="SmartShopModel.StoreTransferDetail">
+              <MappingFragment StoreEntitySet="StoreTransferDetails">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierPayments">
+            <EntityTypeMapping TypeName="SmartShopModel.SupplierPayment">
+              <MappingFragment StoreEntitySet="SupplierPayments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccId" ColumnName="AccId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SmartShopModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserScreens" ColumnName="UserScreens" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DailyReport" FunctionName="SmartShopModel.Store.DailyReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.DailyReport_Result">
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="debit" ColumnName="debit" />
+                <ScalarProperty Name="sm" ColumnName="sm" />
+                <ScalarProperty Name="action_date" ColumnName="action_date" />
+                <ScalarProperty Name="acc_name" ColumnName="acc_name" />
+                <ScalarProperty Name="nts" ColumnName="nts" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MonthReport" FunctionName="SmartShopModel.Store.MonthReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.MonthReport_Result">
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="debit" ColumnName="debit" />
+                <ScalarProperty Name="sm" ColumnName="sm" />
+                <ScalarProperty Name="action_date" ColumnName="action_date" />
+                <ScalarProperty Name="acc_name" ColumnName="acc_name" />
+                <ScalarProperty Name="nts" ColumnName="nts" />
+                <ScalarProperty Name="mov" ColumnName="mov" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="YearReport" FunctionName="SmartShopModel.Store.YearReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.YearReport_Result">
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="debit" ColumnName="debit" />
+                <ScalarProperty Name="sm" ColumnName="sm" />
+                <ScalarProperty Name="action_date" ColumnName="action_date" />
+                <ScalarProperty Name="acc_name" ColumnName="acc_name" />
+                <ScalarProperty Name="nts" ColumnName="nts" />
+                <ScalarProperty Name="mov" ColumnName="mov" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetItemsCredit_proc" FunctionName="SmartShopModel.Store.GetItemsCredit_proc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SmartShopModel.GetItemsCredit_proc_Result">
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="iname" ColumnName="iname" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="fbalance" ColumnName="fbalance" />
+                <ScalarProperty Name="pur" ColumnName="pur" />
+                <ScalarProperty Name="repur" ColumnName="repur" />
+                <ScalarProperty Name="sel" ColumnName="sel" />
+                <ScalarProperty Name="resel" ColumnName="resel" />
+                <ScalarProperty Name="convert_to" ColumnName="convert_to" />
+                <ScalarProperty Name="convert_from" ColumnName="convert_from" />
+                <ScalarProperty Name="crdt" ColumnName="crdt" />
+                <ScalarProperty Name="it_avg" ColumnName="it_avg" />
+                <ScalarProperty Name="tot_byavr" ColumnName="tot_byavr" />
+                <ScalarProperty Name="pricepur" ColumnName="pricepur" />
+                <ScalarProperty Name="valprice" ColumnName="valprice" />
+                <ScalarProperty Name="sel_price" ColumnName="sel_price" />
+                <ScalarProperty Name="va2" ColumnName="va2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

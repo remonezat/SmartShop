@@ -27,7 +27,6 @@ namespace SmartShop.Models
     
         public virtual Account Account { get; set; }
         public virtual Shift Shift { get; set; }
-        public virtual Store Store { get; set; }
         public virtual User User { get; set; }
     }
 }

@@ -1,0 +1,263 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  عرض و نعديل التحويلات   }
+
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    عرض و نعديل التحويلات
+                </h4>
+            </div>
+
+            <input type="checkbox" name="" id="">
+            <label for="">الكل</label>
+            <div class="fullWidth">
+                <h6>البحث بالتاريخ من :</h6>
+                <input class="form-control w-100" type="datetime-local" id="1234" />
+
+                <h6>البحث بالتاريخ الي :</h6>
+                <input class="form-control w-100" type="datetime-local" id="123" />
+
+            </div>
+
+            @Html.DropDownList("StkFromId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+            @Html.DropDownList("StkToId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+
+
+
+
+
+            <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>التارخ</th>
+                        <th>من</th>
+                        <th>الي</th>
+                        <th>العمليات</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody id="billtable">
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.DeleteMessage))
+{
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 999999">
+        <div id='toast-8270' class='toast p-2 bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'>
+            <div class='d-flex'>
+                <div class='toast-body'> <i class='icon-info-sign me-1'></i>@ViewBag.DeleteMessage </div> <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+    TempData["DeleteMessage"] = null;
+}
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 999999">
+        <div id='toast-8270' class='toast p-2 bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'>
+            <div class='d-flex'>
+                <div class='toast-body'> <i class='icon-info-sign me-1'></i>@ViewBag.SuccessMessage </div> <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+    TempData["SuccessMessage"] = null;
+}
+@section scripts{
+    <script>
+
+
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('1234').value = now.toISOString().slice(0, 16);
+
+
+
+
+        document.getElementById('123').value = now.toISOString().slice(0, 16);
+
+        $("#StkFromId").change(function () {
+            if ($("#StkFromId").val() == 0) {
+                $.get("/StoreTransfers/GetAllstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+            else {
+                $.get("/StoreTransfers/Getstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+
+
+
+        });
+
+        $("#StkFromId").click(function () {
+            if ($("#StkFromId").val() == 0) {
+                $.get("/StoreTransfers/GetAllstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+            else {
+                $.get("/StoreTransfers/Getstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+
+
+        });
+
+
+
+        function Show() {
+
+            
+            $.get("/StoreTransfers/GetStoreTransaction",
+                { DateF: document.getElementById("1234").value, DateT: document.getElementById("123").value, IDFrom: $("#StkFromId").val(), IDTo: $("#StkToId").val() },
+                function (data) {
+                    $('#billtable').empty();
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+                                var src = row["dat"];
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+
+                                $('#billtable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td>  <td>" + row["stkfrom"] + "</td><td>" + row["stkto"] + "</td><td><a class='d-inline text-success '  href='/StoreTransfers/Edit/" + row["id"] + "'><i class='fas fa-edit'></i></a><button type='button' class='d-inline text-danger  'onclick='Delete(" + row["id"] + ")'><i class='fas fa-trash'></i></button></td></tr > ");
+
+
+
+                            }
+
+
+                        });
+
+                });
+
+        }
+
+
+        function Delete(id) {
+            var result = confirm("هل تريد حذف هذا التحويل ؟");
+            if (result) {
+
+              
+
+                $.get("/StoreTransfers/Delete",
+                    { DateF: document.getElementById("1234").value, DateT: document.getElementById("123").value, IDFrom: $("#StkFromId").val(), IDTo: $("#StkToId").val(), ID: id },
+                    function (data) {
+                        $('#billtable').empty();
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    var src = row["dat"];
+                                    var src1 = src.replace(/[^0-9 +]/g, '');
+                                    var dateupdated = new Date(parseInt(src1));
+
+                                    $('#billtable').append("<tr><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td>  <td>" + row["stkfrom"] + "</td><td>" + row["stkto"] + "</td><td><a class='d-inline text-success '  href='/StoreTransfers/Edit/" + row["id"] + "'><i class='fas fa-edit'></i></a><button type='button' class='d-inline text-danger  'onclick='Delete(" + row["id"] + ")'><i class='fas fa-trash'></i></button></td></tr > ");
+
+
+
+                                }
+
+
+                            });
+
+                    });
+            }
+        }
+
+
+
+    </script>
+}

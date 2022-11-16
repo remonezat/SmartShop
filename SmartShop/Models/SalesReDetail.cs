@@ -15,12 +15,13 @@ namespace SmartShop.Models
     public partial class SalesReDetail
     {
         public int Id { get; set; }
-        public Nullable<int> InvId { get; set; }
         public Nullable<int> ItemId { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> Count { get; set; }
+        public Nullable<double> PurPrice { get; set; }
+        public Nullable<int> InvId { get; set; }
     
         public virtual Item Item { get; set; }
-        public virtual Sale Sale { get; set; }
+        public virtual SalesRe SalesRe { get; set; }
     }
 }

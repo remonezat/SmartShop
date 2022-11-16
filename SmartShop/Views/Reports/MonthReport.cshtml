@@ -1,0 +1,244 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  تقرير شهرية }
+
+
+
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    تقرير شهرية
+                </h4>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h6>التاريخ </h6>
+                    <input class="form-control" type="month" name="" id="Date">
+                </div>
+
+                <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+                <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+
+
+                <table class="table table-bordered mt-4 ">
+                    <thead>
+                        <tr>
+                            <th>نوع الحركة </th>
+                            <th>وارد</th>
+                            <th>صادر</th>
+                            <th>التاريخ</th>
+
+                            <th>اسم الشخص</th>
+                            <th>البيان </th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="billtable">
+                    </tbody>
+                </table>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="row account">
+                <div class="col-6 ">
+                    <h6>مبيعات كاش</h6>
+                    <input type="text" class="text-center" readonly name="" id="s">
+                    <br />
+
+                    <h6>
+                        مرتجع مبيعات كاش
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="sre">
+
+                    <br />
+
+
+                    <h6>
+                        مشتريات كاش
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="pur">
+                    <br />
+                    <h6>مرتجع مشتريات كاش</h6>
+                    <input type="text" class="text-center" readonly name="" id="purre">
+                    <br />
+                    <h6>
+                        مصروفات
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="ex">
+                    <br />
+
+
+                    <h6>
+                        مسحوبات موظفين
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="empwith">
+                    <br />
+
+                    <h6>تحصيل عملاء</h6>
+                    <input type="text" class="text-center" readonly name="" id="cust">
+                    <br />
+                    <h6>
+                        سداد موردين
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="sup">
+
+                    <br />
+
+                    <h6>
+                        الاجمالي
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="total">
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+@section scripts{
+    <script>
+
+
+        let now = new Date();
+
+        let currentYear = now.getFullYear();
+        let currentMonth = ("0" + (now.getMonth() + 1)).slice(-2);
+
+        $('#Date').val(`${currentYear}-${currentMonth}`);
+
+
+        function Show() {
+            var s = 0;
+            var sre = 0;
+            var pur = 0;
+            var purre = 0;
+            var ex = 0;
+            var empwith = 0;
+            var cust = 0;
+            var sup = 0;
+            var total = 0;
+
+
+            $.get("/Reports/GetMonthReport",
+                { DateF: document.getElementById("Date").value },
+                function (data) {
+                    $("#billtable").empty();
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                var src = row.action_date;
+                                var src1 = src.replace(/[^0-9 +]/g, '');
+                                var dateupdated = new Date(parseInt(src1));
+
+                                if (row.acc_name == null) {
+                                    row.acc_name = ""
+                                }
+                                if (row.nts == null) {
+                                    row.nts = ""
+                                }
+                                if (row.mov == "s") {
+                                    s +=  row.credit;
+                                }
+
+                                if (row.mov == "sre") {
+                                    sre +=  row.debit;
+                                }
+                                if (row.mov == "pur") {
+                                    pur += row.debit;
+                                }
+                                if (row.mov == "purre") {
+                                    purre += row.credit;
+                                }
+
+                                if (row.mov == "cust") {
+                                    cust +=  row.credit;
+                                }
+                                if (row.mov == "sup") {
+                                    sup += row.debit;
+                                }
+                                if (row.mov == "empwith") {
+                                    empwith += row.debit;
+                                }
+
+                                if (row.mov == "ex") {
+                                    ex +=  row.debit;
+                                }
+
+
+                                $('#billtable').append("<tr ><td>" + row.typ + "</td><td>" + row.credit + "</td><td>" + row.debit + "</td><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td><td>" + row.acc_name + "</td><td>" + row.nts + "</td></tr>");
+
+
+
+                            }
+
+                        });
+                    total = s + cust + purre - sre - ex - empwith - sup - pur;
+                    document.getElementById("s").value = s;
+                    document.getElementById("sre").value = sre;
+                    document.getElementById("pur").value = pur;
+                    document.getElementById("purre").value = purre;
+
+                    document.getElementById("ex").value = ex;
+                    document.getElementById("empwith").value = empwith;
+                    document.getElementById("cust").value = cust;
+                    document.getElementById("sup").value = sup;
+
+
+                    document.getElementById("total").value = total;
+                });
+
+
+
+
+
+
+
+
+
+        }
+
+        function Print() {
+            window.open("/Reports/ExportMonthReport?DateF=" + document.getElementById("Date").value, "_blank");
+
+        }
+
+
+
+
+    </script>
+}

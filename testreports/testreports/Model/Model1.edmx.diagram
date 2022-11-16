@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0b77bd13d0c4df78fbdf48a8bb88ad0" Name="Diagram1">
+        <EntityTypeShape EntityType="openshopdataModel.account" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.accounts_discounts" Width="1.5" PointX="3" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.accounts_dueDates" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Banks_acc_deposits" Width="1.5" PointX="6" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Banks_acc_transactions" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Banks_acc_withdraws" Width="1.5" PointX="3" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Banks_accounts" Width="1.5" PointX="1.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.barcode" Width="1.5" PointX="17.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Branch" Width="1.5" PointX="0.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.capital" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Category" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.clr" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.company" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.delivery_customers" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos_attend" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos_finals" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos_jobs" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos_pay" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.empos_upDown" Width="1.5" PointX="6" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Factory" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.img" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Income" Width="1.5" PointX="6" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.installment_new" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.installment_pays" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.installment_slrs" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.installment_traders" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.installment_TradersMovs" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.item" Width="1.5" PointX="15" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.items_drafts" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.items_pack" Width="1.5" PointX="17.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.items_slrData" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.items_units" Width="1.5" PointX="12" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.items_units_lnks" Width="1.5" PointX="20.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.mchn" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.model" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSdynamicsnapshotview" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_dynamic_snapshots" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_partition_groups" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_conflictdetectionconfigrequest" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_lsns" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Offer" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Outcome" Width="1.5" PointX="9" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.payment" Width="1.5" PointX="9" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.purchase" Width="1.5" PointX="9" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.purchase_det" Width="1.5" PointX="14.25" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.purchase_re" Width="1.5" PointX="12" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.purchase_re_det" Width="1.5" PointX="14.25" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.repre_months" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sale" Width="1.5" PointX="12" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_det" Width="1.5" PointX="14.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_re" Width="1.5" PointX="12" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_re_det" Width="1.5" PointX="17.25" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_visa" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Shift" Width="1.5" PointX="9.75" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.siz" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Stock" Width="1.5" PointX="1.5" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Stocks_Trans" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysreplserver" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.tw" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.user_brchs_lnks" Width="1.5" PointX="3" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.user" Width="1.5" PointX="0.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.WorkOrder" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.DataSetting" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.dbversion" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.inv_booking" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.inv_pays_lnk" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSdynamicsnapshotjob" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_agent_parameters" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_altsyncpartners" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_articlehistory" Width="1.5" PointX="8.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_conflicts_info" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_contents" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_current_partition_mappings" Width="1.5" PointX="19.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_errorlineage" Width="1.5" PointX="19.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_generation_partition_mappings" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_genhistory" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_history" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_identity_range" Width="1.5" PointX="21.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_log_files" Width="1.5" PointX="21.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_metadataaction_request" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_past_partition_mappings" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_replinfo" Width="1.5" PointX="22.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_sessions" Width="1.5" PointX="22.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_settingshistory" Width="1.5" PointX="23.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_supportability_settings" Width="1.5" PointX="23.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSmerge_tombstone" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_conflictdetectionconfigresponse" Width="1.5" PointX="24.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_originatorid_history" Width="1.5" PointX="24.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_request" Width="1.5" PointX="24.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_response" Width="1.5" PointX="25.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_topologyrequest" Width="1.5" PointX="25.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpeer_topologyresponse" Width="1.5" PointX="25.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSpub_identity_range" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.MSrepl_errors" Width="1.5" PointX="26.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.newcolumn" Width="1.5" PointX="5.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.order" Width="1.5" PointX="26.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.printsetting" Width="1.5" PointX="17.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.repre_comm_levels" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.representative" Width="1.5" PointX="6" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_det_pack" Width="1.5" PointX="17.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sales_re_det_pack" Width="1.5" PointX="14.25" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Stocks_OB" Width="1.5" PointX="19.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Stocks_Trans_det" Width="1.5" PointX="24.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysarticlecolumn" Width="1.5" PointX="26.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysarticle" Width="1.5" PointX="27.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysarticleupdate" Width="1.5" PointX="27.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergearticle" Width="1.5" PointX="28.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergepartitioninfo" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergepublication" Width="1.5" PointX="21.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergeschemaarticle" Width="1.5" PointX="29.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergeschemachange" Width="1.5" PointX="29.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergesubscription" Width="1.5" PointX="30.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergesubsetfilter" Width="1.5" PointX="30.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.syspublication" Width="1.5" PointX="30.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysschemaarticle" Width="1.5" PointX="23.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.syssubscription" Width="1.5" PointX="25.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.systranschema" Width="1.5" PointX="31.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.WorkOrders_StkTrns_lnks" Width="1.5" PointX="31.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.bank_statement" Width="1.5" PointX="31.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Banks_allAccCredit" Width="1.5" PointX="32.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.banks_treasuriesNames" Width="1.5" PointX="32.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Items_credits" Width="1.5" PointX="16.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.Items_limit" Width="1.5" PointX="18.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysextendedarticlesview" Width="1.5" PointX="32.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergeextendedarticlesview" Width="1.5" PointX="32.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.sysmergepartitioninfoview" Width="1.5" PointX="27.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.v1" Width="1.5" PointX="29.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.v2" Width="1.5" PointX="33.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.WorkOrders_Current" Width="1.5" PointX="33.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="openshopdataModel.workOrders_v" Width="1.5" PointX="34.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="openshopdataModel.FK_accounts_discounts_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_accounts_discounts_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_deposits_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_deposits_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_deposits_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_deposits_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_transactions_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_transactions_Banks_accounts1" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_transactions_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_transactions_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_transactions_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_withdraws_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_withdraws_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_withdraws_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Banks_acc_withdraws_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Branches_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_empos_upDown_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_income_banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_outcome_banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_payments_banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_Banks_accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_barcodes_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__empos_att__brch___287051E9" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__empos_upD__brch___277C2DB0" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__Income__brch_id__2A589A5B" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__Outcome__brch_id__2B4CBE94" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__payments__brch_i__29647622" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__purchase___brch___26880977" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__purchase__brch_i__2593E53E" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__sales__brch_id__23AB9CCC" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__sales_re__brch_i__249FC105" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_Branches_Stocks" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_user_brchs_lnks_Branches" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_empos_attend_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_empos_upDown_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_repre_comm_levels_representatives" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_representatives_empos" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_empos_upDown_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_empos_upDown_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_income_shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_income_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_items_pack_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_items_pack_items1" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_items_units_lnks_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_det_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_det_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_pack_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_pack_items1" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_pack_items" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_pack_items1" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_items_units_lnks_items_units" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_det_items_units" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_det_items_units" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_items_units" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_items_units" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK__MSmerge_d__parti__7F042802" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_outcome_shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_outcome_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_payments_shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_payments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_det_purchase" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_det_purchase" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_Stocks" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_purchase_re_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_pack_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_det_sales" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_pack_sales_re" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_det_sales_re" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_sales_re_users" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.FK_user_brchs_lnks_user_brchs_lnks" ManuallyRouted="false" />
+        <AssociationConnector Association="openshopdataModel.accounts_emps" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

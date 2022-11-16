@@ -1,0 +1,588 @@
+﻿@model SmartShop.Models.StoreTransfer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  تعديل التحويلات  }
+
+<div class="col-10">
+    @using (Html.BeginForm("Edit", "StoreTransfers", FormMethod.Post, new { id = "add" }))
+    {
+        <div class="container">
+
+            <div class="form">
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        تعديل التحويلات
+                    </h4>
+                </div>
+
+                <!-- <input type="date">
+                <img src="images/icons8-search-50 1.png" alt=""> -->
+                <div class="fullWidth">
+                    <h6> التاريخ  :</h6>
+                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        @Html.DropDownList("StkFromId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+
+
+                    </div>
+
+                    <div class="col-6">
+                        @Html.DropDownList("StkToId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form mt-5">
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات الصنف
+                    </h4>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-6">
+
+
+                        <div class="staticWidth">
+                            <h6>اسم الصنف</h6>
+                            <input class="form-control text-center" name="iname" id="iname" type="text" placeholder="اسم الصنف ........" />
+
+                            <div class="hiddendiv" id="itemtable">
+                                <table class="table table-bordered mt-4">
+
+
+                                    <tbody id="itemdata">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <input class="form-control" name="itemid" id="itemid" hidden />
+
+
+                        <h6>الكمية (المحل/المخزن)</h6>
+                        <input class="form-control text-center" readonly type="text" id="Quantity" />
+                        <h6>عدد القطع</h6>
+                        <input class="form-control text-center" id="itemquantity" type="number" placeholder="عدد القطع" />
+
+                    </div>
+
+                    <div class="col-6">
+
+
+
+
+                        <div class="staticWidth">
+                            <h6>الباركود</h6>
+                            <input class="form-control text-center" id="barcode" type="text" placeholder="الباركود  ........" />
+
+                            <div class="hiddendiv">
+                                <table class="table table-bordered mt-4">
+                                    <tbody id="itembarcodedata">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+                <button class="btn btn-primary" type="button" onclick="Bill()">اضافة</button>
+
+
+
+
+
+
+
+            </div>
+
+
+            <div class="form mt-5">
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>الصنف</th>
+                            <th>الكمية</th>
+
+
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="billtable">
+                        @if (ViewBag.transferDetails != null)
+                        {
+                            foreach (var item in ViewBag.transferDetails)
+                            {
+                                <tr>
+
+                                    <td>  @item.Name </td>
+                                    <td><input type="number" id="@item.ID" onkeyup="QuantityChange(@item.ID)" class='form-control text-center' value="@item.Quantity" /></td>
+
+                                    <td><a onclick='confirmation( @item.ID)'><i class='fas fa-trash text-danger text-size-sm'></i></a></td>
+                                </tr>
+
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total">
+                <h6>اجمالي الكمية</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="TQ" value="@ViewBag.ItemsQuantity" />
+
+                <h6>عدد الاصناف</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="Icount" value="@ViewBag.ItemCount"/>
+            </div>
+            <button type="button" id="Addbtn" class="btn btn-primary my-4 " onclick="return Add(this)">حفظ</button>
+
+
+        </div>
+
+    }
+
+
+
+</div>
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 9999999">
+
+</div>
+
+
+@section scripts{
+    <script>
+        
+
+        $(document).ready(function () {
+            if ($("#StkFromId").val() == 0) {
+                $.get("/StoreTransfers/GetAllstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+            else {
+                $.get("/StoreTransfers/Getstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+        });
+        $("#StkFromId").change(function () {
+            if ($("#StkFromId").val() == 0) {
+                $.get("/StoreTransfers/GetAllstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+            else {
+                $.get("/StoreTransfers/Getstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+
+
+
+        });
+
+        $("#StkFromId").click(function () {
+            if ($("#StkFromId").val() == 0) {
+                $.get("/StoreTransfers/GetAllstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+            else {
+                $.get("/StoreTransfers/Getstkto", { stkid: $("#StkFromId").val() }, function (data) {
+                    $("#StkToId").empty();
+                    if ($("#StkFromId").val() == 0) {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--اختر--" + "</option>")
+
+                    }
+                    else {
+                        $("#StkToId").append("<option value='" + 0 + "'>" + "--المحل--" + "</option>")
+
+                    }
+
+
+                    $.each(data, function (index, row) {
+                        $("#StkToId").append("<option value='" + row.Id + "'>" + row.StoreName + "</option>")
+                    });
+
+                });
+            }
+
+
+        });
+
+
+
+
+        $(document).ready(function () {
+            const box = document.getElementById('itemtable');
+            box.style.display = 'none';
+
+            $("#iname").keyup(function () {
+                const box = document.getElementById('itemtable');
+                box.style.display = 'none';
+                $.get("/Sales/GetItemData",
+                    { Name: $("#iname").val() },
+                    function (data) {
+                        $("#itemdata").empty();
+                        const box = document.getElementById('itemtable');
+                        box.style.display = 'none';
+
+                        $.each(data,
+                            function (index, row) {
+                                if ($("#iname").val() == "" || $("#iname").val() == null) {
+                                    $("#itemdata").empty();
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'none';
+                                }
+
+                                else if (data != null) {
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'block';
+                                    $('#itemdata').append("<tr onclick='ItemName1(" + row.Id + ")'><td>" + row.Id + "</td> <td>" + row.ItemName + "</td> <td>" + row.PriceSell + "</td> </tr>");
+                                }
+                                else {
+                                    $("#itemdata").empty();
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'none';
+                                }
+
+
+                            });
+                    });
+            });
+        });
+
+
+        function ItemName1(id) {
+            $.get("/Sales/GetItemDetails",
+                { ID: id },
+                function (data) {
+                    $("#iname").empty();
+                    $('#itemid').empty();
+                    document.getElementById("itemid").value = 0
+                    const box = document.getElementById('itemtable');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#iname').val(row.ItemName);
+                                $('#barcode').val(row.Barcode);
+
+
+                                document.getElementById("itemid").value = id;
+                                $('#itemquantity').val(1);
+
+                            }
+
+                        });
+                });
+
+
+
+            $.get("/Sales/GetItemQuantity",
+                { ID: id, StkID: $("#StkFromId").val() },
+                function (data) {
+
+                    document.getElementById("Quantity").value = data;
+
+
+
+                });
+
+
+        }
+
+
+
+
+        function Bill() {
+            const box = document.getElementById('itemtable');
+            box.style.display = 'none';
+
+            $.get("/StoreTransfers/CreateEditedBill",
+                { ID: document.getElementById("itemid").value, Name: document.getElementById("iname").value, Quantity: document.getElementById("itemquantity").value, stk_id: $("#StkFromId").val() },
+                function (data) {
+
+                    document.getElementById("iname").value = "";
+
+                    document.getElementById("itemquantity").value = 0;
+
+
+                    document.getElementById("TQ").value = 0;
+                    document.getElementById("Icount").value = 0;
+                    document.getElementById("itemid").value = 0;
+                    document.getElementById("Quantity").value = 0;
+                    document.getElementById("barcode").value = "";
+                    $("#billtable").empty();
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                $('#billtable').append("<tr><td>" + row.Name + "</td>  <td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+
+                                document.getElementById("TQ").value = row.TotalQuantity;
+                                document.getElementById("Icount").value = row.ItemsCount;
+
+                            }
+
+
+                        });
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                if (row.ID == document.getElementById("itemid").value) {
+                                    $('#Mes').empty();
+                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 me-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                        " </div ></div > ");
+
+                                    return;
+                                }
+
+                                $('#Mes').empty();
+                                $('#Mes').append("<div id='toast-8270' class='toast p-2 text-dark bg-info border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>تم الاضافة</div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                    " </div ></div > ");
+
+                            }
+                        }
+
+
+                    )
+                });
+
+        }
+
+        function QuantityChange(id) {
+
+            $.get("/StoreTransfers/GetItemEditTotalPrice",
+                { ID: id, ItemQ: document.getElementById(id).value, stk_id: $("#StkFromId").val() },
+                function (data) {
+                    $("#billtable").empty();
+                    document.getElementById("TQ").value = 0;
+                    document.getElementById("Icount").value = 0;
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#billtable').append("<tr><td>" + row.Name + "</td>  <td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+
+                                document.getElementById("TQ").value = row.TotalQuantity;
+                                document.getElementById("Icount").value = row.ItemsCount;
+
+
+                            }
+
+                        });
+                });
+
+
+        }
+
+
+
+        function confirmation(id) {
+            var result = confirm("هل تريد حذف هذا الصنف؟");
+            if (result) {
+                $.get("/StoreTransfers/DeleteEditedItem",
+                    { ID: id },
+                    function (data) {
+                        $("#billtable").empty();
+                        document.getElementById("TQ").value = 0;
+                        document.getElementById("Icount").value = 0;
+
+
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+                                    $('#billtable').append("<tr><td>" + row.Name + "</td>  <td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+
+
+                                    document.getElementById("TQ").value = row.TotalQuantity;
+                                    document.getElementById("Icount").value = row.ItemsCount;
+
+
+                                }
+
+                            });
+                    });
+                return true;
+
+            }
+            return false;
+        }
+
+
+
+
+
+    </script>
+
+
+
+    <script>
+        function Add(btn) {
+            try {
+                var form1 = document.getElementById('add');
+                var formData = new FormData(form1);
+                document.getElementById("Addbtn").disabled = true;
+
+                console.log(form1);
+                $.ajax({
+                    type: 'POST',
+                    url: form1.action,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        var message = res.message;
+                        if (res.isValid) {
+
+                            window.location.href = '/StoreTransfers/StoresTransfers';
+
+
+                        }
+                        else {
+                            $('#Mes').empty();
+
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                " </div ></div > ");
+                        }
+
+                    },
+                    error: function (err) {
+                        $('#Mes').empty();
+
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            " </div ></div > ");
+                    }
+
+                })
+                //to prevent default form submit event
+                document.getElementById("Addbtn").disabled = false;
+
+            } catch (ex) {
+                console.log(ex)
+            }
+        }
+    </script>
+
+}
+

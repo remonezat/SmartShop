@@ -1,0 +1,131 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  تقرير ارصدة }
+
+
+
+<div class="col-10">
+
+    <div class="container">
+
+
+        <div class="form">
+            <div class="formTitle">
+                <h4>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    تقرير ارصدة
+                </h4>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h6>المخزن/ المحل </h6>
+                    @Html.DropDownList("stk_id", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+
+                </div>
+
+                <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+                <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+
+
+                <table class="table table-bordered mt-4 ">
+                    <thead>
+                        <tr>
+                            <th>كود</th>
+                            <th>الصنف</th>
+                            <th>الفئة</th>
+                            <th>الرصيد الافتتاحي</th>
+                            <th>الرصيد</th>
+                            <th>سعر الشراء</th>
+                            <th>سعر البيع</th>
+
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="billtable">
+                    </tbody>
+                </table>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+@section scripts{
+    <script>
+
+
+        function Show() {
+
+
+
+            $.get("/Reports/GetItemCredit",
+                { StkID: $("#stk_id").val() },
+                function (data) {
+                    $("#billtable").empty();
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                $('#billtable').append("<tr> <td>" + row.barcode + "</td> <td>" + row.iname + "</td> <td>" + row.category + "</td><td>" + row.fbalance + "</td ><td>" + row.crdt + "</td ><td>" + row.pricepur + "</td ><td>" + row.sel_price + "</td ></tr > ");
+
+
+
+                            }
+
+                        });
+
+                });
+
+
+
+
+
+
+
+
+
+        }
+
+        function Print() {
+            window.open("/Reports/ExportBalanceReport?StkID=" + $("#stk_id").val() , "_blank");  
+
+
+
+
+        }
+
+
+
+
+    </script>
+}

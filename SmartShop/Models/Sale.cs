@@ -18,9 +18,7 @@ namespace SmartShop.Models
         public Sale()
         {
             this.PurchaseDetails = new HashSet<PurchaseDetail>();
-            this.PurchaseReDetails = new HashSet<PurchaseReDetail>();
             this.SalesDetails = new HashSet<SalesDetail>();
-            this.SalesReDetails = new HashSet<SalesReDetail>();
         }
     
         public int Id { get; set; }
@@ -37,14 +35,9 @@ namespace SmartShop.Models
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseReDetail> PurchaseReDetails { get; set; }
         public virtual Shift Shift { get; set; }
-        public virtual Store Store { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesDetail> SalesDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesReDetail> SalesReDetails { get; set; }
     }
 }

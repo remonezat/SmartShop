@@ -37,35 +37,35 @@
                                     {
                                         if (item1 == "s")
                                         {
-                                            <li><a class="dropdown-item" href="/saleing-pill.html">فواتير البيع</a></li>
+                                            <li><a class="dropdown-item" href="/Sales/Add">فواتير البيع</a></li>
                                         }
                                     }
                                     @foreach (var item1 in ViewBag.userscreens)
                                     {
                                         if (item1 == "sre")
                                         {
-                                            <li><a class="dropdown-item" href="/saling-returns-pill.html"> فواتير مرتجع مبيعات</a></li>
+                                            <li><a class="dropdown-item" href="/SalesRe/Add"> فواتير مرتجع مبيعات</a></li>
                                         }
                                     }
                                     @foreach (var item1 in ViewBag.userscreens)
                                     {
                                         if (item1 == "pur")
                                         {
-                                            <li><a class="dropdown-item" href="/buy-pill.html">فواتير مشتريات </a></li>
+                                            <li><a class="dropdown-item" href="/Purchase/Add">فواتير مشتريات </a></li>
                                         }
                                     }
                                     @foreach (var item1 in ViewBag.userscreens)
                                     {
                                         if (item1 == "purre")
                                         {
-                                            <li><a class="dropdown-item" href="/buys-returns-pill.html">فواتير مرتجع مشتريات </a></li>
+                                            <li><a class="dropdown-item" href="/PurchaseRe/Add">فواتير مرتجع مشتريات </a></li>
                                         }
                                     }
                                     @foreach (var item1 in ViewBag.userscreens)
                                     {
                                         if (item1 == "editbills")
                                         {
-                                            <li><a class="dropdown-item" href="/edit-pills.html">عرض و تعديل الفواتير</a></li>
+                                            <li><a class="dropdown-item" href="/ShowBills/Index">عرض و تعديل الفواتير</a></li>
                                         }
                                     }
                                 </ul>
@@ -320,14 +320,14 @@
                                     {
                                         if (item1 == "trans")
                                         {
-                                            <li><a class="dropdown-item" href="/transaction.html">التحويلات</a></li>
+                                            <li><a class="dropdown-item" href="/StoreTransfers/Add">التحويلات</a></li>
                                         }
                                     }
                                     @foreach (var item1 in ViewBag.userscreens)
                                     {
                                         if (item1 == "edittrans")
                                         {
-                                            <li><a class="dropdown-item" href="/edit-transactio.html">عرض و نعديل التحويلات</a></li>
+                                            <li><a class="dropdown-item" href="/StoreTransfers/StoresTransfers">عرض و نعديل التحويلات</a></li>
                                         }
                                     }
                                         </ul>
@@ -351,10 +351,36 @@
                         <div class="collapse collapse-horizontal" id="collapseWidthExample6">
                             <div class="card card-body" style="width: 300px;">
                                 <ul>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "drep")
+                                        {
+                                            <li><a class="dropdown-item" href="/Reports/DailyReport">تقرير يومية</a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "mrep")
+                                        {
+                                            <li><a class="dropdown-item" href="/Reports/MonthReport"> تقرير شهرية </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "balancerep")
+                                        {
+                                            <li><a class="dropdown-item" href="/Reports/BalanceReport"> تقرير ارصدة الاصناف </a></li>
+                                        }
+                                    }
+                                    @foreach (var item1 in ViewBag.userscreens)
+                                    {
+                                        if (item1 == "yrep")
+                                        {
+                                            <li><a class="dropdown-item" href="/Reports/YearReport"> تقرير سنوي </a></li>
+                                        }
+                                    }
+
+                                </ul>                              
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,855 @@
+﻿@model SmartShop.Models.Purchase  
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{ تعديل فاتورة مشتريات  }
+
+
+<div class="col-10">
+    <div class="container">
+
+        @using (Html.BeginForm("EditPurchase", "Purchase", FormMethod.Post, new { id = "add" }))
+        {
+            <div class="form">
+                <div class="formTitle">
+                    <h4 style="margin-bottom: 0">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        تعديل فاتورة مشتريات
+                    </h4>
+
+                    <h4 class="me-3">
+                        <i class="rotate fa-solid fa-arrow-turn-down"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات الفاتورة
+                    </h4>
+                </div>
+
+                <div class="fullWidth">
+                    <h6>التاريخ :</h6>
+                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
+
+                </div>
+
+                <div class="radioChosse">
+                    <h6>الفرع :</h6>
+                    <input type="checkbox" name="Place" id="Place" @ViewBag.stk  />
+                    <label for="">محل</label>
+
+                    <div class="inventory ">
+
+                        <label for="">مخزن </label>
+                        @Html.DropDownList("StkId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--اختر--", new { @class = "form-select text-center me-5 ", required = "required" })
+
+                    </div>
+                </div>
+
+                <div class="radioChosse">
+                    <h6>الدفع :</h6>
+                    <input type="radio" id="isCash" name="isCash" value="0"@ViewBag.PayoptionNoCash />
+                    <label for="">اجل </label>
+
+                    <input type="radio" id="isCash" name="isCash" value="1" @ViewBag.PayOptionCash />
+                    <label for="">نقدي </label>
+                </div>
+            </div>
+
+            <div class="form mt-5">
+                <div class="formTitle">
+                    <h4 class="me-3">
+                        <i class="rotate fa-solid fa-arrow-turn-down"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات المورد
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="staticWidth">
+                            <h6>اسم المورد</h6>
+                            <input class="form-control text-center" name="custname" id="custname" type="text" placeholder="اسم العميل  ........" />
+                            <h6>الرصيد</h6>
+                            <input class="form-control" name="AccId" id="custid" type="text" hidden value="@ViewBag.AccId"/>
+
+
+                            <div class="hiddendiv" id="custtable">
+                                <table class="table table-bordered mt-4">
+
+
+                                    <tbody id="custdata">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <input class="form-control text-center " readonly name="custbalance" id="custbalance" value="0" />
+                        <label for="" id="PerTyp"></label>
+
+                    </div>
+
+                    <div class="col-6">
+                        <div class="add mt-5 pt-3">
+
+                            <a href="/Accounts/Add">    <i class="fa-solid fa-plus"></i> <h6>اضافة حساب عميل</h6></a>
+                        </div>
+
+
+
+                        <div class="add mt-5">
+                            <a href="/Payments/AccountStatment">
+                                <i class="fa-solid fa-plus"></i>
+
+                                <h6>كشف حساب المورد</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="form mt-5">
+                <div class="formTitle">
+                    <h4 class="me-3">
+                        <i class="rotate fa-solid fa-arrow-turn-down"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات الصنف
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+
+
+                        <div class="staticWidth">
+                            <h6>اسم الصنف</h6>
+                            <input class="form-control text-center" name="iname" id="iname" type="text" placeholder="اسم الصنف ........" />
+
+                            <div class="hiddendiv" id="itemtable">
+                                <table class="table table-bordered mt-4">
+
+
+                                    <tbody id="itemdata">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <input class="form-control" name="itemid" id="itemid" hidden />
+
+
+                        <h6>الكمية (المحل/المخزن)</h6>
+                        <input class="form-control text-center" readonly type="number" id="Quantity" />
+                        <h6>عدد القطع</h6>
+                        <input class="form-control text-center" id="itemquantity" type="text" placeholder="عدد القطع" />
+
+                    </div>
+
+                    <div class="col-6">
+
+
+
+
+                        <div class="staticWidth">
+                            <h6>الباركود</h6>
+                            <input class="form-control text-center" id="barcode" type="text" placeholder="الباركود  ........" />
+
+                            <div class="hiddendiv">
+                                <table class="table table-bordered mt-4">
+                                    <tbody id="itembarcodedata">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <h6>سعر البيع</h6>
+                        <input class="form-control text-center" readonly id="saleprice" type="text" placeholder="سعر البيع" />
+                        <h6>الاجمالي</h6>
+                        <input class="form-control text-center" readonly id="total" type="text" placeholder="الاجمالي" />
+
+                    </div>
+                </div>
+
+
+
+
+                <button class="btn btn-primary" type="button" onclick="Bill()">اضافة</button>
+            </div>
+
+            <div class="total">
+                <h6>اجمالي الكمية</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="TQ" @ViewBag.ItemsQuantity/>
+
+                <h6>عدد الاصناف</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="Icount" @ViewBag.ItemCount />
+            </div>
+
+            <div class="form mt-5">
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>الصنف</th>
+                            <th>السعر</th>
+                            <th>الكمية</th>
+                            <th>الاجمالي</th>
+
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="billtable">
+
+                        @if (ViewBag.purchaseDetails != null)
+                        {
+                            foreach (var item in ViewBag.purchaseDetails as List<SmartShop.Models.PurchaseDetail>)
+                            {
+                                <tr>
+                                    <td>  @item.Item.ItemName </td>
+                                    <td> @item.Price </td>
+                                    <td><input type="number" id="@item.ItemId" onkeyup="QuantityChange(@item.ItemId)" class='form-control text-center' value="@item.Count" /></td>
+                                    <td> @Html.Raw(item.Price * item.Count) </td>
+                                    <td><a onclick='confirmation( @item.ItemId)'><i class='fas fa-trash text-danger text-size-sm'></i></a></td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total">
+                <h6>اجمالي الفاتورة</h6>
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 text-center", name = "FinalTotal", id = "FinalTotal", @readonly = "readonly" } })
+
+                @*<h6>المطلوب سداده</h6>
+        <input class="form-control" type="text" name="" id="RPaied" />*@
+
+                <button class="showPopup  btn btn-primary" type="button">تم</button>
+            </div>
+            <div class="popup">
+                <div class="div mt-4">
+                    <label for="">المطلوب سداده</label>
+                    <input class="form-control" type="number" id="Total" name="Total" readonly>
+                </div>
+
+                <div class="add">
+                    <i class="fa-solid fa-plus"></i>
+
+                    <h6 class="d-inline-block">خصم نقدي</h6>
+                </div>
+
+                <div class="div sale mt-2">
+                    <label for="">خصم نقدى</label>
+                    @Html.EditorFor(model => model.Descount, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 bg-light text-center", min = "0", type = "number", id = "Descount", name = "Descount" } })
+                </div>
+
+
+
+
+                <label for="">الاجمالي </label>
+                @Html.EditorFor(model => model.Final, new { htmlAttributes = new { @class = "form-control text-center mt-2", name = "RPaied", id = "RPaied", @readonly = "readonly" } })
+
+
+
+
+
+
+
+                <div>
+                    <input class="" type="checkbox" name="" id="print">
+                    <label for="">طباعة</label>
+                </div>
+
+                <button class="btn btn-primary" id="Addbtn" type="button" onclick=" Add()"> حفظ</button>
+            </div>
+        }
+    </div>
+
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
+
+</div>
+
+
+@section scripts{
+    <script>
+     
+        $(document).ready(function () {
+            var Z = document.getElementById("Place");
+            if (Z.checked == true) {
+                $('#StkId').attr("disabled", true);
+                document.getElementById("StkId").selectedIndex = 0;
+
+
+            }
+            else {
+                $('#StkId').attr("disabled", false);
+                document.getElementById("StkId").selectedIndex = 0;
+
+
+            }
+
+
+
+            $.get("/Purchase/GetCustomerDetails",
+                { ID: document.getElementById("custid").value },
+                function (data) {
+                    $("#custname").empty();
+                    $('#custid').empty();
+                    document.getElementById("custid").value = 0
+                    const box = document.getElementById('custtable');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#custname').val(row.AccName);
+                                document.getElementById("custid").value = id;
+
+                            }
+
+                        });
+                });
+
+
+
+            $.get("/Purchase/GetAccBalance",
+                { ID: document.getElementById("custid").value },
+                function (data) {
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+                                if (row.final >= 0) {
+
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+
+                                    $("#PerTyp").append("دائن");
+                                    $("#PerTyp").addClass('text-danger');
+                                    document.getElementById("custbalance").value = row.final;
+
+
+
+                                }
+                                else {
+
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+                                    $("#PerTyp").append("مدين");
+                                    $("#PerTyp").addClass('text-success');
+
+                                    document.getElementById("custbalance").value = Math.abs(row.final);
+
+                                }
+                            }
+
+
+
+
+
+                        });
+
+
+                });
+
+        });
+
+        $("#Place").change(function () {
+
+            var Z = document.getElementById("Place");
+            if (Z.checked == true) {
+                $('#StkId').attr("disabled", true);
+                document.getElementById("StkId").selectedIndex = 0;
+
+
+            }
+            else {
+                $('#StkId').attr("disabled", false);
+                document.getElementById("StkId").selectedIndex = 0;
+
+
+            }
+        });
+
+
+        $(document).ready(function () {
+            const box = document.getElementById('custtable');
+            box.style.display = 'none';
+
+            $("#custname").keyup(function () {
+                const box = document.getElementById('custtable');
+                box.style.display = 'none';
+                $.get("/Purchase/GetCustomerData",
+                    { Name: $("#custname").val() },
+                    function (data) {
+                        $("#custdata").empty();
+                        const box = document.getElementById('custtable');
+                        box.style.display = 'none';
+
+                        $.each(data,
+                            function (index, row) {
+                                if ($("#custname").val() == "" || $("#custname").val() == null) {
+                                    $("#custdata").empty();
+                                    const box = document.getElementById('custtable');
+                                    box.style.display = 'none';
+                                }
+
+                                else if (data != null) {
+                                    const box = document.getElementById('custtable');
+                                    box.style.display = 'block';
+                                    $('#custdata').append("<tr onclick='CustName(" + row.Id + ")'><td>" + row.Id + "</td> <td>" + row.AccName + "</td>  </tr>");
+                                }
+                                else {
+                                    $("#custdata").empty();
+                                    const box = document.getElementById('custtable');
+                                    box.style.display = 'none';
+                                }
+
+
+                            });
+                    });
+            });
+        });
+
+        function CustName(id) {
+            $.get("/Purchase/GetCustomerDetails",
+                { ID: id },
+                function (data) {
+                    $("#custname").empty();
+                    $('#custid').empty();
+                    document.getElementById("custid").value = 0
+                    const box = document.getElementById('custtable');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#custname').val(row.AccName);
+                                document.getElementById("custid").value = id;
+
+                            }
+
+                        });
+                });
+
+
+
+            $.get("/Purchase/GetAccBalance",
+                { ID: id},
+                function (data) {
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+                                if (row.final >= 0) {
+
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+
+                                    $("#PerTyp").append("دائن");
+                                    $("#PerTyp").addClass('text-danger');
+                                    document.getElementById("custbalance").value = row.final;
+
+
+
+                                }
+                                else {
+
+                                    $("#PerTyp").empty();
+                                    var element = document.getElementById("PerTyp");
+                                    element.classList.remove("text-danger");
+                                    element.classList.remove("text-success");
+                                    $("#PerTyp").append("مدين");
+                                    $("#PerTyp").addClass('text-success');
+
+                                    document.getElementById("custbalance").value = Math.abs(row.final);
+
+                                }
+                            }
+
+
+
+
+
+                        });
+
+
+                });
+
+
+
+
+
+        }
+
+
+
+
+        $(document).ready(function () {
+            const box = document.getElementById('itemtable');
+            box.style.display = 'none';
+
+            $("#iname").keyup(function () {
+                const box = document.getElementById('itemtable');
+                box.style.display = 'none';
+                $.get("/Purchase/GetItemData",
+                    { Name: $("#iname").val() },
+                    function (data) {
+                        $("#itemdata").empty();
+                        const box = document.getElementById('itemtable');
+                        box.style.display = 'none';
+
+                        $.each(data,
+                            function (index, row) {
+                                if ($("#iname").val() == "" || $("#iname").val() == null) {
+                                    $("#itemdata").empty();
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'none';
+                                }
+
+                                else if (data != null) {
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'block';
+                                    $('#itemdata').append("<tr onclick='ItemName1(" + row.Id + ")'><td>" + row.Id + "</td> <td>" + row.ItemName + "</td> <td>" + row.PriceSell + "</td> </tr>");
+                                }
+                                else {
+                                    $("#itemdata").empty();
+                                    const box = document.getElementById('itemtable');
+                                    box.style.display = 'none';
+                                }
+
+
+                            });
+                    });
+            });
+        });
+
+
+        function ItemName1(id) {
+            $.get("/Purchase/GetItemDetails",
+                { ID: id },
+                function (data) {
+                    $("#iname").empty();
+                    $('#total').empty();
+                    $('#itemid').empty();
+                    document.getElementById("itemid").value = 0
+                    const box = document.getElementById('itemtable');
+                    box.style.display = 'none';
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#iname').val(row.ItemName);
+                                $('#barcode').val(row.Barcode);
+
+                                $('#saleprice').val(row.PricePur);
+
+                                $('#total').val(row.PriceSell);
+                                document.getElementById("itemid").value = id;
+                                $('#itemquantity').val(1);
+
+                            }
+
+                        });
+                });
+
+
+
+            $.get("/Purchase/GetItemQuantity",
+                { ID: id, StkID: $("#StkId").val() },
+                function (data) {
+
+                    document.getElementById("Quantity").value = data;
+
+
+
+                });
+
+
+        }
+        $(document).ready(function () {
+
+            $("#itemquantity").keyup(function () {
+                var x = document.getElementById("itemquantity").value;
+                var y = document.getElementById("saleprice").value;
+                if (x != null && x != "" && y != null && y != "") {
+                    document.getElementById("total").value = parseFloat(x) * parseFloat(y);
+                }
+                else {
+                    document.getElementById("total").value = 0
+                }
+            });
+        });
+
+
+
+        function Bill() {
+            const box = document.getElementById('itemtable');
+            box.style.display = 'none';
+
+            $.get("/Purchase/CreateEditedBill",
+                { ID: document.getElementById("itemid").value, Name: document.getElementById("iname").value, Price: document.getElementById("saleprice").value, Quantity: document.getElementById("itemquantity").value, Total: document.getElementById("total").value, stk_id: $("#StkId").val() },
+                function (data) {
+
+                    document.getElementById("iname").value = "";
+                    document.getElementById("saleprice").value = 0;
+                    document.getElementById("itemquantity").value = 0;
+                    document.getElementById("total").value = 0;
+                    document.getElementById("FinalTotal").value = 0;
+                    document.getElementById("RPaied").value = 0;
+
+                    document.getElementById("TQ").value = 0;
+                    document.getElementById("Icount").value = 0;
+                    document.getElementById("itemid").value = 0;
+                    document.getElementById("Quantity").value = 0;
+                    document.getElementById("barcode").value = "";
+                    $("#billtable").empty();
+
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+
+
+                                $('#billtable').append("<tr><td>" + row.Name + "</td>  <td>" + row.Price + "</td><td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td>" + row.Total + "</td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+                                document.getElementById("FinalTotal").value = row.FinalTotal;
+                                document.getElementById("RPaied").value = row.FinalTotal;
+
+                                document.getElementById("Total").value = row.FinalTotal;
+
+                                document.getElementById("TQ").value = row.TotalQuantity;
+                                document.getElementById("Icount").value = row.ItemsCount;
+                                //var y = document.getElementById("FinalTotal").value;
+                                ////var T = document.getElementById("descount_cash").value;
+
+                                //document.getElementById("RPaied").value = parseFloat(y) - parseFloat(T);
+
+                            }
+
+
+                        });
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                if (row.ID == document.getElementById("itemid").value) {
+                                    $('#Mes').empty();
+                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                        " </div ></div > ");
+
+                                    return;
+                                }
+
+                                $('#Mes').empty();
+                                $('#Mes').append("<div id='toast-8270' class='toast p-2 text-dark bg-info border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>تم الاضافة</div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                    " </div ></div > ");
+
+                            }
+                        }
+
+
+                    )
+                });
+
+        }
+
+        function QuantityChange(id) {
+
+            $.get("/Purchase/GetEditedItemTotalPrice",
+                { ID: id, ItemQ: document.getElementById(id).value, stk_id: $("#StkId").val() },
+                function (data) {
+                    $("#billtable").empty();
+                    document.getElementById("FinalTotal").value = 0;
+                    document.getElementById("TQ").value = 0;
+                    document.getElementById("Icount").value = 0;
+                    //document.getElementById("RPaied").value = 0;
+
+                    $.each(data,
+                        function (index, row) {
+                            if (data != null) {
+                                $('#billtable').append("<tr><td>" + row.Name + "</td>  <td>" + row.Price + "</td><td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td>" + row.Total + "</td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+                                document.getElementById("FinalTotal").value = row.FinalTotal;
+                                document.getElementById("Total").value = row.FinalTotal;
+                                document.getElementById("RPaied").value = row.FinalTotal;
+
+                                document.getElementById("TQ").value = row.TotalQuantity;
+                                document.getElementById("Icount").value = row.ItemsCount;
+                                //var y = document.getElementById("FinalTotal").value;
+                                //var T = document.getElementById("descount_cash").value;
+
+                                //document.getElementById("RPaied").value = parseFloat(y) + parseFloat(x) + parseFloat(Z) - parseFloat(T);
+
+
+                            }
+
+                        });
+                });
+
+
+        }
+
+
+
+        function confirmation(id) {
+            var result = confirm("هل تريد حذف هذا الصنف؟");
+            if (result) {
+                $.get("/Purchase/DeleteEditedItem",
+                    { ID: id },
+                    function (data) {
+                        $("#billtable").empty();
+                        document.getElementById("FinalTotal").value = 0;
+                        document.getElementById("TQ").value = 0;
+                        document.getElementById("Icount").value = 0;
+                        document.getElementById("RPaied").value = 0;
+
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+                                    $('#billtable').append("<tr><td>" + row.Name + "</td>  <td>" + row.Price + "</td><td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td>" + row.Total + "</td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
+
+                                    document.getElementById("FinalTotal").value = row.FinalTotal;
+                                    document.getElementById("Total").value = row.FinalTotal;
+                                    document.getElementById("RPaied").value = row.FinalTotal;
+
+                                    document.getElementById("TQ").value = row.TotalQuantity;
+                                    document.getElementById("Icount").value = row.ItemsCount;
+
+
+                                }
+
+                            });
+                    });
+                return true;
+
+            }
+            return false;
+        }
+        $(document).ready(function () {
+
+
+
+            $("#Descount").keyup(function () {
+                var x = document.getElementById("Total").value;
+                var y = document.getElementById("Descount").value;
+
+
+                if (x != null && x != "") {
+                    document.getElementById("RPaied").value = parseFloat(x) - parseFloat(y) ;
+                }
+                else {
+                    document.getElementById("RPaied").value = 0
+                }
+            });
+        });
+
+
+
+
+        function Add() {
+            try {
+                var form1 = document.getElementById('add');
+                var formData = new FormData(form1);
+                document.getElementById("Addbtn").disabled = true;
+                console.log(form1);
+                $.ajax({
+                    type: 'POST',
+                    url: form1.action,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        var message = res.message;
+                        if (res.isValid) {
+
+                            window.location.href = '/ShowBills/Index';
+
+                          //  $('#Mes').empty();
+
+                            //$('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                            //    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            //    " </div ></div > ");
+                            ////var check = false;
+                            ////var check = false;
+                            ////var x = document.getElementById("print");
+                            ////if (x.checked == true) {
+
+                            ////    check = true;
+                            ////    window.open("/SalesBill/ExportToPDFRoll?ID=" + res.BillID + "&Printtype=" + x, "_blank");
+
+
+
+
+                            //}
+
+                            //document.getElementById("StkId").selectedIndex = 0;
+                            //document.getElementById('custid').value = "";
+                            //document.getElementById('iname').value = "";
+                            //document.getElementById('AccBalance').value = 0;
+                            //document.getElementById("FinalTotal").value = 0;
+                            //document.getElementById("RPaied").value = 0;
+                            //document.getElementById("TQ").value = 0;
+                            //document.getElementById("Icount").value = 0;
+                            //$("#billtable tr").remove();
+
+                            //document.getElementById("Descount").value = 0;
+                            //var now = new Date();
+                            //now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                            //document.getElementById('Date').value = now.toISOString().slice(0, 16);
+
+                            //$('html,body').scrollTop(0);
+
+
+
+                        }
+                        else {
+                            $('#Mes').empty();
+
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                " </div ></div > ");
+                        }
+
+                    },
+                    error: function (err) {
+                        $('#Mes').empty();
+
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            " </div ></div > ");
+                    }
+
+                })
+                //to prevent default form submit event
+                document.getElementById("Addbtn").disabled = false;
+
+            } catch (ex) {
+                console.log(ex)
+            }
+        }
+
+
+
+    </script>
+
+}

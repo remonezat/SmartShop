@@ -67,6 +67,13 @@ namespace SmartShop.Controllers
             bool trans = false;
             bool edittrans = false;
 
+            bool drep = false;
+            bool mrep = false;
+            bool yrep = false;
+            bool balancerep = false;
+
+
+
             if (!string.IsNullOrEmpty(formCollection["s"])) { s = true; }
             if (!string.IsNullOrEmpty(formCollection["sre"])) { sre = true; }
             if (!string.IsNullOrEmpty(formCollection["pur"])) { pur = true; }
@@ -107,6 +114,13 @@ namespace SmartShop.Controllers
 
             if (!string.IsNullOrEmpty(formCollection["trans"])) { trans = true; }
             if (!string.IsNullOrEmpty(formCollection["edittrans"])) { edittrans = true; }
+
+
+
+            if (!string.IsNullOrEmpty(formCollection["drep"])) { drep = true; }
+            if (!string.IsNullOrEmpty(formCollection["mrep"])) { mrep = true; }
+            if (!string.IsNullOrEmpty(formCollection["yrep"])) { yrep = true; }
+            if (!string.IsNullOrEmpty(formCollection["balancerep"])) { balancerep = true; }
 
             string d ="";
             // bills
@@ -235,6 +249,28 @@ namespace SmartShop.Controllers
             {
                 d += "edittrans,";
             }
+
+
+
+            if (drep == true)
+            {
+                d += "drep,";
+            }
+            if (mrep == true)
+            {
+                d += "mrep,";
+            }
+            if (yrep == true)
+            {
+                d += "yrep,";
+            }
+            if (balancerep == true)
+            {
+                d += "balancerep,";
+            }
+
+
+
 
             //reports
             user.UserScreens = d;
@@ -437,6 +473,31 @@ namespace SmartShop.Controllers
                 {
                     ViewBag.edittrans = "checked";
                 }
+
+
+                if (item == "drep")
+                {
+                    ViewBag.drep = "checked";
+                }
+                if (item == "mrep")
+                {
+                    ViewBag.mrep = "checked";
+                }
+                if (item == "yrep")
+                {
+                    ViewBag.yrep = "checked";
+                }
+                if (item == "balancerep")
+                {
+                    ViewBag.balancerep = "checked";
+                }
+
+
+
+
+
+
+
             }
             //reports
             return View(SelectUser);
@@ -482,6 +543,10 @@ namespace SmartShop.Controllers
 
             bool trans = false;
             bool edittrans = false;
+            bool drep = false;
+            bool mrep = false;
+            bool yrep = false;
+            bool balancerep = false;
 
             if (!string.IsNullOrEmpty(formCollection["s"])) { s = true; }
             if (!string.IsNullOrEmpty(formCollection["sre"])) { sre = true; }
@@ -522,6 +587,11 @@ namespace SmartShop.Controllers
 
             if (!string.IsNullOrEmpty(formCollection["trans"])) { trans = true; }
             if (!string.IsNullOrEmpty(formCollection["edittrans"])) { edittrans = true; }
+
+            if (!string.IsNullOrEmpty(formCollection["drep"])) { drep = true; }
+            if (!string.IsNullOrEmpty(formCollection["mrep"])) { mrep = true; }
+            if (!string.IsNullOrEmpty(formCollection["yrep"])) { yrep = true; }
+            if (!string.IsNullOrEmpty(formCollection["balancerep"])) { balancerep = true; }
 
             string d = "";
             // bills
@@ -650,6 +720,26 @@ namespace SmartShop.Controllers
             {
                 d += "edittrans,";
             }
+
+            if (drep == true)
+            {
+                d += "drep,";
+            }
+            if (mrep == true)
+            {
+                d += "mrep,";
+            }
+            if (yrep == true)
+            {
+                d += "yrep,";
+            }
+            if (balancerep == true)
+            {
+                d += "balancerep,";
+            }
+
+
+
 
             //reports
             user.UserScreens = d;
