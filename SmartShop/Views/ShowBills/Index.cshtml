@@ -14,9 +14,12 @@
                     عرض و تعديل الفواتير
                 </h4>
             </div>
-            <div>
+        
 
-                <div class="radioChosse">
+
+
+            <div class="row">
+                <div class="col-12">
                     <h6>نوع الفاتورة   :</h6>
                     <select class="form-select " aria-label="Default select example" name="Bills" id="Bills">
                         <option value="0"> --الكل--</option>
@@ -24,32 +27,23 @@
                         <option value="مرتجع بيع">مرتجع بيع</option>
                         <option value="مشتريات">مشتريات</option>
                         <option value="مرتجع شراء">مرتجع شراء</option>
-
                     </select>
 
-                </div>
-
-                <div class="radioChosse">
                     <h6>الدفع  :</h6>
                     <select class="form-select me" aria-label="Default select example" name="CaShT" id="CaShT">
                         <option value="0">--الكل--</option>
-
                         <option value="آجـــــــل">آجـــــــل</option>
                         <option value="كـاش">كـاش</option>
-
                     </select>
-                  
+
+
+                    <h6>البحث بالتاريخ من :</h6>
+                    <input class="form-control " type="datetime-local" id="1234" />
+
+                    <h6>البحث بالتاريخ الي :</h6>
+                    <input class="form-control " type="datetime-local" id="123" />
 
                 </div>
-            </div>
-
-            <div class="fullWidth">
-                <h6>البحث بالتاريخ من :</h6>
-                <input class="form-control w-100" type="datetime-local" id="1234" />
-
-                <h6>البحث بالتاريخ الي :</h6>
-                <input class="form-control w-100" type="datetime-local" id="123" />
-
             </div>
 
             <button class="btn btn-primary" onclick="Show()">البحث</button>
@@ -80,17 +74,15 @@
 {
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 999999">
         <div id='toast-8270' class='toast p-2 bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'>
-            <div class='d-flex'>
-                <div class='toast-body'> <i class='icon-info-sign me-1'></i>@ViewBag.SuccessMessage </div> <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>
+
+            <div class='d-flex justify-content-between '>
+                <div class='toast-body'> <i class='icon-info-sign me-1'></i>@ViewBag.SuccessMessage </div> <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>
             </div>
         </div>
     </div>
     TempData["SuccessMessage"] = null;
 }
 
-<div id="divPDF">
-    <div id="printerDiv"><iframe id="frmPDF"></iframe></div>
-</div>
 
 @section scripts{
    

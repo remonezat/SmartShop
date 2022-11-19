@@ -10,7 +10,7 @@ namespace SmartShop.Controllers
 {
     public class ItemsController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Items
         public ActionResult Add()

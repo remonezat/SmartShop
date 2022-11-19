@@ -4,10 +4,9 @@
 @section title{  المصروفات   }
 
 
+
 <div class="col-10">
     <div class="container">
-
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -17,24 +16,20 @@
             </div>
 
 
-            <div class="fullWidth">
+            <div class="col-12 type ">
+
+                <h6>البحث بالبيان </h6>
                 <textarea class="form-control text-center" name="note" placeholder="البحث بالبيان ........" id="note" cols="30" rows="3"></textarea>
-            </div>
 
 
-
-            <div class="fullWidth">
+                
                 <h6>البحث بالتاريخ من :</h6>
-                <input class="form-control w-100 text-center" type="datetime-local"  id="datefrom" placeholder="البحث بالاسم ........" />
+                <input class="form-control w-100 text-center" type="datetime-local"  id="datefrom"  />
 
                 <h6>البحث بالتاريخ الي :</h6>
                 <input class="form-control w-100 text-center" type="datetime-local"  id="dateto" />
 
-            </div>
-
-
-
-
+              </div>
             <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
 
 
@@ -44,25 +39,17 @@
                     <tr>
                         <th>التارخ</th>
                         <th>المبلغ</th>
-
                         <th>البيان</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
-
-                <tbody id="datatable">
-                    
+                <tbody id="datatable">   
                 </tbody>
             </table>
-
         </div>
-
-
-
-
-
     </div>
 </div>
+
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
 
 @section scripts{

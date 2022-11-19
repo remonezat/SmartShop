@@ -4,9 +4,7 @@
 @section title{  تسجيل حساب جديد      }
 
 <div class="col-10">
-
     <div class="container">
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -21,71 +19,45 @@
                     <div class="col-6">
                         <h6>الاسم  </h6>
                         <input class="form-control text-center" required type="text" name="AccName" placeholder="........">
-
                     </div>
-
-
 
                     <div class="col-6">
                         <h6>الهاتف </h6>
                         <input class="form-control text-center"  type="text" name="AccPhone" placeholder="  ........">
+                    </div>
 
+                    <div class="col-12">
+                        <h6>العنوان </h6>
+                        <input class=" w-100 form-control text-center" name="AccAddress" type="text" placeholder="........................" />
+                    </div>
 
+                    <div class="col-12 type mb-4">
+                        <h6>نوع الحساب</h6>
+                        <div class="row ">
+                            <div class="col-4">
+                                <input type="radio" name="AccType" value="c" checked>
+                                <label for="">عميل</label>
+                            </div>
 
+                            <div class="col-4">
+                                <input type="radio" name="AccType" value="s" >
+                                <label for="">مورد</label>
+                            </div>
 
-
+                            <div class="col-4">
+                                <input type="radio" name="AccType" value="b">
+                                <label for="">عميل و مورد</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
-                <div class="fullWidth">
-                    <h6>العنوان </h6>
-                    <input class=" w-100 form-control text-center" name="AccAddress" type="text" placeholder="........................" />
-
-                </div>
-
-                <h6>نوع الحساب</h6>
-
-                <div class="row ">
-                    <div class="col-4">
-                        <input type="radio" name="AccType" value="c" checked>
-                        <label for="">عميل</label>
-                    </div>
-
-                    <div class="col-4">
-                        <input type="radio" name="AccType" value="s" >
-                        <label for="">مورد</label>
-                    </div>
-
-                    <div class="col-4">
-                        <input type="radio" name="AccType" value="b">
-                        <label for="">عميل و مورد</label>
-                    </div>
-                </div>
-
+                
                 <button class="btn btn-primary" type="submit">تسجيل</button>
 
             }
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
 <input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />

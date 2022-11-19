@@ -12,7 +12,7 @@ namespace SmartShop.Controllers
 
     public class EmployeesController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Employees
         public ActionResult Add()
@@ -229,5 +229,79 @@ namespace SmartShop.Controllers
             TempData["SuccessMessage"] = "تم تعديل  بنجاح ";
             return RedirectToAction("ShowDiscounts");
         }
-    }
+
+
+
+        public ActionResult PaySalary()
+        {
+            ViewBag.SuccessMessage = "Empty";
+            ViewBag.DeleteMessage = "Empty";
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            }
+            if (TempData["DeleteMessage"] != null)
+            {
+                ViewBag.DeleteMessage = TempData["DeleteMessage"];
+            }
+            ViewBag.Employees = db.Employees.ToList();
+            return View();
+        }
+        public JsonResult GetEmpWithdraw(DateTime Date,int ID = 0)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            if (ID > 0)
+            {
+                var EmpWithdraw = db.GetEmpWithdraw(ID,Date).ToList();
+                return Json(EmpWithdraw, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+            return Json(new SelectList(""), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetEmpDescount(DateTime Date, int ID = 0)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            if (ID > 0)
+            {
+                var EmpDescount = db.GetEmpDescount(ID, Date).ToList();
+                return Json(EmpDescount, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+            return Json(new SelectList(""), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult PaySalary(EmployeePayedSalary payedSalary)
+        {
+            var SelectIsPaied = db.CheckEmpPay(payedSalary.EmpId, payedSalary.Date).FirstOrDefault();
+            if (SelectIsPaied !=null)
+            {
+                TempData["DeleteMessage"] = " تم سداد قبض هذا الشهر لهذا الموظف من قبل ";
+
+                return RedirectToAction("PaySalary");
+            }
+
+            if (payedSalary.EmpId ==null)
+            {
+                TempData["DeleteMessage"] = " اختر الموظف اولا  !! ";
+
+                return RedirectToAction("PaySalary");
+
+            }
+            if (payedSalary.Amount <=0)
+            {
+                TempData["DeleteMessage"] = "لا يوجد رصيد للموظف ";
+
+                return RedirectToAction("PaySalary");
+            }
+            db.EmployeePayedSalaries.Add(payedSalary);
+            db.SaveChanges();
+            TempData["SuccessMessage"] = " تم السداد !! ";
+
+            return RedirectToAction("PaySalary");
+        }
+        }
 }

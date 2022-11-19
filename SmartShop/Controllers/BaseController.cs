@@ -11,7 +11,7 @@ namespace SmartShop.Controllers
 {
     public class BaseController : Controller
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -27,6 +27,9 @@ namespace SmartShop.Controllers
 
                     string[] strArray = SelectUserScreens.Split(',');
                     ViewBag.userscreens = strArray;
+                    ViewBag.username  = db.Users.Where(x => x.Id == UserIn.Id).Select(x => x.UserName).FirstOrDefault();
+                    ;
+
                 }
             }
         }

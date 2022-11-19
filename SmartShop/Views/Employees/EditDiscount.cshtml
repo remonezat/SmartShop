@@ -4,6 +4,9 @@
 }
 @section title{  خصومات الموظفين  }
 
+
+
+
 <div class="col-10">
 
     <div class="container">
@@ -17,65 +20,30 @@
             </div>
             @using (Html.BeginForm("EditDiscount", "Employees", FormMethod.Post))
             {
-                <div class="fullWidth">
-                    <h6>التاريخ :</h6>
-                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control  text-center", type = "datetime-local", required = "required" })
-
-                </div>
                 <div class="row">
+                    <div class="col-12">
+                        <h6>التاريخ :</h6>
+                        @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control  text-center", type = "datetime-local", required = "required" })
+                    </div>
+
                     <div class="col-6">
                         <h6>اسم الموظف</h6>
                         @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--اختر--", new { @class = "form-select text-center" })
-
-
                     </div>
 
-
-
-                    <div class="col-6  dept">
+                    <div class="col-6 ">
                         <h6>المبلغ   </h6>
                         @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control w-100 text-center", type = "number", min = "1", required = "required" } })
-
-
-
-
-
                     </div>
-                </div>
 
-
-                <div class="fullWidth">
-
-                    <h6>البيان </h6>
-
-                    @Html.TextAreaFor(model => model.Note, new { @class = "form-control text-center", type = "text", cols = "30", rows = "3", required = "required" })
+                    <div class="col-12">
+                       <h6>البيان </h6>
+                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control text-center", type = "text", cols = "30", rows = "3", required = "required" })
+                    </div>
                 </div>
 
                 <button class="btn btn-primary" type="submit">تعديل</button>
-
-
-
             }
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
-
-

@@ -3,9 +3,7 @@
 }
 @section title{عرض و تعديل الحسابات  }
 <div class="col-10">
-
     <div class="container">
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -14,56 +12,31 @@
                 </h4>
             </div>
 
-
-
-            <h6 for="">اسم الحساب</h6>
-
-            @Html.DropDownList("AccId", new SelectList(ViewBag.Accounts, "Id", "AccName"), "--الكل--", new { @class = "form-select text-center" })
-
+            <div class="row">
+                <div class="col-12">
+                    <h6 for="">اسم الحساب</h6>
+                    @Html.DropDownList("AccId", new SelectList(ViewBag.Accounts, "Id", "AccName"), "--الكل--", new { @class = "form-select text-center" })
+                </div>
+            </div>
 
             <button class="btn btn-primary" onclick="Show()">البحث</button>
-
 
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
                         <th>الاسم</th>
-
                         <th>رقم الهاتف</th>
-
                         <th>العنوان</th>
                         <th>نوع الحساب</th>
                         <th>العمليات </th>
-
-
-
                     </tr>
                 </thead>
 
                 <tbody id="datatable">
                 </tbody>
             </table>
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />

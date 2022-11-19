@@ -24,8 +24,12 @@
                     <input class="form-control" type="month" name="" id="Date">
                 </div>
 
-                <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
-                <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+                <div class="btns d-flex">
+
+                    <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+                    <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+
+                </div>
 
 
                 <table class="table table-bordered mt-4 ">
@@ -59,59 +63,79 @@
 
 
 
-            <div class="row account">
-                <div class="col-6 ">
+            <div class="row accountReport">
+                <div class="col-4 ">
                     <h6>مبيعات كاش</h6>
                     <input type="text" class="text-center" readonly name="" id="s">
-                    <br />
+                </div>
 
-                    <h6>
-                        مرتجع مبيعات كاش
-                    </h6>
+                <div class="col-4">
+                    <h6> مرتجع مبيعات كاش</h6>
                     <input type="text" class="text-center" readonly name="" id="sre">
 
-                    <br />
+                </div>
 
-
+                <div class="col-4">
                     <h6>
                         مشتريات كاش
                     </h6>
                     <input type="text" class="text-center" readonly name="" id="pur">
-                    <br />
+                </div>
+
+                <div class="col-4">
                     <h6>مرتجع مشتريات كاش</h6>
                     <input type="text" class="text-center" readonly name="" id="purre">
-                    <br />
+                </div>
+
+
+                <div class="col-4">
                     <h6>
                         مصروفات
                     </h6>
                     <input type="text" class="text-center" readonly name="" id="ex">
-                    <br />
+                </div>
 
 
+                <div class="col-4">
                     <h6>
                         مسحوبات موظفين
                     </h6>
                     <input type="text" class="text-center" readonly name="" id="empwith">
-                    <br />
+                </div>
 
+                <div class="col-4">
                     <h6>تحصيل عملاء</h6>
                     <input type="text" class="text-center" readonly name="" id="cust">
-                    <br />
+                </div>
+
+
+
+                <div class="col-4">
                     <h6>
                         سداد موردين
                     </h6>
                     <input type="text" class="text-center" readonly name="" id="sup">
-
-                    <br />
-
-                    <h6>
-                        الاجمالي
-                    </h6>
-                    <input type="text" class="text-center" readonly name="" id="total">
-
                 </div>
-            </div>
 
+
+                <div class="col-4">
+                    <h6>
+                        قبض موظفين
+                    </h6>
+                    <input type="text" class="text-center" readonly name="" id="payemp">
+                </div>
+
+
+
+            </div>
+            <div class="col-6 w-50 m-auto">
+
+                <h6>
+                    الاجمالي
+                </h6>
+                <input type="text" class="form-control text-center " readonly name="" id="total">
+
+            </div>
 
 
         </div>
@@ -150,7 +174,7 @@
             var cust = 0;
             var sup = 0;
             var total = 0;
-
+            var payemp = 0;
 
             $.get("/Reports/GetMonthReport",
                 { DateF: document.getElementById("Date").value },
@@ -198,8 +222,11 @@
                                 if (row.mov == "ex") {
                                     ex +=  row.debit;
                                 }
+                                
 
-
+                                if (row.mov == "payemp") {
+                                    payemp += row.debit;
+                                }
                                 $('#billtable').append("<tr ><td>" + row.typ + "</td><td>" + row.credit + "</td><td>" + row.debit + "</td><td>" + dateupdated.getHours() + ":" + dateupdated.getMinutes() + ":" + dateupdated.getSeconds() + "   " + dateupdated.getDate() + "/" + parseInt(dateupdated.getMonth() + 1) + "/" + dateupdated.getFullYear() + "</td><td>" + row.acc_name + "</td><td>" + row.nts + "</td></tr>");
 
 
@@ -207,7 +234,7 @@
                             }
 
                         });
-                    total = s + cust + purre - sre - ex - empwith - sup - pur;
+                    total = s + cust + purre - sre - ex - empwith - sup - pur - payemp;
                     document.getElementById("s").value = s;
                     document.getElementById("sre").value = sre;
                     document.getElementById("pur").value = pur;
@@ -217,6 +244,8 @@
                     document.getElementById("empwith").value = empwith;
                     document.getElementById("cust").value = cust;
                     document.getElementById("sup").value = sup;
+                    document.getElementById("payemp").value = payemp;
+
 
 
                     document.getElementById("total").value = total;

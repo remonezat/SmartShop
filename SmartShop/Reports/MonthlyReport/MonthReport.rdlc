@@ -459,7 +459,7 @@
         <Top>0.25801cm</Top>
         <Left>0.29104cm</Left>
         <Height>1.38897cm</Height>
-        <Width>28.17972cm</Width>
+        <Width>28.17974cm</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -788,7 +788,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(IIF(Fields!mov.Value = "empwith",(Fields!credit.Value),0))</Value>
+                <Value>=Sum(IIF(Fields!mov.Value = "empwith",(Fields!debit.Value),0))</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1046,7 +1046,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.04323in</Top>
+        <Top>3.41823in</Top>
         <Left>5.42091in</Left>
         <Height>0.36104in</Height>
         <Width>1.78106in</Width>
@@ -1069,7 +1069,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=ReportItems("s").Value+ReportItems("cust").Value+ReportItems("purre").Value-ReportItems("sre").Value-ReportItems("ex").Value-ReportItems("emp").Value-ReportItems("sup").Value-ReportItems("pur").Value</Value>
+                <Value>=ReportItems("s").Value+ReportItems("cust").Value+ReportItems("purre").Value-ReportItems("sre").Value-ReportItems("ex").Value-ReportItems("emp").Value-ReportItems("sup").Value-ReportItems("pur").Value-ReportItems("payemp").Value</Value>
                 <Style>
                   <FontSize>18pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1083,11 +1083,81 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.04323in</Top>
+        <Top>3.41823in</Top>
         <Left>2.83546in</Left>
         <Height>0.36104in</Height>
         <Width>2.52989in</Width>
         <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox20">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>قبض موظفين</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>2.58497in</Top>
+        <Left>9.15164in</Left>
+        <Height>0.36104in</Height>
+        <Width>1.78106in</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="payemp">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(IIF(Fields!mov.Value = "payemp", Fields!debit.Value, 0))</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>Red</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <Top>2.58497in</Top>
+        <Left>6.55231in</Left>
+        <Height>0.36104in</Height>
+        <Width>2.52989in</Width>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>

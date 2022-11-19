@@ -22,12 +22,12 @@
                 <div class="col-12">
                     <h6>المخزن/ المحل </h6>
                     @Html.DropDownList("stk_id", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
-
                 </div>
 
-                <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
-                <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
-
+                 <div class="btns d-flex mt-4">
+                        <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+                        <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+                    </div>
 
                 <table class="table table-bordered mt-4 ">
                     <thead>
@@ -39,40 +39,15 @@
                             <th>الرصيد</th>
                             <th>سعر الشراء</th>
                             <th>سعر البيع</th>
-
-
-
                         </tr>
                     </thead>
 
                     <tbody id="billtable">
                     </tbody>
                 </table>
-
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
     </div>
-
-
-
 </div>
 
 

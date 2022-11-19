@@ -9,7 +9,7 @@ namespace SmartShop.Controllers
 {
     public class PaymentsController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Payments
         public ActionResult PaymentSupplier()

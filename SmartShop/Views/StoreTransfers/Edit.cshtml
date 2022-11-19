@@ -17,17 +17,12 @@
                     </h4>
                 </div>
 
-                <!-- <input type="date">
-                <img src="images/icons8-search-50 1.png" alt=""> -->
-                <div class="fullWidth">
-                    <h6> التاريخ  :</h6>
-                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
-
-
-
-                </div>
-
                 <div class="row">
+                    <div class="col-12 ">
+                        <h6> التاريخ  :</h6>
+                        @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
+                    </div>
+
                     <div class="col-6">
                         @Html.DropDownList("StkFromId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
 
@@ -40,16 +35,6 @@
 
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
 
             </div>
 
@@ -65,20 +50,14 @@
                     </h4>
                 </div>
 
-
-
                 <div class="row">
                     <div class="col-6">
 
-
+                        <h6>اسم الصنف</h6>
                         <div class="staticWidth">
-                            <h6>اسم الصنف</h6>
                             <input class="form-control text-center" name="iname" id="iname" type="text" placeholder="اسم الصنف ........" />
-
                             <div class="hiddendiv" id="itemtable">
                                 <table class="table table-bordered mt-4">
-
-
                                     <tbody id="itemdata">
                                     </tbody>
                                 </table>
@@ -87,22 +66,16 @@
                         <input class="form-control" name="itemid" id="itemid" hidden />
 
 
-                        <h6>الكمية (المحل/المخزن)</h6>
-                        <input class="form-control text-center" readonly type="text" id="Quantity" />
+                       
                         <h6>عدد القطع</h6>
                         <input class="form-control text-center" id="itemquantity" type="number" placeholder="عدد القطع" />
 
                     </div>
 
                     <div class="col-6">
-
-
-
-
+                        <h6>الباركود</h6>
                         <div class="staticWidth">
-                            <h6>الباركود</h6>
                             <input class="form-control text-center" id="barcode" type="text" placeholder="الباركود  ........" />
-
                             <div class="hiddendiv">
                                 <table class="table table-bordered mt-4">
                                     <tbody id="itembarcodedata">
@@ -111,22 +84,13 @@
                             </div>
                         </div>
 
-
-
+                        <h6>الكمية (المحل/المخزن)</h6>
+                        <input class="form-control text-center" readonly type="text" id="Quantity" />
 
                     </div>
                 </div>
 
-
-
                 <button class="btn btn-primary" type="button" onclick="Bill()">اضافة</button>
-
-
-
-
-
-
-
             </div>
 
 
@@ -136,8 +100,6 @@
                         <tr>
                             <th>الصنف</th>
                             <th>الكمية</th>
-
-
                             <th>العمليات</th>
                         </tr>
                     </thead>
@@ -148,14 +110,10 @@
                             foreach (var item in ViewBag.transferDetails)
                             {
                                 <tr>
-
                                     <td>  @item.Name </td>
                                     <td><input type="number" id="@item.ID" onkeyup="QuantityChange(@item.ID)" class='form-control text-center' value="@item.Quantity" /></td>
-
                                     <td><a onclick='confirmation( @item.ID)'><i class='fas fa-trash text-danger text-size-sm'></i></a></td>
                                 </tr>
-
-
                             }
                         }
 
@@ -444,12 +402,13 @@
                             if (data != null) {
                                 if (row.ID == document.getElementById("itemid").value) {
                                     $('#Mes').empty();
-                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 me-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                         " </div ></div > ");
 
                                     return;
                                 }
+
 
                                 $('#Mes').empty();
                                 $('#Mes').append("<div id='toast-8270' class='toast p-2 text-dark bg-info border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"

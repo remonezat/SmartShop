@@ -30,8 +30,8 @@ namespace SmartShop.Models
         public Nullable<double> Total { get; set; }
         public Nullable<double> Descount { get; set; }
         public Nullable<double> Final { get; set; }
+        public Nullable<bool> ISConfirm { get; set; }
     
-        public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseReDetail> PurchaseReDetails { get; set; }
         public virtual Shift Shift { get; set; }

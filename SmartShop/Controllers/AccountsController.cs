@@ -11,7 +11,7 @@ namespace SmartShop.Controllers
 {
     public class AccountsController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Accounts
         public ActionResult Add()

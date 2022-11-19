@@ -10,7 +10,7 @@ namespace SmartShop.Controllers
 {
     public class EmployeeWithdrawController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: EmployeeWithdraw
         public ActionResult Add()

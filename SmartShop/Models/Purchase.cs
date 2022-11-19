@@ -14,6 +14,12 @@ namespace SmartShop.Models
     
     public partial class Purchase
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Purchase()
+        {
+            this.PurchaseDetails = new HashSet<PurchaseDetail>();
+        }
+    
         public int Id { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> AccId { get; set; }
@@ -24,9 +30,11 @@ namespace SmartShop.Models
         public Nullable<double> Total { get; set; }
         public Nullable<double> Descount { get; set; }
         public Nullable<double> Final { get; set; }
+        public Nullable<bool> ISConfirm { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual Shift Shift { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }
 }

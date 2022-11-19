@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Reporting.WebForms;
+using Newtonsoft.Json;
 using SmartShop.Models;
 using SmartShop.PublicClasses;
 using SmartShop.Utilites;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +14,7 @@ namespace SmartShop.Controllers
 {
     public class SalesController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Sales
         public ActionResult Add()
@@ -368,6 +370,11 @@ namespace SmartShop.Controllers
                 ProductsInCart = JsonConvert.DeserializeObject<List<BillDetails>>(Authentication.Decrypt(cookie2.Value));
 
                 if (ProductsInCart == null)
+                {
+                    return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
+
+                }
+                else if (ProductsInCart.Count == 0)
                 {
                     return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
 
@@ -820,6 +827,11 @@ namespace SmartShop.Controllers
                     return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
 
                 }
+               else if (ProductsInCart.Count == 0)
+                {
+                    return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
+
+                }
 
             }
             else
@@ -929,5 +941,118 @@ namespace SmartShop.Controllers
             return Json(new { isValid = true, message = "تم تعديل الفاتورة بنجاح " });
 
         }
+
+
+
+
+
+
+
+
+
+        public ActionResult ExportToPDFRoll(int ID)
+        {
+
+            if (ID > 0)
+            {
+                string RptPath;
+                ReportDataSource rds = new ReportDataSource();
+                ReportDataSource rds2 = new ReportDataSource();
+                ReportViewer rv = new ReportViewer();
+
+                var SelectBill = db.Sales.Where(x => x.Id == ID).FirstOrDefault();
+                var SelectBillDetails = db.SalesDetails.Where(x => x.InvId == ID).ToList();
+
+
+
+
+
+
+
+                List<BillData> Salesdata = new List<BillData>();
+                foreach (var item in SelectBillDetails)
+                {
+                    Salesdata.Add(new BillData()
+                    {
+                        iname = item.Item.ItemName,
+                        count = item.Count.ToString(),
+                        price = item.Price.ToString(),
+                        total = (item.Price * item.Count).ToString()
+
+                    });
+                }
+                DataTable BillDatadt = new DataTable();
+
+                BillDatadt.Columns.Add("iname", typeof(string));
+                BillDatadt.Columns.Add("count", typeof(string));
+                BillDatadt.Columns.Add("price", typeof(string));
+
+                BillDatadt.Columns.Add("total", typeof(string));
+
+                foreach (var item in Salesdata)
+                {
+                    BillDatadt.Rows.Add(item.iname, item.count, item.price, item.total);
+                }
+
+
+                rds.Name = "DataSet1";
+                rds.Value = BillDatadt;
+
+                RptPath = Server.MapPath(@"~\Reports\Bills\SalesBillA4.rdlc");
+
+                rv.ProcessingMode = ProcessingMode.Local;
+                rv.LocalReport.ReportPath = RptPath;
+
+
+
+
+
+                Microsoft.Reporting.WebForms.LocalReport rpt = new Microsoft.Reporting.WebForms.LocalReport();
+
+                /* Bind Here Report Data Set */
+                string filename = "فاتورة مبيعات " + ID + DateTime.Now.ToString() + ".pdf";
+                byte[] streamBytes = null;
+                string mimeType = "";
+                string encoding = "";
+                string filenameExtension = "";
+                string[] streamids = null;
+                Warning[] warnings = null;
+
+
+                // Add the new report datasource to the report.
+                rv.LocalReport.DataSources.Add(rds);
+
+
+                Response.Buffer = false;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                rv.LocalReport.EnableHyperlinks = true;
+
+
+                rv.LocalReport.Refresh();
+
+                streamBytes = rv.LocalReport.Render("PDF", null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
+                // This will download the pdf file
+                //return File(streamBytes, mimeType, filename);
+
+                //This will open directly the pdf file
+                string Agent = HttpContext.Request.Headers["User-Agent"].ToString();
+
+                //create and set PdfStamper  
+
+                if (Agent.Contains("Android"))
+                    return File(streamBytes, "application/pdf", filename);
+                else
+                    return File(streamBytes, "application/pdf");
+
+            }
+            return RedirectToAction("");
+
+
+        }
+
+
+
+
     }
 }

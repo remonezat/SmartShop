@@ -6,8 +6,6 @@
 
 <div class="col-10">
     <div class="container">
-
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -17,25 +15,20 @@
             </div>
             @using (Html.BeginForm("Add", "Expencess", FormMethod.Post))
             {
+                <div class="row">
+                    <div class="col-12">
+                        <h6>التاريخ</h6>
+                        <input class="form-control" type="datetime-local" name="Date" id="Date" />
 
-                <div class="fullWidth">
-                    <h6>التاريخ</h6>
-                    <input class="form-control  text-center" type="datetime-local" name="Date" id="Date" />
-
-                    <h6>المبلغ  </h6>
-                    <input class="form-control w-100 text-center" required type="number" value="0" min="1" name="Amount" placeholder="................." />
-                    <h6>البيان</h6>
-
-                    <textarea class="form-control text-center" required name="Note" placeholder="  ..............." id="" cols="30" rows="3"></textarea>
-
+                        <h6>المبلغ  </h6>
+                        <input class="form-control" required type="number" value="0" min="1" name="Amount" placeholder="................." />
+                        
+                        <h6>البيان</h6>
+                        <textarea class="form-control" required name="Note" placeholder="  ..............." id="" cols="30" rows="3"></textarea>
+                    </div>
                 </div>
-
-
                 <button class="btn btn-primary" type="submit">تسجيل</button>
-
             }
-
-
         </div>
     </div>
 </div>

@@ -1,182 +1,351 @@
-.list .card {
-  position: relative;
-  top: -52px;
-  right: 40%;
-}
-
-.collapse-horizontal {
-  height: 0px;
-}
 
 .row {
-  margin: 0;
-}
+    margin: 0;
+  }
 
-.col-2 .userName {
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 31px;
-  /* identical to box height */
-  margin: 20px 0;
-
-  color: #000000;
-}
-
-.list {
-  height: 100vh;
-  padding-left: 30px;
-  position: fixed;
-  z-index: 9 !important;
-
-}
-
-.list .card {
-  position: relative;
-  top: -52px;
-  right: 60%;
-  background: #FFFFFF;
-box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
-border-radius: 9px 0px 0px 9px;
   
-}
+nav{
+    background: #FFFFFF;
+  box-shadow: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+  
+  nav a{
+    text-decoration: none;
+  
+  }
 
-.collapse-horizontal {
-  height: 0px;
-}
+  nav .logo img{
+    width: 70%;
+  
+  }
+  nav h3{
+    color: #000000;
+    margin: auto;
+    margin-left: 30px;
+    font-family: 'Almarai';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 31px;
+    /* identical to box height */
+    
+    
+    color: #064BC9;
 
-.list .one {
-  margin-bottom: 35px;
-}
+  } 
 
-.list .one ul{
-  padding: 0;
-  text-align: center;
-}
+  nav .user svg{
+   font-size: 30px;
+   margin: auto;
+    margin-left: 10px;
+    transform: rotate(180deg);
+    color: #064BC9;
+    cursor: pointer;
+  } 
 
-.list .one li {
-  font-family: 'Almarai';
-font-style: normal;
-font-weight: 700;
-font-size: 28px;
-line-height: 31px;
-/* identical to box height */
-list-style: none;
-margin: 10px 0;
-color: #6A6A6A;
-padding: 5px 0;
-}
+  .col-2 {
+    box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+    border-radius: 9px 0px 0px 9px;
+    min-height: 100vh;
+  width: 17%;
+  transition: width 0.5s;
+    
+  }
 
-.list .one li:hover {
-background-color: #064BC9;
-color: #FFFFFF;
-/* width: 100%; */
+  .col-10{
+    width: 80%;
+    margin-top: 100px;
+  }
 
-
-}
-
-.list .one button {
-  background-color: #fff;
-  border: none;
-
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 31px;
-  /* identical to box height */
-
-  color: #6a6a6a;
-}
-/* .col-10 {
-    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); 
-    border-radius: 50px 0px 0px 50px;
-    height: 1000px;   
-    padding: 0%;
-  } */
-
-.col-2 {
+  .col-2.foo {
+    width: 100px;
+  }
+  
+  .col-2 .userName {
+    font-family: "Almarai";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 31px;
+    /* identical to box height */
+    margin: 20px 0;
+    color: #000000;
+  }
+  
+  
+  .col-2 .arrow{
+    color:  #094ECA;
+  }
+  
+  .list {
+    margin-top: 100px;
+    min-height: 100vh;
+    padding-left: 30px;
+    position: fixed;
+    z-index: 9 !important;
+  }
+  
+  .list .one {
+  margin-bottom: 25px;
+    /* position: relative; */
+    
+  
+  }
+  
+   .list .one a .d-inline-block{
+    display: inline-block;
+    width: 100% !important ;
+    padding: 10px 10px;
+    margin-left: 12px;
+    margin-right: 12px ;
+   }
+  
+  .list .one .active .leftblue{
+    display: inline-block;
+    width: 15px;
+    height: 50px;
+    background-color: #064bc9;
+    border-radius: 0px 9px 9px 0px;
+  }
+  
+  .list .one .active .rightblue{
+    display: inline-block;
+    width: 15px;
+    height: 50px;
+    background-color: #064bc9;
+    border-radius: 9px 0px 0px 9px;
+  }
+  
+  
+  
+  .list .dropdown-menu{
+    position: absolute;
+    width: fit-content;
+    top: -100% !important;
+    right: 100% !important;
+    background: #FFFFFF;
   box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
   border-radius: 9px 0px 0px 9px;
-  min-height: 100vh;
-}
+  z-index: 99999;
+  text-align: center !important;
+  inset: 0;
+  }
+  
+  .list .lastinList{
+    top: -150px !important;
+  z-index: 99999999999999999;
 
-.searchbar {
-  justify-content: space-between;
-  margin: 30px;
-}
+  }
+  
+  
 
-.searchbar .date {
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 31px;
+  .list .one ul{
+    padding: 0;
+    text-align: center !important;
+  }
+  
+  
+  
+  .list .one .dropdown-item:hover {
+  background-color: #064BC9 !important;
+  color: #FFFFFF;
+  /* width: 100%; */
+  
+  
+  }
+  
+  .list .one a {
+  
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 100% !important; 
+    display: flex !important;
+    justify-content: space-between !important;
+    font-family: "Almarai";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 31px;
+    color: #6a6a6a;
+  }
+  
+  .list .one a .d-inline-block{  
+    display: flex !important;
+    justify-content: space-between !important;
+   
+  }
 
-  color: #6a6a6a;
-}
-
-.searchbar input {
-  background: rgba(6, 75, 201, 0.25);
+  .list .one a .d-inline-block p{  
+margin: 0;
+   
+  }
+  
+  .list .active .d-inline-block{
+    background-color: #064BC9;
   border-radius: 9px;
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 31px;
-
-  color: #6a6a6a;
-  border: none;
-}
-
-.searchbar .search img {
-  position: relative;
-  left: 50px;
-
-  width: 30px;
-  margin-block-start: -8px;
-}
-
+  color: #FFF;
+  }
+  
+  
+  
+  .list  a svg{
+    padding-left: 4px;
+    margin: 0 3px;
+  /* color: #FFF; */
+  margin-block-start: 5px !important; 
+  
+  }
+  
+  .list .active a svg{
+    /* padding-left: 10px; */
+    margin: 0 3px;
+  color: #FFF;
+  
+  
+  }
+  
+  
+  .homepage{
+    background-image: url('../images/My project-1 (2).png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 150%;
+  }
+ 
+  
 .form {
-  padding: 27px 21px;
-  background: #ffffff;
+    padding: 27px 21px;
+    background: #ffffff;
+    box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+    border-radius: 9px;
+    /* min-height: 80vh; */
+  }
+
+  .form .formTitle h4 {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    /* identical to box height */
+  
+    color: #000000;
+    margin-bottom: 70px;
+  }
+
+
+  .form .form-control {
+    width: 100% ;
+    display: inline-block;
+    /* margin-right: 70px; */
+    margin-bottom: 30px;
+    background: #ffffff;
+    box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+    border-radius: 9px;
+    font-family: "Almarai";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 38px;
+    /* identical to box height */
+    color: #6a6a6a;
+    text-align: center;
+  }
+
+  .form .form-select {
+    /* background: #FFFFFF; */
   box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
   border-radius: 9px;
-  /* min-height: 80vh; */
-}
-.form .formTitle h4 {
-  font-family: "Tajawal";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 41px;
-  /* identical to box height */
+  width: 100%;
+    border: none;
+    margin-bottom: 30px;
+    background-position: left 2rem center;
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 41px;
+    color: #6A6A6A;
+    text-align: center;
 
-  color: #000000;
-  margin-bottom: 70px;
-}
+  }
 
- .form-control {
-  width: 40% ;
-  display: inline-block;
-  margin-right: 70px;
-  margin-bottom: 30px;
-  background: #ffffff;
-  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
-  border-radius: 9px;
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 38px;
-  /* identical to box height */
+  .form .dept .form-control{
+    width: 88%;
+  }
 
-  color: #6a6a6a;
-}
+  .form h6{
+    font-family: 'Almarai';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 38px;
+/* margin-right: 20px; */
+margin-bottom: 20px;
+color: #000000;
+  }
 
- .btn {
-  background: #064bc9;
+
+  .form .img{
+    display: inline-block;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+    border-radius: 9px;
+  /* border: 1px dashed #DC1C22; */
+  /* border-radius: 20px; */
+  padding-bottom:150px;
+  text-align: center;
+  width: 100%;
+  /* margin-right:50px; */
+  position: relative;
+  border: #064BC9 1px dashed;
+  top: 0px;
+  
+  }
+  
+  
+  .form  .imgoutput{
+    /* background-color: #000000 !important; */
+    position: absolute !important;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    bottom: -16px;
+    border-radius: 20px;
+   
+  
+  }
+  .form  .imgoutput img{
+    border-radius: 20px;
+  
+    width: fit-content;
+    height:100%;
+  }
+  
+   
+  
+  
+  .form  input[type='file'] {
+  text-align: center;
+    display: none;
+  
+  } 
+
+  .form .dept label{
+    font-family: 'Almarai';
+    font-style: normal;
+    font-size: 20px;
+  }
+
+   .btn-primary{
+    background: #064bc9;
   box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
   border-radius: 9px;
   font-family: "Almarai";
@@ -189,398 +358,259 @@ color: #FFFFFF;
   display: block;
   margin: auto;
   padding: 15px 180px;
-}
-
-.form .form-select {
-  /* background: #FFFFFF; */
-box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
-border-radius: 9px;
-width: 88%;
-margin: auto;
-  border: none;
-  margin-bottom: 30px;
-  background-position: left 2rem center;
-  font-family: "Tajawal";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 41px;
-  color: #6A6A6A;
-}
-
-.form .fullWidth .form-control {
-  width:88% !important;
+  }
   
-}
 
-
-
-.form .col-6 .form-control {
-  width:80% !important;
-  margin-right:45px !important ;
-}
-
-.form .col-6 .form-select {
-  width:80% !important;
-  margin-right:50px !important ;
-}
-
-.form .fullWidth img {
-  position: relative;
-  left: 60px;
-  margin-block-end: 12px;
-}
-
-.form .all input{
-  margin-right: 70px;
-  margin-bottom: 40px;
-  width: 20px !important;
-  height: 20px !important;
-  display: inline-block !important;
-}
-
-
-
-.form  label{
-  font-family: 'Almarai';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 38px;
-  /* identical to box height */
-  
-  
-  color: #6A6A6A;
-}
-
-
-table {
-  font-family: "Almarai";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 25px;
-  /* identical to box height */
-  border-color:#000000;
-  color: #000000;
-}
-
-tr{
-  border-top-style: none !important;
-
-}
-
-tr th{
-  border-top-style: none !important;
-
-  border: #000000 2px solid !important;
-}
-td{
-  /* border-top-style: none !important; */
-  border-width: 2px !important;
-  color: #000000;
-
-}
-
-tbody{
-  border-width: 2px !important;
-  border-color:#000000
-}
-
-table input{
-  width: 20px;
-  height: 20px;
-}
-
-table button{
-  background-color: #fff;
-
-}
-
-
-.form .row .form-control {
-  width: 90% ;
-}
-
-.btns .btn{
-  display: inline;
-  margin-right:70px ;
-
-}
-
-
-.rotate{
-  transform: rotate(90deg);
-}
-
-.form h6{
-  font-family: 'Almarai';
-font-style: normal;
-font-weight: 700;
-font-size: 25px;
-line-height: 38px;
-/* identical to box height */
-color: #000000;
-margin-right: 70px;
-margin-bottom: 20px;
-}
-
-.form .radioChosse h6{
-  display: inline-block;
-  margin-left: 60px;
-}
-
-.form .radioChosse label{
-  margin-left: 100px;
-}
-
-.radioChosse  .form-select{
-  display: inline-block;
-  width: 30%;
-}
-
-.radioChosse .me{
-  margin-right: 62px;
-}
-
-.form .add{
-  display: inline-block;
-  margin-right: 90px;
-  margin-bottom: 30px;
-}
-
- .add h6{
-  display: inline-block;
-  margin-right: 0;
-}
-
- .add svg{
-  font-size: 30px;
-  background: #FFFFFF;
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-
-.total {
-  margin: 65px ;
-padding: auto;
-  
-}
-.total h6{
-  display: inline-block;
-
-  font-family: 'Almarai';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 38px;
-  /* identical to box height */
-  color: #000000;
-}
-
-.total input{
-width: 10% !important;
-margin-left: 100px;
-margin-right: 26px;
-}
-
-
-
-
-
- .img{
-  display: inline-block;
-  background: #FFFFFF;
-  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
-  border-radius: 9px;
-/* border: 1px dashed #DC1C22; */
-/* border-radius: 20px; */
-padding-bottom:120px;
-text-align: center;
-width: 80%;
-margin-right:50px;
-position: relative;
-top: 0px;
-
-}
-
-
-.imgoutput{
-  /* background-color: #000000 !important; */
-  position: absolute !important;
-  top: 0%;
-  right: 0%;
-  left: 0%;
-  bottom: -16px;
-  border-radius: 20px;
- 
-
-}
-.imgoutput img{
-  border-radius: 20px;
-
-  width: fit-content;
-  height:100%;
-}
-
- 
-
-
- input[type='file'] {
-text-align: center;
-  display: none;
-
-} 
-
-
-
-.showTable{
-  width: 88%;
-  margin: auto;
-  justify-content: space-between;
-  border-bottom: 2px solid #000000;
-}
-
-.showTable svg{
- font-size: 30px;
- margin-block-start: 20px;
-}
-
-
-.showTable .up{
-display: none;
-}
-
-
-.hiddenTable{
-  display: none;
-}
-
-
-.popup {
-  width: 40%;
-  margin: auto;
-  background: #FFFFFF;
-border: 3px solid #064BC9;
-box-shadow: 0px 4px 4px rgba(245, 245, 245, 0.65);
-border-radius: 16px;
-text-align: center;
-position: fixed;
-top:30%;
-right:30%;
-z-index: 999;
-display: none;
-
-}
-
-.popup .form-control {
-width: 20% !important;
-  text-align: center;
-  margin-right: 8px;
-}
-
-.popup label{
-  font-family: 'Almarai';
+  .account h5{
+    font-family: 'Almarai';
 font-style: normal;
 font-weight: 700;
 font-size: 20px;
-line-height: 38px;
-/* identical to box height */
-
+line-height: 35px;
 text-align: right;
-
 color: #000000;
-}
+  }
 
-.popup  h6{
-font-family: 'Tajawal';
+  .account input{
+    background: #FFFFFF;
+box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+border-radius: 9px;
+border: none;
+margin-bottom: 20px;
+  }
+
+  .account label{
+    font-family: 'Almarai';
+    font-style: normal;
+    font-size: 20px;
+  }
+
+  
+
+  
+  .type label{
+    font-family: 'Almarai';
 font-style: normal;
 font-weight: 700;
 font-size: 30px;
-line-height: 41px;
+line-height: 38px;
 /* identical to box height */
 
-text-align: right;
+margin-right: 12px;
 
 color: #000000;
-}
+  }
 
-.popup .btn {
-  padding: 5px 150px;
-  margin-bottom: 10px;
-}
-
-.popup .sale{
-  display: none;
-}
-
-
-.cover{
-  width: 100%;
-  height: 100vh; 
-  background: #0000008b;
-  position: fixed;
-  z-index: 99;
-  display: none;
-}
-
-.inventory {
-  display: inline-block;
-  width: 50%;
-
-}
-
-.inventory select{
-  width: 40% !important;
-  display: inline-block;
-  margin: 0;
-}
-
-.inventory label{
-  margin-left: 10px !important;
-}
-
-.staticWidth{
-  position: relative;
-}
-
-.hiddendiv{
-  position: absolute;
-  top: 55px;
-  display:none ;
-  background: rgb(185, 33, 33);
-  box-shadow: rgb(6 75 201 / 25%) 4px 4px 4px 4px;
-  width: 90%;
-  margin-right:70px ;
-  height: 150px;
-  overflow-y: scroll;
-
-}
-
-.dept .form-control{
-  width: 70% !important;
-}
-
-
-
-.account h6{
-  display: inline-block;
-  margin-right: 40px;
-
-}
-
-.account input{
+  .type input[type='checkbox']{
+    padding: 15px;
+    margin-bottom: 30px;
+  }
   
-  background: #FFFFFF;
+
+  .choose label{
+    font-family: 'Almarai';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    margin-right: 12px;
+    line-height: 38px;
+    /* identical to box height */
+    text-align: right;
+    color: #6A6A6A;
+  }
+
+  .staticWidth{
+    position: relative;
+  }
+
+  .hiddendiv{
+    position: absolute;
+    top: 80%;
+    display:none ;
+    background: rgb(185, 33, 33);
+    box-shadow: rgb(6 75 201 / 25%) 4px 4px 4px 4px;
+    width: 90%;
+    /* margin-right:70px ; */
+    height: 150px;
+    overflow-y: scroll;
+  
+  }
+
+  
+.form .add{
+ margin:75px 70px 30px;
+
+    
+    
+  }
+  
+
+   .add h6{
+    display: inline-block;
+    margin-right: 0;
+  }
+  
+   .add svg{
+    font-size: 30px;
+    background: #FFFFFF;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+
+  
+.total {
+    width: 60%;
+    margin:20px auto;
+  }
+  .total h6{
+    display: inline-block !important;
+    font-family: 'Almarai';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 38px;
+    /* identical to box height */
+    color: #000000;
+  }
+  
+  .total input{
+  width: 15% !important;
+  margin-left: 30px;
+  margin-right: 26px;
+  /* width: 100% ; */
+  display: inline-block;
+  /* margin-right: 70px; */
+  margin-bottom: 30px;
+  background: #ffffff;
   box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
   border-radius: 9px;
-  border: none;
-float: left;
-padding: 5px;
-margin-left: 50px;
-}
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 38px;
+  /* identical to box height */
+  color: #6a6a6a;
+  }
 
+
+
+  table {
+    font-family: "Almarai";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 25px;
+    /* identical to box height */
+    border-color:#000000;
+    color: #000000;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+table button{
+    padding:0;
+    background-color:transparent;
+    border:none;
+}
+    table .form-control{
+    width: 30% !important;
+    margin-bottom: 0 !important;
+
+  }
+
+
+  
+.popup {
+    width: 100%;
+    margin: auto;
+  
+  text-align: center;
+  
+ 
+ 
+  
+  }
+  
+  .popup .form-control {
+  width: 40% !important;
+    text-align: center;
+    margin-right: 8px;
+    display:inline-block
+  }
+  
+  .popup label{
+    font-family: 'Almarai';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 38px;
+  /* identical to box height */
+  
+  text-align: right;
+  
+  color: #000000;
+  }
+  
+  .popup  h6{
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 41px;
+  /* identical to box height */
+  
+  text-align: right;
+  
+  color: #000000;
+  }
+  
+  .popup .btn {
+    padding: 5px 150px;
+    margin-bottom: 10px;
+  }
+  
+  .popup .sale{
+    display: none;
+  }
+  
+  
+  .cover{
+    width: 100%;
+    height: 100vh; 
+    background: #0000008b;
+    position: fixed;
+    z-index: 99;
+    display: none;
+  }
+  
+
+  
+.showTable{
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+    border-bottom: 2px solid #000000;
+  }
+  
+  .showTable svg{
+   font-size: 30px;
+   margin-block-start: 20px;
+  }
+  
+  
+  .showTable .up{
+  display: none;
+  }
+  
+  
+  .hiddenTable{
+    display: none;
+  }
+  
+  
+  
 .abilities h6{
   display: inline-block;
 }
@@ -606,6 +636,8 @@ margin-left: 50px;
   
   font-size: 30px;
   margin-block-start: 20px;
+  cursor: pointer;
+
 }
 
 #bills .up,#expensess .up,#employee .up,#accounts .up,#items .up,#transaction .up,#reports .up{
@@ -634,10 +666,7 @@ margin-left: 50px;
 }
 
 
-.col-4 input{
- margin: 0 80px 0px 10px;
 
-}
 
 .login{
   background: #FFFFFF;
@@ -684,7 +713,6 @@ color: #000000;
 }
 .loginForm .btn{
   padding: 15px 100px;
-  
 }
 
 .loginForm .form-control{
@@ -692,4 +720,542 @@ width: 80%;
 margin:30px  auto;
 }
 
+.loginCv{
+  background-image:url('../images/My\ project-1\ \ \(2\).jpg') ;
+  background-position: center ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+
+.accountReport h6{
+  display: inline-block;
+  font-size: 20px;
+}
+
+.accountReport input{
+  width: 50% ;
+ 
+  
+  /* width: 100% ; */
+  display: block;
+  /* margin-right: 70px; */
+  border: none;
+  margin-bottom: 30px;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px 4px rgba(6, 75, 201, 0.25);
+  border-radius: 9px;
+  font-family: "Almarai";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 38px;
+  /* identical to box height */
+  color: #6a6a6a;
+}
+
+
+.billbtn {
+    border: 1px solid #064bc9 !important;
+    background: #fff !important;
+    color: #064bc9 !important;
+    padding: 10px 30px;
+
+}
+
+
+@media all and (min-width: 1024px) and (max-width: 1300px) {
+    .col-2 {
+    width: 20% ;    
+    }
+
+    nav h3{
+      margin-left: 30px;
+      font-size: 28px;
+      line-height: 31px;      
+      color: #064BC9;
+    } 
+  
+    nav .user svg{
+     font-size: 30px;
+  
+      margin-left: 10px;
+    
+    }  
+    .col-10{
+      width: 80% ;    
+    }
+    .list .one a {
+      font-size: 16px;
+    }
+
+
+    .form h6{
+      font-size: 26px;
+      line-height: 38px;
+      margin-bottom: 20px;
+        }
+
+    .bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+      font-size: 22px !important;
+    
+    }
+}
+@media all and (min-width: 900px) and (max-width: 1024px) {
+
+  .col-2 {
+    width: 21% ;    
+    }
+    .col-10{
+      width: 79% ;    
+    }
+    .list .one a {
+      font-size: 14px;
+    }
+
+    .bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+      font-size: 18px !important;
+    
+    }
+}
+
+@media all and (min-width:768px) and (max-width: 900px) {
+
+  .col-2 {
+    width: 25% ;    
+    }
+    .col-10{
+      width: 75% ;    
+    }
+    .list .one a {
+      font-size: 14px ; 
+    }
+
+    .bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+      font-size: 12px !important;
+    
+    }
+}
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  
+  .form .formTitle h4 {
+    font-size: 28px;
+    line-height: 41px;
+    margin-bottom: 70px;
+  }
+
+
+  .form .form-control {
+    width: 100% ;
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 38px;
+  }
+
+  .form .form-select {
+    margin-bottom: 30px;
+    font-size: 25px;
+    line-height: 41px;
+  }
+
+  .form .dept .form-control{
+    width: 85%;
+  }
+
+  .form h6{
+font-size: 25px;
+line-height: 38px;
+margin-bottom: 20px;
+  }
+
+
+  .type .col-4 label{
+    font-size: 20px;
+  }
+  #bills,#expensess,#employee,#accounts,#items,#transaction,#reports svg{
+  
+    font-size: 20px;
+   
+  
+  }
+
+  h3{
+    font-size: 16px;
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .col-2 {
+    width: 16% !important;    
+    }
+  
+
+    .col-2.foo {
+      width: 70%;
+    }
+  
+    .col-2 p{
+      display: none ;
+    }
+  
+    .col-2 .arrow{
+      display: none !important;
+  
+    }
+  
+    .col-2 .rightblue{
+      display: none !important;
+  
+    }
+  
+    .col-2 .leftblue{
+      display: none !important;
+  
+    }
+
+    
+    nav h3{
+      margin-left: 20px;
+      font-size: 28px;
+      line-height: 31px;      
+      color: #064BC9;
+    } 
+  
+    nav .user svg{
+     font-size: 20px;
+  
+      margin-left: 10px;
+    
+    }  
+    
+    .form .formTitle h4 {
+      font-size: 34px;
+      line-height: 41px;
+      margin-bottom: 70px;
+    }
+  
+    .form .col-6{
+      width: 100%;
+    }
+  
+    .form .form-control {
+      width: 100% ;
+      margin-bottom: 30px;
+      font-size: 20px;
+      line-height: 38px;
+    }
+  
+    .form .form-select {
+      margin-bottom: 30px;
+      font-size: 25px;
+      line-height: 41px;
+    }
+  
+    .form .dept .form-control{
+      width: 85%;
+    }
+  
+    .form h6{
+  font-size: 20px;
+  line-height: 38px;
+  margin-bottom: 20px;
+    }
+
+
+    .type .col-4{
+      width: 100%;
+    }
+  
+    .type .col-4 label{
+      font-size: 20px;
+    }
+
+    .btn-primary{
+      font-size: 18px;
+      line-height: 31px;
+      padding: 7px 50px;
+      }
+
+
+    .bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+      font-size: 14px !important;
+    
+    }
+  
+    .bills input,.expensess input,.employee input,.accounts input,.items input,.transaction input,.reports input{
+    
+      margin-right: 0px;
+      margin-left: 10px;
+    
+    }
+
+    #bills,#expensess,#employee,#accounts,#items,#transaction,#reports svg{
+  
+      font-size: 16px;
+     
+    
+    }
+
+
+    table {
+        display: block;
+        font-size: 18px;
+    }
+
+
+        table .form-control {
+            width: 100% !important;
+            margin-bottom: 0 !important;
+            font-size: 12px;
+        }
+  
+    h3{
+      font-size: 14px;
+    }
+
+    .choose .col-3{
+      width: 100%;
+    }
+  
+    .choose .col-3 label{
+      font-size: 20px;
+    }
+    .choose .col-4{
+      width: 100%;
+    }
+    .accountReport .col-4{
+      width: 100%;
+    }
+    
+
+}
+
+@media all and (max-width: 480px) {
+
+  nav .logo {
+    width: 50%;
+  }
+  nav .logo img{
+    width: 70%;
+  }
+  .col-2 {
+  width: 16% !important;    
+  }
+
+  .col-10{
+ 
+    margin-top: 60px;
+  }
+
+  .col-2.foo {
+    position: fixed;
+    z-index: 999999999999999999999999 !important;
+    width: 45% !important;
+    background-color: #FFF;
+  }
+
+  .col-2 p{
+    display: none ;
+  }
+
+  .col-2 .arrow{
+    display: none !important;
+
+  }
+
+  .col-2 .rightblue{
+    display: none !important;
+
+  }
+
+  .col-2 .leftblue{
+    display: none !important;
+
+  }
+
+  .list {
+margin-top: 70px;
+
+  }
+  
+  .list .one a .d-inline-block{
+    margin: 0;
+    padding: 5px 5px;
+   width: 55% !important;
+
+  }
+
+  .foo .list .one a .d-inline-block{
+    
+   width: 100% !important;
+
+  }
+
+  
+  nav h3{
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 31px;      
+    color: #064BC9;
+  } 
+
+  nav .user svg{
+   font-size: 16px;
+
+    margin-left: 10px;
+  
+  }  
+  
+
+  .form .formTitle h4 {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 50px;
+  }
+
+  .form .col-6{
+    width: 100%;
+  }
+
+  
+  .form .form-control {
+    
+    font-size: 16px;
+ 
+  }
+
+  .form .form-select {
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 41px;
+  }
+
+  .form .dept .form-control{
+    width: 70%;
+  }
+
+  .form h6{
+font-size: 16px;
+line-height: 38px;
+margin-bottom: 20px;
+  }
+
+
+  .type .col-4{
+    width: 100%;
+  }
+
+
+  .type .col-4 label{
+    font-size: 20px;
+  }
+  .btn-primary{
+  font-size: 16px;
+  line-height: 31px;
+  padding: 7px 30px;
+  }
+
+
+  .form .add{
+    margin:20px 0px ;
+
+     }
+  
+
+
+  .bills h6,.expensess h6,.employee h6,.accounts h6,.items h6,.transaction h6,.reports h6{
+  
+    font-size: 10px !important;
+  
+  }
+
+  .bills input,.expensess input,.employee input,.accounts input,.items input,.transaction input,.reports input{
+  
+    margin-right: 0px;
+    margin-left: 10px;
+  
+  }
+
+  #bills,#expensess,#employee,#accounts,#items,#transaction,#reports svg{
+  
+    font-size: 12px;
+   
+  
+  }
+
+  h3{
+    font-size: 14px;
+  }
+
+
+  .account .col-7{
+    width: 100%;
+  }
+
+  .account .dept input{
+    width: 65%;
+  }
+
+  .account .col-5{
+    width: 100%;
+  }
+
+  .choose .col-3{
+    width: 100%;
+  }
+
+  .choose .col-3 label{
+    font-size: 20px;
+  }
+  .choose .col-4{
+    width: 100%;
+  }
+
+  
+
+  table {
+    display:block;
+    font-size: 18px;
+
+  }
+  
+
+  table .form-control{
+    width: 100% !important;
+    margin-bottom: 0 !important;
+font-size: 12px;
+  }
+
+  .total {
+    width: 90%;
+    margin:20px auto;
+  }
+  .total h6{
+   
+    font-size: 16px;
+   
+  }
+  
+  .total input{
+  width: 40% !important;
+  margin-left: 0px;
+  margin-right: 5px;
+  font-size: 12px;
+  }
+
+  .accountReport .col-4{
+    width: 100%;
+  }
+
+  .accountReport .col-4 input{
+    width: 40%;
+  }
+
+
+}
 

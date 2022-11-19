@@ -24,33 +24,50 @@
                     </h4>
                 </div>
 
-                <div class="fullWidth">
-                    <h6>التاريخ :</h6>
-                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
 
-                </div>
-
-                <div class="radioChosse">
-                    <h6>الفرع :</h6>
-                    <input type="checkbox" name="Place" id="Place" @ViewBag.stk />
-                    <label for="">محل</label>
-
-                    <div class="inventory ">
-
-                        <label for="">مخزن </label>
-                        @Html.DropDownList("StkId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--اختر--", new { @class = "form-select text-center me-5 ", required = "required" })
-
+                <div class="row">
+                    <div class="col-12">
+                        <h6>التاريخ :</h6>
+                        @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control  text-center", type = "datetime-local", required = "required" })
                     </div>
+
+                    <div class="col-12 choose">
+                        <div class="row">
+                            <div class="col-3">
+                                <h6>الفرع :</h6>
+                            </div>
+
+                            <div class="col-3">
+                                <input type="checkbox" name="Place" id="Place" @ViewBag.stk />
+                                <label for="">محل</label>
+                            </div>
+
+                            <div class="col-4">
+                                @Html.DropDownList("StkId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--اختر المخزن--", new { @class = "form-select text-center me-5 ", required = "required" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 choose">
+                        <div class="row">
+                            <div class="col-3">
+                                <h6>الدفع  :</h6>
+                            </div>
+
+                            <div class="col-3">
+                                <input type="radio" id="isCash" name="isCash" value="0" @ViewBag.PayoptionNoCash />
+                                <label for="">اجل </label>
+                            </div>
+
+                            <div class="col-3">
+                                <input type="radio" id="isCash" name="isCash" value="1" @ViewBag.PayOptionCash />
+                                <label for="">نقدي </label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="radioChosse">
-                    <h6>الدفع :</h6>
-                    <input type="radio" id="isCash" name="isCash" value="0"@ViewBag.PayoptionNoCash />
-                    <label for="">اجل </label>
-
-                    <input type="radio" id="isCash" name="isCash" value="1" @ViewBag.PayOptionCash />
-                    <label for="">نقدي </label>
-                </div>
             </div>
 
             <div class="form mt-5">
@@ -64,39 +81,33 @@
 
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 dept">
+                        <h6>اسم العميل</h6>
                         <div class="staticWidth">
-                            <h6>اسم العميل</h6>
                             <input class="form-control text-center" name="custname" id="custname" type="text" placeholder="اسم العميل  ........" />
-                            <h6>الرصيد</h6>
                             <input class="form-control" name="AccId" id="custid" type="text" hidden value="@ViewBag.AccId" />
 
 
                             <div class="hiddendiv" id="custtable">
                                 <table class="table table-bordered mt-4">
-
-
                                     <tbody id="custdata">
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
+                        <h6>الرصيد</h6>
                         <input class="form-control text-center " readonly name="custbalance" id="custbalance" value="0" />
                         <label for="" id="PerTyp"></label>
 
                     </div>
 
                     <div class="col-6">
-                        <div class="add mt-5 pt-3">
-
-                            <a href="/Accounts/Add">    <i class="fa-solid fa-plus"></i> <h6>اضافة حساب عميل</h6></a>
+                        <div class="add ">
+                            <a target="_blank" href="/Accounts/Add">    <i class="fa-solid fa-plus"></i> <h6>اضافة حساب عميل</h6></a>
                         </div>
 
-
-
-                        <div class="add mt-5">
-                            <a href="/Payments/AccountStatment">
+                        <div class="add">
+                            <a target="_blank" href="/Payments/AccountStatment">
                                 <i class="fa-solid fa-plus"></i>
 
                                 <h6>كشف حساب عميل</h6>
@@ -123,15 +134,11 @@
                 <div class="row">
                     <div class="col-6">
 
-
+                        <h6>اسم الصنف</h6>
                         <div class="staticWidth">
-                            <h6>اسم الصنف</h6>
                             <input class="form-control text-center" name="iname" id="iname" type="text" placeholder="اسم الصنف ........" />
-
                             <div class="hiddendiv" id="itemtable">
                                 <table class="table table-bordered mt-4">
-
-
                                     <tbody id="itemdata">
                                     </tbody>
                                 </table>
@@ -148,12 +155,8 @@
                     </div>
 
                     <div class="col-6">
-
-
-
-
+                        <h6>الباركود</h6>
                         <div class="staticWidth">
-                            <h6>الباركود</h6>
                             <input class="form-control text-center" id="barcode" type="text" placeholder="الباركود  ........" />
 
                             <div class="hiddendiv">
@@ -163,8 +166,6 @@
                                 </table>
                             </div>
                         </div>
-
-
 
                         <h6>سعر البيع</h6>
                         <input class="form-control text-center" readonly id="saleprice" type="text" placeholder="سعر البيع" />
@@ -182,10 +183,10 @@
 
             <div class="total">
                 <h6>اجمالي الكمية</h6>
-                <input class="form-control text-center" readonly type="text" name="" id="TQ"value="@ViewBag.ItemsQuantity" />
+                <input class="form-control text-center" readonly type="text" name="" id="TQ" value="@ViewBag.ItemsQuantity" />
 
                 <h6>عدد الاصناف</h6>
-                <input class="form-control text-center"  readonly type="text" name="" id="Icount"value="@ViewBag.ItemCount" />
+                <input class="form-control text-center" readonly type="text" name="" id="Icount" value="@ViewBag.ItemCount" />
             </div>
 
             <div class="form mt-5">
@@ -196,7 +197,6 @@
                             <th>السعر</th>
                             <th>الكمية</th>
                             <th>الاجمالي</th>
-
                             <th>العمليات</th>
                         </tr>
                     </thead>
@@ -222,54 +222,59 @@
                 </table>
             </div>
 
+
+
+
+
+
+
+
             <div class="total">
-                <h6>اجمالي الفاتورة</h6>
-                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 text-center", name = "FinalTotal", id = "FinalTotal", @readonly = "readonly" } })
 
-                @*<h6>المطلوب سداده</h6>
-        <input class="form-control" type="text" name="" id="RPaied" />*@
+                <div class="row">
+                    <div class="col-12 m-auto">
+                        <div class="w-100 m-auto">
+                            <h6>اجمالي الفاتورة</h6>
+                            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 text-center", name = "FinalTotal", id = "FinalTotal", @readonly = "readonly" } })
 
-                <button class="showPopup  btn btn-primary" type="button">تم</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
             </div>
-            <div class="popup">
-                <div class="div mt-4">
-                    <label for="">المطلوب سداده</label>
-                    <input class="form-control" type="number" id="Total" name="Total" readonly>
-                </div>
 
-                <div class="add">
-                    <i class="fa-solid fa-plus"></i>
+            <div class="row popup">
+                <div class="col-4">
 
-                    <h6 class="d-inline-block">خصم نقدي</h6>
-                </div>
-
-                <div class="div sale mt-2">
-                    <label for="">خصم نقدى</label>
-                    @Html.EditorFor(model => model.Descount, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 bg-light text-center", min = "0", type = "number", id = "Descount", name = "Descount" } })
+                    <div class="div  mt-2">
+                        <label for="">خصم نقدى</label>
+                        @Html.EditorFor(model => model.Descount, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 bg-light text-center", min = "0", type = "number", id = "Descount", name = "Descount" } })
+                    </div>
 
                 </div>
 
 
+                <div class="col-4">
+                    <label for="">المطلوب سدادة </label>
+                    @Html.EditorFor(model => model.Final, new { htmlAttributes = new { @class = "form-control text-center mt-2", name = "RPaied", id = "RPaied", @readonly = "readonly" } })
+                </div>
 
-
-                <label for="">الاجمالي </label>
-
-                @Html.EditorFor(model => model.Final, new { htmlAttributes = new { @class = "form-control text-center mt-2", name = "RPaied", id = "RPaied", @readonly = "readonly" } })
-
-
-
-
-
-
-                <div>
+                <div class="col-4">
                     <input class="" type="checkbox" name="" id="print">
                     <label for="">طباعة</label>
                 </div>
-
-                <button class="btn btn-primary" id="Addbtn" type="button" onclick=" Add()"> تعديل</button>
-                <a class="form-control rounded-5 bg-danger text-size-sm btn btn-sm" href="/ShowBills/Index">رجوع</a>
-
             </div>
+
+
+
+            <button class="btn btn-primary" id="Addbtn" type="button" onclick=" Add()"> حفظ</button>
+
+            <a class="form-control rounded-5 bg-danger text-size-sm btn btn-sm" href="/ShowBills/Index">رجوع</a>
+
+
+
         }
     </div>
 
@@ -644,7 +649,7 @@
                                 document.getElementById("FinalTotal").value = row.FinalTotal;
                                 document.getElementById("RPaied").value = row.FinalTotal;
 
-                                document.getElementById("Total").value = row.FinalTotal;
+                                //document.getElementById("Total").value = row.FinalTotal;
 
                                 document.getElementById("TQ").value = row.TotalQuantity;
                                 document.getElementById("Icount").value = row.ItemsCount;
@@ -662,16 +667,16 @@
                             if (data != null) {
                                 if (row.ID == document.getElementById("itemid").value) {
                                     $('#Mes').empty();
-                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                    $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                                        + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>هذا الصنف موجود بالفعل </div > <button type='button' class='btn-close  btn-sm me-2 mt-2' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                         " </div ></div > ");
 
                                     return;
                                 }
 
                                 $('#Mes').empty();
-                                $('#Mes').append("<div id='toast-8270' class='toast p-2 text-dark bg-info border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>تم الاضافة</div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                                $('#Mes').append("<div id='toast-8270' class='toast p-2 text-dark bg-info border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                                    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>تم الاضافة</div > <button type='button' class='btn-close  btn-sm me-2 mt-2' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                     " </div ></div > ");
 
                             }
@@ -700,7 +705,7 @@
                                 $('#billtable').append("<tr><td>" + row.Name + "</td>  <td>" + row.Price + "</td><td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td>" + row.Total + "</td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
 
                                 document.getElementById("FinalTotal").value = row.FinalTotal;
-                                document.getElementById("Total").value = row.FinalTotal;
+                                //document.getElementById("Total").value = row.FinalTotal;
                                 document.getElementById("RPaied").value = row.FinalTotal;
 
                                 document.getElementById("TQ").value = row.TotalQuantity;
@@ -739,7 +744,7 @@
                                     $('#billtable').append("<tr><td>" + row.Name + "</td>  <td>" + row.Price + "</td><td><input type='number' id='" + row.ID + "' onkeyup='QuantityChange(" + row.ID + ")' class='form-control text-center' value='" + row.Quantity + "'/></td><td>" + row.Total + "</td><td><a onclick='confirmation(" + row.ID + ")'><i class='fas fa-trash text-danger text-size-sm'></i></a></td> </tr>");
 
                                     document.getElementById("FinalTotal").value = row.FinalTotal;
-                                    document.getElementById("Total").value = row.FinalTotal;
+                                    //document.getElementById("Total").value = row.FinalTotal;
                                     document.getElementById("RPaied").value = row.FinalTotal;
 
                                     document.getElementById("TQ").value = row.TotalQuantity;
@@ -760,7 +765,7 @@
 
 
             $("#Descount").keyup(function () {
-                var x = document.getElementById("Total").value;
+                var x = document.getElementById("FinalTotal").value;
                 var y = document.getElementById("Descount").value;
 
 
@@ -796,40 +801,7 @@
 
                             window.location.href = '/ShowBills/Index';
 
-                            //$('#Mes').empty();
-
-                            //$('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                            //    + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
-                            //    " </div ></div > ");
-                            ////var check = false;
-                            ////var check = false;
-                            ////var x = document.getElementById("print");
-                            ////if (x.checked == true) {
-
-                            ////    check = true;
-                            ////    window.open("/SalesBill/ExportToPDFRoll?ID=" + res.BillID + "&Printtype=" + x, "_blank");
-
-
-
-
-                            ////}
-
-                            //document.getElementById("StkId").selectedIndex = 0;
-                            //document.getElementById('custid').value = "";
-                            //document.getElementById('iname').value = "";
-                            //document.getElementById('AccBalance').value = 0;
-                            //document.getElementById("FinalTotal").value = 0;
-                            //document.getElementById("RPaied").value = 0;
-                            //document.getElementById("TQ").value = 0;
-                            //document.getElementById("Icount").value = 0;
-                            //$("#billtable tr").remove();
-
-                            //document.getElementById("Descount").value = 0;
-                            //var now = new Date();
-                            //now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-                            //document.getElementById('Date').value = now.toISOString().slice(0, 16);
-
-                            //$('html,body').scrollTop(0);
+                          
 
 
 
@@ -837,8 +809,8 @@
                         else {
                             $('#Mes').empty();
 
-                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                 " </div ></div > ");
                         }
 
@@ -846,8 +818,8 @@
                     error: function (err) {
                         $('#Mes').empty();
 
-                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                        $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                            + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                             " </div ></div > ");
                     }
 

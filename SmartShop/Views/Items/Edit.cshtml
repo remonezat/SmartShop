@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section title{  تعديل صنف }
-
 <div class="col-10">
     <div class="container">
         @using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -26,10 +25,6 @@
                         <h6>فئة الصنف </h6>
                         @Html.DropDownList("CatId", new SelectList(ViewBag.Categories, "Id", "CatName"), "--اختر--", new { @class = "form-select text-center", required = "required" })
 
-
-
-
-
                         <h6>سعر الشراء </h6>
                         @Html.EditorFor(model => model.PricePur, new { htmlAttributes = new { @class = "form-control text-center", type = "number", value = "0", min = "1", required = "required" } })
 
@@ -46,11 +41,8 @@
                         <h6>الباركود </h6>
                         @Html.EditorFor(model => model.Barcode, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
 
-
-
                         <h6>بلد المنشا </h6>
                         @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control text-center", type = "text" } })
-
 
                         <h6>سعر البيع </h6>
                         @Html.EditorFor(model => model.PriceSell, new { htmlAttributes = new { @class = "form-control text-center", type = "number", value = "0", min = "1", required = "required" } })
@@ -61,48 +53,19 @@
                         <h6>صورة الصنف </h6>
 
                         <div class="img drop-zone" id="basic_drop_zone">
-
-
                             <label for="basic">
-
                                 <img src="/images/Group 10449.png" alt="">
                                 <p class="imgoutput"><img id="output" src="/Items/RetrieveImage/@Model.Id"/></p>
-
-
                                 <input class="drop-zone__input" id="basic" name="Img1" type="file" accept=".png,.jpg,.jpeg,.gif" title=" upload image " onchange="loadFile(event)">
-
                             </label>
-
                         </div>
-
                     </div>
                 </div>
 
-
-
                 <button class="btn btn-primary" type="submit">تعديل</button>
-
-
-
-
-
-
-
             </div>
-
         }
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 
 

@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  سداد رواتب    }
+
+<div class="col-10">
+    <div class="container">
+
+        @using (Html.BeginForm("PaySalary", "Employees", FormMethod.Post))
+        {
+            <div class="form">
+                <div class="formTitle">
+                    <h4>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        تسديد الرواتب
+                    </h4>
+                </div>
+                <div class="fullWidth">
+                    <h6>راتب شهر</h6>
+
+                    <input class="form-control" type="datetime-local" name="Date" id="Date">
+
+                </div>
+                <h6 for="">اسم الموظف</h6>
+                @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--اختر--", new { @class = "form-select text-center  ", required = "required" })
+
+
+
+
+
+            <div class="row accountReport">
+
+                <div class="col-4 d-flex justify-content-center ">
+
+                    <h6 class="d-inline-block">الراتب الاساسي </h6>
+                    <input type="text" class="text-center me-4" readonly name="" id="Salary">
+
+
+                </div>
+
+                <div class="col-4 d-flex justify-content-center ">
+
+                    <h6 class="d-inline-block">اجمالى المسحوبات</h6>
+                    <input type="text" class="text-center me-4" readonly name="" id="withdraw">
+
+
+                </div>
+
+                <div class="col-4 d-flex justify-content-center">
+                    <h6 class="d-inline-block">اجمالى خصومات</h6>
+                    <input type="text" class="text-center me-4" readonly name="" id="des">
+                </div>
+
+                <div class="col-12 d-flex justify-content-center">
+                    <h6 class="ml-4">المطلوب سداده</h6>
+                    <input type="text" class="text-center w-25 me-4" readonly name="Amount" id="Amount">
+                </div>
+            </div>
+
+                <button class="btn btn-primary" type="submit">تسديد</button>
+
+
+            </div>
+        }
+    </div>
+</div>
+
+<input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+<input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />
+
+@section scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('Date').value = now.toISOString().slice(0, 16);
+
+
+        if ((document.getElementById('Save').value) != "Empty") {
+            swal("", document.getElementById('Save').value, "success");
+
+        }
+        if ((document.getElementById('Error').value) != "Empty") {
+            swal("", document.getElementById('Error').value, "error");
+
+        }
+     
+        var w = 0;
+        var d = 0;
+        var t = 0;
+        var s = 0;
+
+        $("#EmpId").change(function () {
+        
+            document.getElementById("Amount").value = 0;
+            if ($("#EmpId").val() == 0) {
+                document.getElementById("Salary").value = 0;
+                document.getElementById("Amount").value = 0;
+                document.getElementById("withdraw").value = 0;
+                document.getElementById("des").value = 0;
+
+            }
+            else {
+
+
+                $.get("/EmployeeWithdraw/GetEmpSalary",
+                    { ID: $("#EmpId").val() },
+                    function (data) {
+                        document.getElementById("Salary").value = "";
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    document.getElementById("Salary").value = row.Salary;
+                                    s = row.Salary;
+                                }
+
+
+                            });
+                        //t = parseFloat(s) - (parseFloat(d) + parseFloat(w));
+
+                    });
+
+
+                $.get("/Employees/GetEmpWithdraw",
+                    { Date: document.getElementById("Date").value, ID: $("#EmpId").val() },
+                    function (data) {
+                        document.getElementById("withdraw").value = "";
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    document.getElementById("withdraw").value = data;
+                                    w = data;
+                                }
+
+
+                            });
+                        //t = parseFloat(s) - (parseFloat(d) + parseFloat(w));
+
+                    });
+
+
+                $.get("/Employees/GetEmpDescount",
+                    { Date: document.getElementById("Date").value, ID: $("#EmpId").val() },
+                    function (data) {
+                        document.getElementById("des").value = "";
+                        $.each(data,
+                            function (index, row) {
+                                if (data != null) {
+
+                                    document.getElementById("des").value = data;
+                                    d = data;
+
+                                }
+
+
+                            });
+                        t = parseFloat(s) - (parseFloat(d) + parseFloat(w));
+                        document.getElementById("Amount").value = t;
+
+                    });
+            }
+        });
+
+      
+
+    </script>
+    }

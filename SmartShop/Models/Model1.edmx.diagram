@@ -4,58 +4,56 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e09bcd1a08f94056a11b5624c2ab6fb2" Name="Diagram1">
-        <EntityTypeShape EntityType="SmartShopModel.Account" Width="1.5" PointX="0.75" PointY="21.625" />
-        <EntityTypeShape EntityType="SmartShopModel.Category" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="SmartShopModel.CustomerPayment" Width="1.5" PointX="3" PointY="24.875" />
-        <EntityTypeShape EntityType="SmartShopModel.EmployeeDiscount" Width="1.5" PointX="13" PointY="2.375" />
-        <EntityTypeShape EntityType="SmartShopModel.Employee" Width="1.5" PointX="10.75" PointY="3.625" />
-        <EntityTypeShape EntityType="SmartShopModel.EmployeesWithdraw" Width="1.5" PointX="13" PointY="5.25" />
-        <EntityTypeShape EntityType="SmartShopModel.Expencess" Width="1.5" PointX="10.75" PointY="9" />
-        <EntityTypeShape EntityType="SmartShopModel.Item" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="SmartShopModel.Jop" Width="1.5" PointX="0.75" PointY="2" />
-        <EntityTypeShape EntityType="SmartShopModel.Purchase" Width="1.5" PointX="6" PointY="21.625" />
-        <EntityTypeShape EntityType="SmartShopModel.PurchaseDetail" Width="1.5" PointX="8.25" PointY="9.375" />
-        <EntityTypeShape EntityType="SmartShopModel.PurchaseRe" Width="1.5" PointX="3" PointY="17.625" />
-        <EntityTypeShape EntityType="SmartShopModel.PurchaseReDetail" Width="1.5" PointX="5.25" PointY="5.375" />
-        <EntityTypeShape EntityType="SmartShopModel.Sale" Width="1.5" PointX="6" PointY="16.625" />
-        <EntityTypeShape EntityType="SmartShopModel.SalesDetail" Width="1.5" PointX="5.25" PointY="13.375" />
-        <EntityTypeShape EntityType="SmartShopModel.SalesRe" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="SmartShopModel.SalesReDetail" Width="1.5" PointX="8.25" PointY="5.375" />
-        <EntityTypeShape EntityType="SmartShopModel.Shift" Width="1.5" PointX="0.75" PointY="14.125" />
-        <EntityTypeShape EntityType="SmartShopModel.Store" Width="1.5" PointX="2.75" PointY="2" />
-        <EntityTypeShape EntityType="SmartShopModel.StoreTransfer" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="SmartShopModel.StoreTransferDetail" Width="1.5" PointX="5.25" PointY="9.5" />
-        <EntityTypeShape EntityType="SmartShopModel.SupplierPayment" Width="1.5" PointX="3" PointY="27.875" />
-        <EntityTypeShape EntityType="SmartShopModel.User" Width="1.5" PointX="0.75" PointY="18.125" />
-        <AssociationConnector Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A" />
-        <AssociationConnector Association="SmartShopModel.FK__Purchase__AccId__4CA06362" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__AccId__5629CD9C" />
-        <AssociationConnector Association="SmartShopModel.FK__Sales__AccId__398D8EEE" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesRe__AccId__4316F928" />
-        <AssociationConnector Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" />
-        <AssociationConnector Association="SmartShopModel.FK__Items__CatId__267ABA7A" />
-        <AssociationConnector Association="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" />
-        <AssociationConnector Association="SmartShopModel.FK__Employees__EmpId__2F10007B" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseD__ItemI__534D60F1" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__ItemI__5CD6CB2B" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesDeta__ItemI__403A8C7D" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesReDe__ItemI__49C3F6B7" />
-        <AssociationConnector Association="SmartShopModel.FK__StoreTran__ItemI__6477ECF3" />
-        <AssociationConnector Association="SmartShopModel.FK__Purchase__ShiftI__4E88ABD4" />
-        <AssociationConnector Association="SmartShopModel.FK__Purchase__UserId__4F7CD00D" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseD__InvId__52593CB8" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__InvId__6166761E" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__Shift__5812160E" />
-        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__UserI__59063A47" />
-        <AssociationConnector Association="SmartShopModel.FK__Sales__ShiftId__3B75D760" />
-        <AssociationConnector Association="SmartShopModel.FK__Sales__UserId__3C69FB99" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesDeta__InvId__3F466844" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesRe__ShiftId__44FF419A" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesRe__UserId__45F365D3" />
-        <AssociationConnector Association="SmartShopModel.FK__SalesReDe__InvId__607251E5" />
-        <AssociationConnector Association="SmartShopModel.FK__StoreTran__Trans__6383C8BA" />
-        <AssociationConnector Association="SmartShopModel.FK__StoreTran__UserI__60A75C0F" />
+      <Diagram DiagramId="d6e388f1ce2e4c75b1ced3d6f176fbce" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="SmartShopModel.Account" Width="1.5" PointX="10.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Category" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.CustomerPayment" Width="1.5" PointX="13" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.EmployeeDiscount" Width="1.5" PointX="13" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Employee" Width="1.5" PointX="10.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.EmployeesWithdraw" Width="1.5" PointX="13" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Expencess" Width="1.5" PointX="7.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Item" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Jop" Width="1.5" PointX="9.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Purchase" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.PurchaseDetail" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.PurchaseRe" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.PurchaseReDetail" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Sale" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.SalesDetail" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.SalesRe" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.SalesReDetail" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Shift" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.Store" Width="1.5" PointX="11.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.StoreTransfer" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.StoreTransferDetail" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.SupplierPayment" Width="1.5" PointX="13" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartShopModel.User" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="SmartShopModel.FK__CustomerP__AccId__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SupplierP__AccId__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Items__CatId__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__EmployeeD__EmpId__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Employees__EmpId__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseD__ItemI__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__ItemI__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesDeta__ItemI__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesReDe__ItemI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__StoreTran__ItemI__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Purchase__ShiftI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Purchase__UserId__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseD__InvId__2CBDA3B5" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__InvId__6166761E" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__Shift__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__PurchaseR__UserI__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Sales__ShiftId__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__Sales__UserId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesDeta__InvId__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesRe__ShiftId__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesRe__UserId__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__SalesReDe__InvId__607251E5" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__StoreTran__Trans__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartShopModel.FK__StoreTran__UserI__60A75C0F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartShopModel.EmployeePayedSalary" Width="1.5" PointX="13" PointY="18.375" />
+        <AssociationConnector Association="SmartShopModel.FK__EmployeeP__EmpId__54CB950F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

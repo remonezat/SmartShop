@@ -26,10 +26,6 @@
                         <h6>فئة الصنف </h6>
                         @Html.DropDownList("CatId", new SelectList(ViewBag.Categories, "Id", "CatName"), "--اختر--", new { @class = "form-select text-center", required = "required" })
 
-
-
-
-
                         <h6>سعر الشراء </h6>
                         <input class="form-control text-center" required type="number" name="PricePur" value="0" min="1">
 
@@ -41,67 +37,35 @@
 
                     </div>
 
-
                     <div class="col-6">
                         <h6>الباركود </h6>
                         <input class="form-control text-center" type="text" name="Barcode" placeholder="الباركود  ........">
 
-
-
                         <h6>بلد المنشا </h6>
                         <input class="form-control text-center" type="text" name="Company" placeholder="بلد المنشا  ........">
 
-
                         <h6>سعر البيع </h6>
                         <input class="form-control text-center" required type="number" name="PriceSell" value="0" min="1">
+                        
                         <h6>سعر شراء رصيد اول المدة    </h6>
                         <input class="form-control text-center" type="number" name="FirstBalancePrice" value="0">
 
                         <h6>صورة الصنف </h6>
-
                         <div class="img drop-zone" id="basic_drop_zone">
-
-
                             <label for="basic">
-
                                 <img src="/images/Group 10449.png" alt="">
                                 <p class="imgoutput"><img id="output" /></p>
-
-
                                 <input class="drop-zone__input" id="basic" name="Img1" type="file" accept=".png,.jpg,.jpeg,.gif" title=" upload image " onchange="loadFile(event)">
-
                             </label>
-
                         </div>
-
                     </div>
                 </div>
 
-
-
                 <button class="btn btn-primary" type="submit">تسجيل</button>
-
-
-
-
-
-
-
             </div>
 
         }
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 
 

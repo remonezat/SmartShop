@@ -3,9 +3,7 @@
 }
 @section title{  انشاء مخزن }
 <div class="col-10">
-
     <div class="container">
-
         <div class="form">
             @using (Html.BeginForm("Add", "Stores", FormMethod.Post))
             {
@@ -20,19 +18,13 @@
                     <div class="col-6">
                         <h6>الاسم </h6>
                         <input class="form-control" required type="text" name="StoreName" placeholder="الاسم ........">
-
                     </div>
 
                     <div class="col-6">
                         <h6>العنوان </h6>
-
                         <input class="form-control" type="text" name="Address" placeholder="العنوان ........">
-
                     </div>
                 </div>
-
-
-
 
                 <button class="btn btn-primary" type="submit">تسجيل</button>
             }
@@ -44,20 +36,12 @@
                 </div>
             </div>
 
-
-
-
-
             <table class="table table-bordered mt-4  hiddenTable">
                 <thead>
                     <tr>
                         <th>اسم المخزن</th>
                         <th>العنوان</th>
-
                         <th>العمليات</th>
-
-
-
                     </tr>
                 </thead>
 
@@ -69,40 +53,17 @@
                             <tr>
                                 <td>@item.StoreName</td>
                                 <td>@item.Address</td>
-
-                              
                                 <td>
                                     <a class="text-success" href="/Stores/Edit/@item.Id">    <i class="fa-solid fa-pen-to-square"></i>  </a>
                                     <a class="text-danger" href="/Stores/Delete/@item.Id">    <i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
-
-
                     }
                 </tbody>
             </table>
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
 <input type="text" id="Error" name="Error" hidden="hidden" value="@ViewBag.DeleteMessage" />

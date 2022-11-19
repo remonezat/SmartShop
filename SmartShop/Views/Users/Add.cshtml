@@ -4,9 +4,7 @@
 @section title{الصلاحيات }
 
 <div class="col-10">
-
     <div class="container">
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -15,7 +13,6 @@
                 </h4>
             </div>
 
-
             @using (Html.BeginForm("Add", "Users", FormMethod.Post))
             {
 
@@ -23,21 +20,10 @@
                     <div class="col-6">
                         <h6>اسم المستخدم   </h6>
                         <input class="d-inline-block form-control" required type="text" name="UserName" placeholder="  ........">
-
                     </div>
-
-
-
-
-
                     <div class="col-6  ">
                         <h6>كلمة السر   </h6>
                         <input class="d-inline-block form-control" required type="text" name="UserPassword" placeholder="  ........">
-
-
-
-
-
                     </div>
                 </div>
 
@@ -71,19 +57,13 @@
                             <input type="checkbox" name="editbills">
                             <h6>عرض و تعديل الفواتير</h6>
 
-
                         </div>
-
                         <div class="col-6">
                             <input type="checkbox" name="sre">
                             <h6>مرتجع المبيعات</h6>
                             <br>
                             <input type="checkbox" name="purre">
                             <h6>مرتجع المشتريات</h6>
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -202,14 +182,9 @@
                         <div class="col-6">
                             <input type="checkbox" name="addacc">
                             <h6>تسجيل حساب جديد</h6>
-
-
                             <br>
                             <input type="checkbox" name="editacc">
                             <h6>عرض و تعديل الحسابات</h6>
-
-
-
                         </div>
 
                         <div class="col-6">
@@ -228,12 +203,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
 
 
                 <div class="abilities  d-flex " id="items">
@@ -255,12 +224,9 @@
                         <div class="col-6">
                             <input type="checkbox" name="cat">
                             <h6>انشاء فئة</h6>
-
-                            <br>
+                    <br>
                             <input type="checkbox" name="additem">
                             <h6>اضافة صنف</h6>
-
-
                         </div>
 
                         <div class="col-6">
@@ -270,8 +236,6 @@
                             <br>
                             <input type="checkbox" name="addstore">
                             <h6>انشاء مخزن</h6>
-
-
                         </div>
                     </div>
                 </div>
@@ -327,19 +291,15 @@
                         <div class="col-6">
                             <input type="checkbox"name="drep">
                             <h6>تقرير يومية</h6>
-
-
-                        </div>
-
-                        <div class="col-6">
+                                <br>
                             <input type="checkbox"name="mrep">
                             <h6> تقرير شهرية  </h6>
                         </div>
+
                         <div class="col-6">
-                            <input type="checkbox"name="yrep">
+                             <input type="checkbox"name="yrep">
                             <h6> تقرير سنوي  </h6>
-                        </div>
-                        <div class="col-6">
+                            <br>
                             <input type="checkbox"name="balancerep">
                             <h6> تقرير ارصدة الاصناف  </h6>
                         </div>
@@ -348,28 +308,9 @@
 
 
                 <button class="btn btn-primary" type="submit">تسجيل</button>
-
-
-
             }
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />

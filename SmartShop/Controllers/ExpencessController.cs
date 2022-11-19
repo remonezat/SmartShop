@@ -11,7 +11,7 @@ namespace SmartShop.Controllers
 {
     public class ExpencessController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Expencess
         public ActionResult Add()

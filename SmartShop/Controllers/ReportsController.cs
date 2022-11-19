@@ -18,7 +18,7 @@ namespace SmartShop.Controllers
 {
     public class ReportsController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Reports
         public ActionResult BalanceReport()

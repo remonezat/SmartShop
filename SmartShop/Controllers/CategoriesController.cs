@@ -8,7 +8,7 @@ namespace SmartShop.Controllers
 {
     public class CategoriesController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
         // GET: Categories
         public ActionResult Add()
         {

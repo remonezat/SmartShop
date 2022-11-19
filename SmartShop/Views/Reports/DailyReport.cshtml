@@ -24,9 +24,12 @@
                     <input class="form-control" type="date" name="" id="Date">
                 </div>
 
-                <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
-                <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+                <div class="btns d-flex">
 
+                    <button class="btn btn-primary" type="button" onclick="Show()">بحث</button>
+                    <button class="btn btn-primary" type="button" onclick="Print()">طباعة</button>
+
+                </div>
                 <table class="table table-bordered mt-4 ">
                     <thead>
                         <tr>
@@ -35,60 +38,39 @@
                             <th>صادر</th>
                             <th>اسم الشخص</th>
                             <th>البيان </th>
-
-
                         </tr>
                     </thead>
 
                     <tbody id="billtable">
                     </tbody>
                 </table>
-
-
-
-
-
-
-
             </div>
 
 
 
 
+            <div class="row accountReport">
 
-            <div class="row account">
-                <div class="col-6 ">
+                <div class="col-4 ">
+
                     <h6>وارد</h6>
                     <input type="text" class="text-center" readonly name="" id="in">
-                    <br />
-                    <h6>
-                        صادر
-                    </h6>
+                    
+                   
+                </div>
+
+                <div class="col-4">
+                    <h6>صادر</h6>
                     <input type="text" class="text-center" readonly name="" id="out">
+                </div>
 
-                    <br />
-
-                    <h6>
-                        الباقي
-                    </h6>
+                <div class="col-4">
+                    <h6>الباقي</h6>
                     <input type="text" class="text-center" readonly name="" id="total">
-
-
                 </div>
             </div>
-
-
-
         </div>
-
-
-
-
-
     </div>
-
-
-
 </div>
 
 

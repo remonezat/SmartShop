@@ -18,10 +18,6 @@ namespace SmartShop.Models
         public Account()
         {
             this.CustomerPayments = new HashSet<CustomerPayment>();
-            this.Purchases = new HashSet<Purchase>();
-            this.PurchaseRes = new HashSet<PurchaseRe>();
-            this.Sales = new HashSet<Sale>();
-            this.SalesRes = new HashSet<SalesRe>();
             this.SupplierPayments = new HashSet<SupplierPayment>();
         }
     
@@ -33,14 +29,6 @@ namespace SmartShop.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerPayment> CustomerPayments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseRe> PurchaseRes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sale> Sales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesRe> SalesRes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SupplierPayment> SupplierPayments { get; set; }
     }

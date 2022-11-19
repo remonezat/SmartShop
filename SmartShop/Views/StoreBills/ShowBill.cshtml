@@ -1,0 +1,131 @@
+﻿@model SmartShop.Models.Sale
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title{  فاتورة مبيعات  }
+
+
+<div class="col-10">
+    <div class="container">
+
+        @using (Html.BeginForm("ShowBill", "StoreBills", FormMethod.Post, new { id = "add" }))
+        {
+            <div class="form">
+                <div class="formTitle">
+                    <h4 style="margin-bottom: 0">
+                        <i class="fa-solid fa-circle-plus"></i>
+                         فاتورة مبيعات
+                    </h4>
+
+                    <h4 class="me-3">
+                        <i class="rotate fa-solid fa-arrow-turn-down"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات الفاتورة
+                    </h4>
+                </div>
+
+                <div class="fullWidth">
+                    <h6>التاريخ :</h6>
+                    @Html.TextBoxFor(model => model.Date, ViewData["Dt"].ToString(), new { @class = "form-control w-100 text-center", type = "datetime-local", required = "required" })
+
+                </div>
+
+           
+
+              
+            </div>
+
+            <div class="form mt-5">
+                <div class="formTitle">
+                    <h4 class="me-3">
+                        <i class="rotate fa-solid fa-arrow-turn-down"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
+                        بيانات العميل
+                    </h4>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="staticWidth">
+                            <h6>اسم العميل</h6>
+                            <input class="form-control text-center" name="custname" id="custname" type="text" value="@ViewBag.AccId" />
+
+
+                          
+                        </div>
+
+                       
+
+                    </div>
+
+                
+                </div>
+
+
+
+
+            </div>
+
+         
+
+            <div class="total">
+                <h6>اجمالي الكمية</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="TQ" value="@ViewBag.ItemsQuantity" />
+
+                <h6>عدد الاصناف</h6>
+                <input class="form-control text-center" readonly type="text" name="" id="Icount" value="@ViewBag.ItemCount" />
+            </div>
+
+            <div class="form mt-5">
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>الصنف</th>
+                            <th>السعر</th>
+                            <th>الكمية</th>
+                            <th>الاجمالي</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="billtable">
+                        @if (ViewBag.SalesDetails != null)
+                        {
+                            foreach (var item in ViewBag.SalesDetails)
+                            {
+                                <tr>
+                                    <td>  @item.Item.ItemName </td>
+                                    <td> @item.Price </td>
+                                    <td>@item.Count </td>
+                                    <td> @Html.Raw(item.Price * item.Count) </td>
+                                </tr>
+
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total">
+                <h6>اجمالي الفاتورة</h6>
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control text-size-sm p-2 text-center", name = "FinalTotal", id = "FinalTotal", @readonly = "readonly" } })
+
+                @*<h6>المطلوب سداده</h6>
+                    <input class="form-control" type="text" name="" id="RPaied" />*@
+
+                <button class="showPopup  btn btn-primary" type="submit">تم التجهيز</button>
+            </div>
+            
+        }
+    </div>
+
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
+
+</div>
+
+

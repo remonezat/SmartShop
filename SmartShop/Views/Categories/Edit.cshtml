@@ -5,11 +5,8 @@
 }
 @section title{  تعديل فئة  }
 
-
 <div class="col-10">
     <div class="container">
-
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -18,21 +15,16 @@
                 </h4>
             </div>
 
-
             @using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
             {
-
-
-                <div class="fullWidth">
-                    <h6>اسم الفئة</h6>
-                    @Html.EditorFor(model => model.CatName, new { htmlAttributes = new { @class = " w-100 form-control text-center" ,type = "text", required = "required" } })
-
+                 <div class="row">
+                    <div class="col-12">
+                        <h6>اسم الفئة</h6>
+                        @Html.EditorFor(model => model.CatName, new { htmlAttributes = new { @class = "  form-control " ,type = "text", required = "required" } })
+                    </div>
                 </div>
                 <button class="btn btn-primary" type="submit">تعديل</button>
-
             }
-
-         
         </div>
     </div>
 </div>

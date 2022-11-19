@@ -12,7 +12,7 @@ namespace SmartShop.Controllers
 {
     public class StoreTransfersController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: StoreTransfers
         public ActionResult Add()

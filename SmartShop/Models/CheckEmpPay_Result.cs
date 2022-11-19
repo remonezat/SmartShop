@@ -11,14 +11,11 @@ namespace SmartShop.Models
 {
     using System;
     
-    public partial class MonthlyReport_Result
+    public partial class CheckEmpPay_Result
     {
-        public string typ { get; set; }
-        public Nullable<double> credit { get; set; }
-        public Nullable<double> debit { get; set; }
-        public int sm { get; set; }
-        public Nullable<System.DateTime> action_date { get; set; }
-        public string acc_name { get; set; }
-        public string nts { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> EmpId { get; set; }
+        public Nullable<double> Amount { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     }
 }

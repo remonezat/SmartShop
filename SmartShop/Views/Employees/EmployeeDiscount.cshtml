@@ -16,64 +16,36 @@
             </div>
             @using (Html.BeginForm("EmployeeDiscount", "Employees", FormMethod.Post))
             {
-                <div class="fullWidth">
-                    <h6>التاريخ :</h6>
-                    <input class="form-control text-center" type="datetime-local" name="Date" id="Date" placeholder="">
-
-                </div>
+                
                 <div class="row">
+
+                    <div class="col-12">
+                        <h6>التاريخ :</h6>
+                        <input class="form-control text-center" type="datetime-local" name="Date" id="Date" placeholder="">
+                    </div>
+
                     <div class="col-6">
                         <h6>اسم الموظف</h6>
                         @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--اختر--", new { @class = "form-select text-center" })
-
-
                     </div>
 
-
-
-                    <div class="col-6  dept">
+                    <div class="col-6">
                         <h6>المبلغ   </h6>
                         <input class="form-control text-center" required type="number" name="Amount" value="0">
-
-
-
-
-
                     </div>
-                </div>
 
+                    <div class="col-12">
+                        <h6>البيان </h6>
+                        <textarea class="form-control text-center" name="Note" id="" cols="30" rows="3"></textarea>
+                    </div>
 
-                <div class="fullWidth">
-
-                    <h6>البيان </h6>
-
-                    <textarea class="form-control text-center" name="Note" id="" cols="30" rows="3"></textarea>
                 </div>
 
                 <button class="btn btn-primary" type="submit">تسجيل</button>
-
-
-
             }
-
-
-
-
-
         </div>
 
-
-
-
-
-
-
-
     </div>
-
-
-
-
 
 </div>
 

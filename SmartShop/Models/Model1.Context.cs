@@ -15,10 +15,10 @@ namespace SmartShop.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class SmartShopEntities : DbContext
+    public partial class SmartShopEntities1 : DbContext
     {
-        public SmartShopEntities()
-            : base("name=SmartShopEntities")
+        public SmartShopEntities1()
+            : base("name=SmartShopEntities1")
         {
         }
     
@@ -50,6 +50,16 @@ namespace SmartShop.Models
         public virtual DbSet<StoreTransferDetail> StoreTransferDetails { get; set; }
         public virtual DbSet<SupplierPayment> SupplierPayments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<EmployeePayedSalary> EmployeePayedSalaries { get; set; }
+    
+        public virtual ObjectResult<DailyReport_Result> DailyReport(Nullable<System.DateTime> date)
+        {
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyReport_Result>("DailyReport", dateParameter);
+        }
     
         public virtual ObjectResult<Get_PersonAccountCredit_Result> Get_PersonAccountCredit(Nullable<int> acc_id)
         {
@@ -58,6 +68,19 @@ namespace SmartShop.Models
                 new ObjectParameter("acc_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_PersonAccountCredit_Result>("Get_PersonAccountCredit", acc_idParameter);
+        }
+    
+        public virtual ObjectResult<Get_PersonAccountCredit_before_Result> Get_PersonAccountCredit_before(Nullable<int> acc_id, Nullable<System.DateTime> beforeDte)
+        {
+            var acc_idParameter = acc_id.HasValue ?
+                new ObjectParameter("acc_id", acc_id) :
+                new ObjectParameter("acc_id", typeof(int));
+    
+            var beforeDteParameter = beforeDte.HasValue ?
+                new ObjectParameter("BeforeDte", beforeDte) :
+                new ObjectParameter("BeforeDte", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_PersonAccountCredit_before_Result>("Get_PersonAccountCredit_before", acc_idParameter, beforeDteParameter);
         }
     
         public virtual ObjectResult<GetAccountStatement_Result> GetAccountStatement(Nullable<int> acc_id, Nullable<System.DateTime> dte_f, Nullable<System.DateTime> dte_t)
@@ -77,17 +100,32 @@ namespace SmartShop.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAccountStatement_Result>("GetAccountStatement", acc_idParameter, dte_fParameter, dte_tParameter);
         }
     
-        public virtual ObjectResult<Get_PersonAccountCredit_before_Result> Get_PersonAccountCredit_before(Nullable<int> acc_id, Nullable<System.DateTime> beforeDte)
+        public virtual ObjectResult<GetAllBills_Result> GetAllBills()
         {
-            var acc_idParameter = acc_id.HasValue ?
-                new ObjectParameter("acc_id", acc_id) :
-                new ObjectParameter("acc_id", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllBills_Result>("GetAllBills");
+        }
     
-            var beforeDteParameter = beforeDte.HasValue ?
-                new ObjectParameter("BeforeDte", beforeDte) :
-                new ObjectParameter("BeforeDte", typeof(System.DateTime));
+        public virtual ObjectResult<GetItemsCredit_proc_Result> GetItemsCredit_proc(Nullable<int> stk)
+        {
+            var stkParameter = stk.HasValue ?
+                new ObjectParameter("stk", stk) :
+                new ObjectParameter("stk", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_PersonAccountCredit_before_Result>("Get_PersonAccountCredit_before", acc_idParameter, beforeDteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetItemsCredit_proc_Result>("GetItemsCredit_proc", stkParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> GetShift_id()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetShift_id");
+        }
+    
+        public virtual ObjectResult<MonthReport_Result> MonthReport(Nullable<System.DateTime> date)
+        {
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MonthReport_Result>("MonthReport", dateParameter);
         }
     
         public virtual ObjectResult<Nullable<double>> ProcGetItemCredit_Stock(Nullable<int> it_id, Nullable<int> stk_id)
@@ -103,43 +141,6 @@ namespace SmartShop.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("ProcGetItemCredit_Stock", it_idParameter, stk_idParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> GetShift_id()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetShift_id");
-        }
-    
-        public virtual ObjectResult<GetAllBills_Result> GetAllBills()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllBills_Result>("GetAllBills");
-        }
-    
-        public virtual ObjectResult<DailyReport_Result> DailyReport(Nullable<System.DateTime> date)
-        {
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("date", date) :
-                new ObjectParameter("date", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyReport_Result>("DailyReport", dateParameter);
-        }
-    
-        public virtual ObjectResult<MonthlyReport_Result> MonthlyReport(Nullable<System.DateTime> date)
-        {
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("date", date) :
-                new ObjectParameter("date", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MonthlyReport_Result>("MonthlyReport", dateParameter);
-        }
-    
-        public virtual ObjectResult<MonthReport_Result> MonthReport(Nullable<System.DateTime> date)
-        {
-            var dateParameter = date.HasValue ?
-                new ObjectParameter("date", date) :
-                new ObjectParameter("date", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MonthReport_Result>("MonthReport", dateParameter);
-        }
-    
         public virtual ObjectResult<YearReport_Result> YearReport(Nullable<double> date)
         {
             var dateParameter = date.HasValue ?
@@ -149,13 +150,53 @@ namespace SmartShop.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<YearReport_Result>("YearReport", dateParameter);
         }
     
-        public virtual ObjectResult<GetItemsCredit_proc_Result> GetItemsCredit_proc(Nullable<int> stk)
+        public virtual ObjectResult<daybill_Result> daybill()
         {
-            var stkParameter = stk.HasValue ?
-                new ObjectParameter("stk", stk) :
-                new ObjectParameter("stk", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<daybill_Result>("daybill");
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetItemsCredit_proc_Result>("GetItemsCredit_proc", stkParameter);
+        public virtual ObjectResult<dailybill_Result> dailybill()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<dailybill_Result>("dailybill");
+        }
+    
+        public virtual ObjectResult<Nullable<double>> GetEmpDescount(Nullable<int> id, Nullable<System.DateTime> date)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("GetEmpDescount", idParameter, dateParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> GetEmpWithdraw(Nullable<int> id, Nullable<System.DateTime> date)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("GetEmpWithdraw", idParameter, dateParameter);
+        }
+    
+        public virtual ObjectResult<CheckEmpPay_Result> CheckEmpPay(Nullable<int> id, Nullable<System.DateTime> date)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckEmpPay_Result>("CheckEmpPay", idParameter, dateParameter);
         }
     }
 }

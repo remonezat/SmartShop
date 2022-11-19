@@ -3,10 +3,7 @@
 }
 @section title{   تحصيل من عميل }
 <div class="col-10">
-
     <div class="container">
-
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -16,76 +13,40 @@
             </div>
             @using (Html.BeginForm("PaymentCustomer", "Payments", FormMethod.Post))
             {
-                <div class="fullWidth">
-                    <h6>التاريخ :</h6>
-                    <input class="form-control text-center" type="datetime-local" name="Date" id="Date" placeholder="">
-
-                </div>
 
                 <div class="row">
+                    <div class="col-12">
+                        <h6>التاريخ :</h6>
+                        <input class="form-control text-center" type="datetime-local" name="Date" id="Date" placeholder="">
+                    </div>
+
                     <div class="col-6">
                         <h6>اسم الحساب</h6>
                         @Html.DropDownList("AccId", new SelectList(ViewBag.Accounts, "Id", "AccName"), "--الكل--", new { @class = "form-select text-center", required = "required" })
-
-
                     </div>
 
                     <div class="col-6  dept">
                         <h6>الرصيد   </h6>
                         <input class="d-inline-block form-control text-center" name="AccBalance" id="AccBalance" value="0" type="text" readonly>
                         <label for="" id="PerTyp" ></label>
-
-
-
-
                     </div>
-                </div>
 
-
-
-
-                <div class="row">
-                    <div class="col-6">
+                     <div class="col-6">
                         <h6>المبلغ</h6>
                         <input class="form-control text-center" required name="Amount" id="Amount" type="number" value="0" min="1">
-
                     </div>
-
-
 
                     <div class="col-6 dept">
                         <h6>الرصيد بعد   </h6>
                         <input class="form-control text-center" name="total" id="total" type="text" value="0" readonly>
                         <label for="" id="PerTypAfter"></label>
-
-
-
                     </div>
                 </div>
 
                 <button class="btn btn-primary" type="submit">تسجيل</button>
-
-
-
             }
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
 </div>
 
 

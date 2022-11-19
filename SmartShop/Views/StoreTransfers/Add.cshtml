@@ -7,7 +7,6 @@
     @using (Html.BeginForm("Add", "StoreTransfers", FormMethod.Post, new { id = "add" }))
     {
         <div class="container">
-
                 <div class="form">
                     <div class="formTitle">
                         <h4>
@@ -16,38 +15,24 @@
                         </h4>
                     </div>
 
-                    <!-- <input type="date">
-            <img src="images/icons8-search-50 1.png" alt=""> -->
-                    <div class="fullWidth">
-                        <h6> التاريخ  :</h6>
-                        <input class="form-control w-100" type="datetime-local" name="Date" id="Date" />
-
-
-
-                    </div>
 
                     <div class="row">
-                        <div class="col-6">
-                            @Html.DropDownList("StkFromId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
-
-
+                        <div class="col-12">
+                            <h6> التاريخ  :</h6>
+                            <input class="form-control w-100" type="datetime-local" name="Date" id="Date" />
                         </div>
-
                         <div class="col-6">
+                           <div class="col-6">
+                            @Html.DropDownList("StkFromId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
+                        </div>
+                        </div>
+                        <div class="col-6">
+                           <div class="col-6">
                             @Html.DropDownList("StkToId", new SelectList(ViewBag.Stores, "Id", "StoreName"), "--المحل--", new { @class = "form-control text-center" })
-
 
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-            </div>
+                </div>
 
 
 
@@ -65,12 +50,9 @@
 
                 <div class="row">
                     <div class="col-6">
-
-
                         <div class="staticWidth">
                             <h6>اسم الصنف</h6>
                             <input class="form-control text-center" name="iname" id="iname" type="text" placeholder="اسم الصنف ........" />
-
                             <div class="hiddendiv" id="itemtable">
                                 <table class="table table-bordered mt-4">
 
@@ -83,22 +65,16 @@
                         <input class="form-control" name="itemid" id="itemid" hidden />
 
 
-                        <h6>الكمية (المحل/المخزن)</h6>
-                        <input class="form-control text-center" readonly type="text" id="Quantity" />
+                       
                         <h6>عدد القطع</h6>
                         <input class="form-control text-center" id="itemquantity" type="text" placeholder="عدد القطع" />
 
                     </div>
 
                     <div class="col-6">
-
-
-
-
+                        <h6>الباركود</h6>
                         <div class="staticWidth">
-                            <h6>الباركود</h6>
                             <input class="form-control text-center" id="barcode" type="text" placeholder="الباركود  ........" />
-
                             <div class="hiddendiv">
                                 <table class="table table-bordered mt-4">
                                     <tbody id="itembarcodedata">
@@ -107,21 +83,12 @@
                             </div>
                         </div>
 
-
-
-
+                         <h6>الكمية (المحل/المخزن)</h6>
+                        <input class="form-control text-center" readonly type="text" id="Quantity" />
                     </div>
                 </div>
 
-
-
                 <button class="btn btn-primary" type="button" onclick="Bill()">اضافة</button>
-
-
-
-
-
-
 
             </div>
 
@@ -132,8 +99,6 @@
                         <tr>
                             <th>الصنف</th>
                             <th>الكمية</th>
-
-
                             <th>العمليات</th>
                         </tr>
                     </thead>
@@ -151,15 +116,14 @@
                 <input class="form-control text-center" readonly type="text" name="" id="Icount" />
             </div>
             <button type="button" id="Addbtn" class="btn btn-primary my-4 " onclick="return Add(this)">حفظ</button>
-
-
         </div>
 
-    }
 
 
 
 </div>
+    }
+    </div>
 <div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 9999999">
 
 </div>
@@ -506,8 +470,8 @@
 
                             $('#Mes').empty();
 
-                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ms-auto' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-success border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between '>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + message + " </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                 " </div ></div > ");
                             //var check = false;
 

@@ -5,8 +5,6 @@
 
 <div class="col-10">
     <div class="container">
-
-
         <div class="form">
             <div class="formTitle">
                 <h4>
@@ -16,14 +14,15 @@
             </div>
             <div>
 
-
-                <h6 for="">اسم الموظف</h6>
-                @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--الكل--", new { @class = "form-select text-center" })
-
-
+            <div class="row">
+                <div class="col-12">
+                    <h6 for="">اسم الموظف</h6>
+                    @Html.DropDownList("EmpId", new SelectList(ViewBag.Employees, "Id", "EName"), "--الكل--", new { @class = "form-select text-center" })
+                </div>
+            </div>
 
                 <button class="btn btn-primary" onclick="Show()">البحث</button>
-
+                
                 <table class="table table-bordered mt-4">
                     <thead>
                         <tr>
@@ -43,7 +42,10 @@
         </div>
     </div>
 </div>
+
 <input type="text" id="Save" name="Save" hidden="hidden" value="@ViewBag.SuccessMessage" />
+
+
 <div class="position-fixed top-0 end-0 p-3" id="Mes" style="z-index: 999999">
 
 </div>
@@ -107,9 +109,14 @@
                         { EmpName: $("#EmpId option:selected").text(),EmpId:id },
                         function (data) {
                             $('#Mes').empty();
-                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex'>"
-                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 justify-content-between' data-bs-dismiss='toast' aria-label='Close'></button>" +
+                            $('#Mes').append("<div id='toast-8270' class='toast p-2 text-white bg-danger border-0 fade show' role='alert' aria-live='assertive' aria-atomic='true'><div class='d-flex justify-content-between'>"
+                                + "<div class= 'toast-body' > <i class='icon-info-sign me-1'></i>" + data.message1 + "    </div > <button type='button' class='btn-close  btn-sm me-2 mt-2 ' data-bs-dismiss='toast' aria-label='Close'></button>" +
                                 " </div ></div > ");
+
+
+
+
+
                             $("#datatable").empty();
 
                             $.each(data.result1,

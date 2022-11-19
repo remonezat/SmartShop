@@ -13,7 +13,7 @@ namespace SmartShop.Controllers
 {
     public class PurchaseController : BaseController
     {
-        SmartShopEntities db = new SmartShopEntities();
+        SmartShopEntities1 db = new SmartShopEntities1();
 
         // GET: Purchase
         public ActionResult Add()
@@ -321,6 +321,11 @@ namespace SmartShop.Controllers
                 ProductsInCart = JsonConvert.DeserializeObject<List<BillDetails>>(Authentication.Decrypt(cookie2.Value));
 
                 if (ProductsInCart == null)
+                {
+                    return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
+
+                }
+                else if (ProductsInCart.Count == 0)
                 {
                     return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
 
@@ -713,6 +718,11 @@ namespace SmartShop.Controllers
                 ProductsInCart = JsonConvert.DeserializeObject<List<BillDetails>>(Authentication.Decrypt(cookie2.Value));
 
                 if (ProductsInCart == null)
+                {
+                    return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
+
+                }
+                else if (ProductsInCart.Count == 0)
                 {
                     return Json(new { isValid = false, message = " لا توجد اصناف بالفاتورة " });
 
