@@ -684,16 +684,15 @@
                                 " </div ></div > ");
                             //var check = false;
                             //var check = false;
-                            //var x = document.getElementById("print");
-                            //if (x.checked == true) {
+                            var x = document.getElementById("print");
+                            if (x.checked == true) {
 
-                            //    check = true;
-                            //    window.open("/SalesBill/ExportToPDFRoll?ID=" + res.BillID + "&Printtype=" + x, "_blank");
-
+                                window.open("/PurchaseRe/ExportToPDFRoll?ID=" + res.BillID, "_blank");
 
 
 
-                            //}
+
+                            }
                             document.getElementById('Place').checked = true;
 
                             document.getElementById("StkId").selectedIndex = 0;

@@ -186,44 +186,32 @@
         }
 
 
-        //function print(id, typ) {
+        function print(id, typ) {
 
-        //    if (typ == "مبيعات") {
-        //        window.open("/SalesBill/ExportToPDF?ID=" + id, "_blank");
+            if (typ == "مبيعات") {
+                window.open("/Sales/ExportToPDFRoll?ID=" + id, "_blank");
 
-        //    }
-        //    else if (typ == "مشتريات") {
-        //        window.open("/ShowBills/ExportPurchaseToPDF?ID=" + id, "_blank");
-
-
-
-        //    }
-        //    else if (typ == "مرتجع بيع") {
-        //        window.open("/SalesReBill/ExportToPDF?ID=" + id, "_blank");
+            }
+            else if (typ == "مشتريات") {
+                window.open("/Purchase/ExportToPDFRoll?ID=" + id, "_blank");
 
 
 
-        //    }
-        //    else if (typ == "مرتجع شراء") {
-        //        window.open("/ShowBills/ExportPurchaseReToPDF?ID=" + id, "_blank");
-
-
-        //    }
-        //}
-
-        //function printRoll(id, typ) {
-
-        //    if (typ == "مبيعات") {
-        //        window.open("/ShowBills/ExportsalesBillToPDFRoll?ID=" + id , "_blank");
-
-        //    }
-
-        //    else if (typ == "مرتجع بيع") {
-        //        window.open("/ShowBills/ExportsalesReBillToPDFRoll?ID=" + id, "_blank");
+            }
+            else if (typ == "مرتجع بيع") {
+                window.open("/SalesRe/ExportToPDFRoll?ID=" + id, "_blank");
 
 
 
-        //    }
+            }
+            else if (typ == "مرتجع شراء") {
+                window.open("/PurchaseRe/ExportToPDFRoll?ID=" + id, "_blank");
+
+
+            }
+       }
+
+      
 
         //}
 

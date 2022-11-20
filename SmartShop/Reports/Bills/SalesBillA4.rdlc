@@ -110,7 +110,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!Crdt.Value, "DataSet1")</Value>
+                <Value>=First(Fields!final.Value, "DataSet1")</Value>
                 <Style>
                   <FontSize>12pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
@@ -709,7 +709,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet2</DataSetName>
+        <DataSetName>DataSet1</DataSetName>
         <Top>0.33514cm</Top>
         <Left>0.30081cm</Left>
         <Height>1.8cm</Height>
@@ -775,7 +775,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>فاتورة مبيعات</Value>
+                  <Value>فاتورة </Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -886,6 +886,73 @@
             </Border>
           </Style>
         </Image>
+        <Textbox Name="cust10">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!accname.Value, "DataSet1")</Value>
+                  <Style>
+                    <FontWeight>SemiBold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>cust</rd:DefaultName>
+          <Top>3.34698cm</Top>
+          <Left>9.94321cm</Left>
+          <Height>0.6cm</Height>
+          <Width>6.75124cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox24">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>الاسم</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>3.34698cm</Top>
+          <Left>17.02595cm</Left>
+          <Height>0.60854cm</Height>
+          <Width>2.99399cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -1080,32 +1147,21 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DSSalesDataA4">
+    <DataSource Name="billDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>ccac96a9-6d8c-48dc-8cf3-49e94c4dfd96</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="DSSalesDetailsA4">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>8391f47c-ddad-4158-93eb-cb7b498c7f58</rd:DataSourceID>
+      <rd:DataSourceID>076163fb-4574-4dfd-8a36-d5d9841b1175</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet2">
+    <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>DSSalesDetailsA4</DataSourceName>
+        <DataSourceName>billDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="id">
-          <DataField>id</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="iname">
           <DataField>iname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1122,14 +1178,22 @@
           <DataField>total</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="unit">
-          <DataField>unit</DataField>
+        <Field Name="accname">
+          <DataField>accname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="descount">
+          <DataField>descount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="final">
+          <DataField>final</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DSSalesDetailsA4</rd:DataSetName>
-        <rd:SchemaPath>F:\New folder (2)\Bills\Bills\Reports\SalesBill\DSSalesDetailsA4.xsd</rd:SchemaPath>
+        <rd:DataSetName>billDataSet</rd:DataSetName>
+        <rd:SchemaPath>F:\sssssss\SmartShop\SmartShop\billDataSet.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

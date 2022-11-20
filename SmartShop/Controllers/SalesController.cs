@@ -963,23 +963,45 @@ namespace SmartShop.Controllers
                 var SelectBill = db.Sales.Where(x => x.Id == ID).FirstOrDefault();
                 var SelectBillDetails = db.SalesDetails.Where(x => x.InvId == ID).ToList();
 
+                var selectname = db.Accounts.Where(x => x.Id == SelectBill.AccId).Select(x => x.AccName).FirstOrDefault();
 
 
 
 
 
 
-                List<BillData> Salesdata = new List<BillData>();
+                List <BillData> Salesdata = new List<BillData>();
                 foreach (var item in SelectBillDetails)
                 {
-                    Salesdata.Add(new BillData()
+                    if (selectname == null)
                     {
-                        iname = item.Item.ItemName,
-                        count = item.Count.ToString(),
-                        price = item.Price.ToString(),
-                        total = (item.Price * item.Count).ToString()
+                        Salesdata.Add(new BillData()
+                        {
+                            iname = item.Item.ItemName,
+                            count = item.Count.ToString(),
+                            price = item.Price.ToString(),
+                            total = (item.Price * item.Count).ToString(),
+                            accname = "",
+                            descount = SelectBill.Descount.ToString(),
+                            final = SelectBill.Final.ToString(),
 
-                    });
+
+                        });
+                    }
+                    else
+                    {
+                        Salesdata.Add(new BillData()
+                        {
+                            iname = item.Item.ItemName,
+                            count = item.Count.ToString(),
+                            price = item.Price.ToString(),
+                            total = (item.Price * item.Count).ToString(),
+                            accname = selectname.ToString(),
+                            descount = SelectBill.Descount.ToString(),
+                            final = SelectBill.Final.ToString(),
+
+                        });
+                    }
                 }
                 DataTable BillDatadt = new DataTable();
 
@@ -988,10 +1010,15 @@ namespace SmartShop.Controllers
                 BillDatadt.Columns.Add("price", typeof(string));
 
                 BillDatadt.Columns.Add("total", typeof(string));
+                BillDatadt.Columns.Add("accname", typeof(string));
+                BillDatadt.Columns.Add("descount", typeof(string));
+                BillDatadt.Columns.Add("final", typeof(string));
+
+
 
                 foreach (var item in Salesdata)
                 {
-                    BillDatadt.Rows.Add(item.iname, item.count, item.price, item.total);
+                    BillDatadt.Rows.Add(item.iname, item.count, item.price, item.total,item.accname,item.descount,item.final);
                 }
 
 

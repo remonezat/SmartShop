@@ -160,6 +160,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="billDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>billDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -383,6 +388,17 @@
     <Content Include="Assets\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Assets\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="billDataSet.xsc">
+      <DependentUpon>billDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="billDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>billDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="billDataSet.xss">
+      <DependentUpon>billDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="DailyReportDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DailyReportDataSet.Designer.cs</LastGenOutput>

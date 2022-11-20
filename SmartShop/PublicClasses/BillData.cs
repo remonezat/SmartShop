@@ -13,6 +13,9 @@ namespace SmartShop.PublicClasses
 
         public string count { get; set; }
             public string total { get; set; }
-        
+        public string accname { get; set; }
+
+        public string descount { get; set; }
+        public string final { get; set; }
     }
 }
